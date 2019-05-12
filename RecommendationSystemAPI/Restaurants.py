@@ -2,7 +2,6 @@ from flask import jsonify
 from flask_restful import Resource
 from sqlalchemy import create_engine
 
-
 class Restaurants(Resource):
 
     def __init__(self):
