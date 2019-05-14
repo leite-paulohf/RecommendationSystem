@@ -1,9 +1,9 @@
 //
 //  ReusableViewExtension.swift
-//  ChefsClub
+//  RSystemApp
 //
 //  Created by Paulo Henrique Leite on 07/12/18.
-//  Copyright © 2018 ChefsClub. All rights reserved.
+//  Copyright © 2018 RSystemApp. All rights reserved.
 //
 
 import UIKit

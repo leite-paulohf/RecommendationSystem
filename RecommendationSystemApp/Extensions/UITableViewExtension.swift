@@ -1,9 +1,9 @@
 //
 //  UITableViewExtension.swift
-//  ChefsClub
+//  RSystemApp
 //
 //  Created by Paulo Henrique Leite on 09/04/2018.
-//  Copyright © 2018 ChefsClub. All rights reserved.
+//  Copyright © 2018 RSystemApp. All rights reserved.
 //
 
 import UIKit

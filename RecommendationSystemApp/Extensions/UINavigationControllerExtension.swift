@@ -1,9 +1,9 @@
 //
 //  UINavigationControllerExtension.swift
-//  ChefsClub
+//  RSystemApp
 //
 //  Created by Paulo Henrique Leite on 10/11/16.
-//  Copyright © 2018 ChefsClub. All rights reserved.
+//  Copyright © 2018 RSystemApp. All rights reserved.
 //
 
 import UIKit
