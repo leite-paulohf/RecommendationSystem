@@ -1,9 +1,9 @@
 //
 //  UIViewControllerExtension.swift
-//  ChefsClub
+//  RSystemApp
 //
 //  Created by Paulo Henrique Leite on 18/04/17.
-//  Copyright © 2017 ChefsClub. All rights reserved.
+//  Copyright © 2017 RSystemApp. All rights reserved.
 //
 
 import UIKit
@@ -11,6 +11,17 @@ import ObjectiveC
 
 private var scrollViewKey: UInt8 = 0
 private var indexKey: UInt8 = 0
+
+extension UIView {
+    
+    @nonobjc class func instanceFromNib() -> UIView {
+        let nib = UINib(nibName: "\(self)", bundle: nil)
+        let views = nib.instantiate(withOwner: nil, options: nil)
+        let view = views.first as? UIView
+        return view ?? UIView()
+    }
+
+}
 
 extension UIViewController {
 

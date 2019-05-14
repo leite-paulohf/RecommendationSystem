@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--System App Tab BarVC-->
         <scene sceneID="ndK-Wl-e7b">
             <objects>
-                <tabBarController hidesBottomBarWhenPushed="YES" id="w5d-8u-ets" sceneMemberID="viewController">
+                <tabBarController hidesBottomBarWhenPushed="YES" id="w5d-8u-ets" customClass="RSystemAppTabBarVC" customModule="Rsytem" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="LW5-HE-XK6"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="lLi-ue-0Px">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>

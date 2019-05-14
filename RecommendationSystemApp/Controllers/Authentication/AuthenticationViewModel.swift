@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AuthenticationDelegate: class {
+protocol AuthenticationDelegate: class, Helper {
     func context()
 }
 
@@ -20,19 +20,22 @@ class AuthenticationViewModel {
         self.vc = vc
     }
     
-    internal func search() {
-        print("call search service")
-        self.vc?.context()
-    }
-
-    internal func login() {
-        print("call login service")
-        self.vc?.context()
+    internal func authentication(id: String) {
+        UserService.shared.getUser(id: id) { (response) in
+            switch response {
+            case .success(let user, _):
+                User.shared.id = user.id
+                self.vc?.context()
+            case .failure(let error, _):
+                
+                self.vc?.showError(message: error.message())
+            }
+        }
     }
 
     internal func register() {
         print("call register service")
         self.vc?.context()
     }
-
+    
 }

@@ -30,7 +30,8 @@ class AuthenticationVC: UIViewController {
     }
 
     @IBAction func continueButtonAction(_ sender: UIButton) {
-        self.viewModel.search()
+        let id = dataTextField.text ?? ""
+        self.viewModel.authentication(id: id)
     }
     
     @IBAction func skipButtonAction(_ sender: UIButton) {
@@ -42,11 +43,7 @@ class AuthenticationVC: UIViewController {
 extension AuthenticationVC: AuthenticationDelegate {
     
     func context() {
-        if Bool.random() {
-            let _: LoginVC? = self.navigationController?.push(.authentication)
-        } else {
-            let _: RegisterVC? = self.navigationController?.push(.authentication)
-        }
+        self.navigationController?.setRoot(.main)
     }
     
 }

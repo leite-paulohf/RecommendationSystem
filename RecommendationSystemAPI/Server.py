@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from User import User
 from Usage import Usage
 from Usages import Usages
 from Restaurants import Restaurants
@@ -14,6 +15,7 @@ class Server:
         self.routes()
 
     def routes(self):
+        self.api.add_resource(User, '/user/<user_id>')
         self.api.add_resource(Usage, '/usage')
         self.api.add_resource(Usages, '/usage/<user_id>')
         self.api.add_resource(Restaurants, '/restaurants')
