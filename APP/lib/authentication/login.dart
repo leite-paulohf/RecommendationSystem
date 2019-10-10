@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/button.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:tcc_app/helper/loader.dart';
 import 'package:tcc_app/helper/validator.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/model/error.dart';
@@ -20,6 +21,14 @@ class _LoginState extends State<Login> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
+  var _loading = false;
+
+  set loading(bool value) {
+    setState(() {
+      _loading = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +36,7 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         title: Text("Login"),
       ),
-      body: _body(),
+      body: Loader().body(_loading, _body()),
     );
   }
 
@@ -126,11 +135,15 @@ class _LoginState extends State<Login> {
   }
 
   void _login() async {
+    this.loading = true;
     var result = await this.widget.viewModel.login();
+    this.loading = false;
     var code = result.item1;
     switch (code) {
       case 200:
-        return Alert.show(context, result.item2.toJson().toString());
+        this.widget.viewModel.set(result.item2);
+        Navigator.pop(context);
+        break;
       default:
         Alert.show(context, Error.from(code).message);
     }

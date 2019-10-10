@@ -30,7 +30,6 @@ class Client(Resource):
             abort(404)
 
     def register(self):
-        print(request.json)
         client = request.json['client']
         query = sql.insert(self.database)
         query = query.values(
@@ -41,7 +40,7 @@ class Client(Resource):
         try:
             self.connection.execute(query)
         except exc.SQLAlchemyError as error:
-            return {'error': {'code': error.code, 'message': error.orig.args[0]}}
+            return jsonify({'error': {'code': error.code, 'message': error.orig.args[0]}})
         query = sql.select([self.database])
         query = query.where(self.database.c.document == client['document'])
         data = self.connection.execute(query)

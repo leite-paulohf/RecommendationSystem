@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:tcc_app/authentication/profile.dart';
+import 'package:tcc_app/helper/loader.dart';
 import 'package:tcc_app/helper/validator.dart';
+import 'package:tcc_app/model/user.dart';
 import 'login.dart';
 import 'register.dart';
 import 'viewmodel.dart';
@@ -22,11 +25,20 @@ class _AuthenticationState extends State<Authentication> {
   final _formKey = GlobalKey<FormState>();
   final viewModel = AuthenticationViewModel(interface: UserService());
 
+  var _loading = false;
+
+  set loading(bool value) {
+    setState(() {
+      _loading = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    this.viewModel.getUser();
     return Scaffold(
       key: _key,
-      body: _body(),
+      body: Loader().body(_loading, _body()),
     );
   }
 
@@ -36,23 +48,38 @@ class _AuthenticationState extends State<Authentication> {
   }
 
   Widget _body() {
-    return GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: ScopedModel<AuthenticationViewModel>(
-            model: this.viewModel,
-            child: Form(
-                key: _formKey,
-                child: ListView(
-                  padding: EdgeInsets.all(20),
-                  children: <Widget>[
-                    _header(),
-                    _form(),
-                    Padding(padding: EdgeInsets.only(top: 20)),
-                    _button()
-                  ],
-                ))));
+    return FutureBuilder<User>(
+      future: this.viewModel.getUser(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            if (snapshot.data.uuid != null)
+              return Profile(viewModel: this.viewModel);
+            else
+              return GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  },
+                  child: ScopedModel<AuthenticationViewModel>(
+                    model: this.viewModel,
+                    child: Form(
+                        key: _formKey,
+                        child: ListView(
+                          padding: EdgeInsets.all(20),
+                          children: <Widget>[
+                            _header(),
+                            _form(),
+                            Padding(padding: EdgeInsets.only(top: 20)),
+                            _button(),
+                          ],
+                        )),
+                  ));
+            break;
+          default:
+            return Loader().show();
+        }
+      },
+    );
   }
 
   Widget _header() {
@@ -68,7 +95,8 @@ class _AuthenticationState extends State<Authentication> {
 
   Widget _form() {
     return TextFormField(
-        controller: MaskedTextController(mask: '000.000.000-00'),
+        controller: MaskedTextController(
+            text: this.viewModel.document, mask: '000.000.000-00'),
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             labelText: "Document", border: OutlineInputBorder()),
@@ -97,7 +125,9 @@ class _AuthenticationState extends State<Authentication> {
   }
 
   void _search() async {
+    this.loading = true;
     var result = await this.viewModel.search();
+    this.loading = false;
     var code = result.item1;
     switch (code) {
       case 200:
