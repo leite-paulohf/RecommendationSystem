@@ -6,7 +6,7 @@ class User {
 
   User({this.uuid, this.name, this.document, this.password});
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromModel(Map<String, dynamic> json) {
     var model = json['data'];
     return User(
         uuid: model['uuid'],
