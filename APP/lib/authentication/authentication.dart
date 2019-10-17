@@ -35,7 +35,6 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   Widget build(BuildContext context) {
-    this.viewModel.getUser();
     return Scaffold(
       key: _key,
       body: Loader().body(_loading, _body()),
