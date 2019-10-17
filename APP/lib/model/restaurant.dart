@@ -31,14 +31,14 @@ class Restaurant {
         uuid: model['uuid'],
         name: model['name'],
         discount: model['discount'],
-        price: model['price'],
+        price: model['price_range'],
         rating: model['rating'],
-        kind: model['kind'],
-        city: model['city'],
-        neighbourhood: model['neighbourhood'],
-        cuisine: model['cuisine'],
-        category: model['category'],
-        moment: model['moment']);
+        kind: Filter.fromJson(model['kind']),
+        city: Filter.fromJson(model['city']),
+        neighbourhood: Filter.fromJson(model['neighbourhood']),
+        cuisine: Filter.fromJson(model['cuisine']),
+        category: Filter.fromJson(model['category']),
+        moment: Filter.fromJson(model['moment']));
   }
 
   Map<String, dynamic> toJson() => {
