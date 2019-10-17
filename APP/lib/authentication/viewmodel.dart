@@ -17,10 +17,10 @@ class AuthenticationViewModel extends Model {
 
   Future<User> getUser() async {
     var preferences = await SharedPreferences.getInstance();
-    var client = preferences.get("client");
-    if (client != null) {
-      Map data = json.decode(client);
-      return User.fromJson(data);
+    var user = preferences.get("user");
+    if (user != null) {
+      Map data = json.decode(user);
+      return User.fromModel(data);
     } else {
       return User();
     }
@@ -28,8 +28,8 @@ class AuthenticationViewModel extends Model {
 
   void set(User user) async {
     var preferences = await SharedPreferences.getInstance();
-    var client = json.encode({'data': user.toJson()});
-    await preferences.setString("client", client);
+    var data = json.encode({'data': user.toJson()});
+    await preferences.setString("user", data);
   }
 
   Future<Tuple2<int, User>> search() async {
