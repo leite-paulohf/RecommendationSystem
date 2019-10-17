@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from Client import Client
 from Favourite import Favourite
+from Restaurants import Restaurants
 
 app = Flask(__name__)
 
@@ -9,14 +10,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def root():
-    return """
-    /client/search -
-    /client/register -
-    /client/login -
-    /client/show/<uuid> -
-    /favourite -
-    /favourites
-    """
+    return "online"
 
 #   CLIENT
 
@@ -46,6 +40,16 @@ def favourite():
 @app.route('/favourites', methods=['GET'])
 def favourites():
     return Favourite().favourites()
+
+#   RESTAURANTS
+
+@app.route('/restaurants', methods=['GET'])
+def getAll():
+    return Restaurants().getAll()
+
+@app.route('/restaurant/<uuid>', methods=['GET'])
+def detail(uuid):
+    return Restaurants().detail(uuid)
 
 #   RUN
 
