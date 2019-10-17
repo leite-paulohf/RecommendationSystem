@@ -1,16 +1,10 @@
-import 'dart:io';
 import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as service;
-import 'package:tcc_app/model/error.dart';
-import 'package:tcc_app/model/restaurants.dart';
+import 'package:tcc_app/service/service.dart';
+import 'package:tcc_app/model/restaurant.dart';
+import 'package:tuple/tuple.dart';
 
 abstract class RestaurantInterface {
-  Future<Restaurants> getRestaurants(int city);
-
-  Future<Restaurants> getRecommendations(int uuid, int city);
-
-  Future<Restaurants> getFavourites(int uuid);
+  Future<Tuple2<int, List<Restaurant>>> search(int city);
 }
 
 class RestaurantService implements RestaurantInterface {
@@ -20,45 +14,11 @@ class RestaurantService implements RestaurantInterface {
 
   RestaurantService.internal();
 
-  String _base = 'http://127.0.0.1:5000';
-
   @override
-  Future<Restaurants> getRestaurants(int city) async {
-    final response = await service.get('$_base/restaurants?city=$city',
-        headers: {HttpHeaders.contentTypeHeader: 'application/json'});
-    var code = response.statusCode;
-    switch (code) {
-      case 200:
-        return Restaurants.fromModel(json.decode(response.body));
-      default:
-        throw Exception(Error.from(code).message);
-    }
+  Future<Tuple2<int, List<Restaurant>>> search(int city) async {
+    Map<String, String> data = {'city': city.toString()};
+    var response = await Service().get('restaurants', data);
+    return Service().parseRestaurants(response);
   }
 
-  @override
-  Future<Restaurants> getRecommendations(int uuid, int city) async {
-    final response = await service.get(
-        '$_base/recommendations?uuid=$uuid&city=$city',
-        headers: {HttpHeaders.contentTypeHeader: 'application/json'});
-    var code = response.statusCode;
-    switch (code) {
-      case 200:
-        return Restaurants.fromModel(json.decode(response.body));
-      default:
-        throw Exception(Error.from(code).message);
-    }
-  }
-
-  @override
-  Future<Restaurants> getFavourites(int uuid) async {
-    final response = await service.get('$_base/favourites?uuid=$uuid',
-        headers: {HttpHeaders.contentTypeHeader: 'application/json'});
-    var code = response.statusCode;
-    switch (code) {
-      case 200:
-        return Restaurants.fromModel(json.decode(response.body));
-      default:
-        throw Exception(Error.from(code).message);
-    }
-  }
 }
