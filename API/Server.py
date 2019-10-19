@@ -6,49 +6,52 @@ from Restaurants import Restaurants
 
 app = Flask(__name__)
 
-#   CLIENT
+#   DEFAULT
 
 @app.route('/', methods=['GET'])
 def root():
-    return "online"
+    return "Server Online"
 
 #   CLIENT
 
 @app.route('/client/search', methods=['GET'])
-def search():
+def searchClient():
     return Client().search()
 
 @app.route('/client/register', methods=['POST'])
-def register():
+def registerClient():
     return Client().register()
 
 @app.route('/client/login', methods=['GET'])
-def login():
+def loginClient():
     return Client().login()
 
 @app.route('/client/show/<uuid>', methods=['GET'])
-def show(uuid):
+def showClient(uuid):
     return Client().show(uuid)
-
 
 #   FAVOURITE
 
-@app.route('/favourite', methods=['POST'])
-def favourite():
-    return Favourite().favourite()
+@app.route('/favourites', methods=['POST'])
+def addFavourites():
+    return Favourite().add()
+
+@app.route('/favourites', methods=['DELETE'])
+def removeFavourites():
+    return Favourite().remove()
 
 @app.route('/favourites', methods=['GET'])
-def favourites():
-    return Favourite().favourites()
+def getAllFavourites():
+    return Favourite().getAll()
 
 #   RESTAURANTS
 
 @app.route('/restaurants', methods=['GET'])
-def getAll():
+def getAllRestaurants():
     return Restaurants().getAll()
 
 @app.route('/restaurant/<uuid>', methods=['GET'])
-def detail(uuid):
+def detailRestaurant(uuid):
     return Restaurants().detail(uuid)
 
 #   RUN
