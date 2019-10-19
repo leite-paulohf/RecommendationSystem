@@ -24,7 +24,7 @@ class Client(Resource):
         query = query.where(self.database.c.document == document)
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
-        if len(result.keys()) > 0:
+        if bool(result):
             return jsonify(result)
         else:
             abort(404)
@@ -40,7 +40,7 @@ class Client(Resource):
         try:
             self.connection.execute(query)
         except exc.SQLAlchemyError as error:
-            return jsonify({'error': {'code': error.code, 'message': error.orig.args[0]}})
+            return {'error': {'code': error.code, 'message': error.orig.args[0]}}
         query = sql.select([self.database])
         query = query.where(self.database.c.document == client['document'])
         data = self.connection.execute(query)
@@ -55,7 +55,7 @@ class Client(Resource):
         query = query.where(self.database.c.password == password)
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
-        if len(result.keys()) > 0:
+        if bool(result):
             return jsonify(result)
         else:
             abort(401)
@@ -65,4 +65,7 @@ class Client(Resource):
         query = query.where(self.database.c.uuid == uuid)
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
-        return jsonify(result)
+        if bool(result):
+            return jsonify(result)
+        else:
+            abort(401)
