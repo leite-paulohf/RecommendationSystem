@@ -124,70 +124,55 @@ class Restaurants(Resource):
                                   sql.Column('moment_id', sql.Integer))
         metadata.create_all(engine)
 
+    def parse(self, restaurant):
+        kind_id = restaurant.pop('kind_id')
+        kind = Kind().get(kind_id)
+        restaurant['kind'] = kind
+
+        city_id = restaurant.pop('city_id')
+        city = City().get(city_id)
+        restaurant['city'] = city
+
+        neighbourhood_id = restaurant.pop('neighbourhood_id')
+        neighbourhood = Neighbourhood().get(neighbourhood_id)
+        restaurant['neighbourhood'] = neighbourhood
+
+        cuisine_id = restaurant.pop('cuisine_id')
+        cuisine = Cuisine().get(cuisine_id)
+        restaurant['cuisine'] = cuisine
+
+        category_id = restaurant.pop('category_id')
+        category = Category().get(category_id)
+        restaurant['category'] = category
+
+        moment_id = restaurant.pop('moment_id')
+        moment = Moment().get(moment_id)
+        restaurant['moment'] = moment
+
+        return restaurant
+
     def getAll(self):
-        city = request.args.get('city')
+        city_id = request.args.get('city_id')
         query = sql.select([self.database])
-        query = query.where(self.database.c.city_id == city)
+        query = query.where(self.database.c.city_id == city_id)
         data = self.connection.execute(query)
         result = {'data': [dict(zip(tuple(data.keys()), i)) for i in data.cursor]}
-        data = result['data']
-
-        for restaurant in data:
-            kind_id = restaurant.pop('kind_id', None)
-            kind = Kind().get(kind_id)
-            restaurant['kind'] = kind
-
-            city_id = restaurant.pop('city_id', None)
-            city = City().get(city_id)
-            restaurant['city'] = city
-
-            neighbourhood_id = restaurant.pop('neighbourhood_id', None)
-            neighbourhood = Neighbourhood().get(neighbourhood_id)
-            restaurant['neighbourhood'] = neighbourhood
-
-            cuisine_id = restaurant.pop('cuisine_id', None)
-            cuisine = Cuisine().get(cuisine_id)
-            restaurant['cuisine'] = cuisine
-
-            category_id = restaurant.pop('category_id', None)
-            category = Category().get(category_id)
-            restaurant['category'] = category
-
-            moment_id = restaurant.pop('moment_id', None)
-            moment = Moment().get(moment_id)
-            restaurant['moment'] = moment
-
-        return jsonify(result)
+        if bool(result):
+            restaurants = result['data']
+            for restaurant in restaurants:
+                self.parse(restaurant)
+            return jsonify(restaurants)
+        else:
+            return jsonify([])
 
     def detail(self, uuid):
         query = sql.select([self.database])
         query = query.where(self.database.c.uuid == uuid)
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
-        data = result['data']
-
-        kind_id = data.pop('kind_id', None)
-        kind = Kind().get(kind_id)
-        data['kind'] = kind
-
-        city_id = data.pop('city_id', None)
-        city = City().get(city_id)
-        data['city'] = city
-
-        neighbourhood_id = data.pop('neighbourhood_id', None)
-        neighbourhood = Neighbourhood().get(neighbourhood_id)
-        data['neighbourhood'] = neighbourhood
-
-        cuisine_id = data.pop('cuisine_id', None)
-        cuisine = Cuisine().get(cuisine_id)
-        data['cuisine'] = cuisine
-
-        category_id = data.pop('category_id', None)
-        category = Category().get(category_id)
-        data['category'] = category
-
-        moment_id = data.pop('moment_id', None)
-        moment = Moment().get(moment_id)
-        data['moment'] = moment
-
-        return jsonify(result)
+        if bool(result):
+            restaurant = result['data']
+            self.parse(restaurant)
+            return jsonify(restaurant)
+        else:
+            return jsonify({})
