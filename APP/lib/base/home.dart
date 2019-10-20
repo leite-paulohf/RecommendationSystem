@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tcc_app/authentication/authentication.dart';
-import 'package:tcc_app/history/history.dart';
+import 'package:tcc_app/usages/usages.dart';
 import 'package:tcc_app/favourites/favourites.dart';
 import 'package:tcc_app/restaurants/restaurants.dart';
 
@@ -16,12 +16,12 @@ class _HomeState extends State<Home> {
 
   final List<Widget> _body = [
     Restaurants(),
-    History(),
+    Usages(),
     Favourites(),
     Authentication()
   ];
 
-  final _title = ["Restaurants", "History", "Favourites", "Authentication"];
+  final _title = ["Restaurants", "Usages", "Favourites", "Profile"];
 
   int _index = 0;
 
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.history),
-          title: Text('History'),
+          title: Text('Usages'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),

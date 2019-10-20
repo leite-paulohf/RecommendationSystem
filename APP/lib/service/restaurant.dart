@@ -16,7 +16,7 @@ class RestaurantService implements RestaurantInterface {
 
   @override
   Future<Tuple2<int, List<Restaurant>>> search(int city) async {
-    Map<String, String> data = {'city': city.toString()};
+    Map<String, String> data = {'city_id': city.toString()};
     var response = await Service().get('restaurants', data);
     return Service().parseRestaurants(response);
   }
