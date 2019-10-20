@@ -158,10 +158,9 @@ class Restaurants(Resource):
         data = self.connection.execute(query)
         result = {'data': [dict(zip(tuple(data.keys()), i)) for i in data.cursor]}
         if bool(result):
-            restaurants = result['data']
-            for restaurant in restaurants:
+            for restaurant in result['data']:
                 self.parse(restaurant)
-            return jsonify(restaurants)
+            return jsonify(result)
         else:
             return jsonify([])
 

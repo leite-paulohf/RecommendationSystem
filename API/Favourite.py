@@ -58,10 +58,10 @@ class Favourite(Resource):
         result = {'data': [self.detail(list(i).pop()) for i in data.cursor]}
         return jsonify(result)
 
-    def detail(self, uuid):
+    def detail(self, restaurant_uuid):
         restaurants = Restaurants()
         query = sql.select([restaurants.database])
-        query = query.where(restaurants.database.c.uuid == uuid)
+        query = query.where(restaurants.database.c.uuid == restaurant_uuid)
         data = restaurants.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
         if bool(result):
