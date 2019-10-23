@@ -7,7 +7,7 @@ import 'package:tcc_app/model/user.dart';
 import 'package:tuple/tuple.dart';
 
 class Service {
-  final _base = '1073ad57.ngrok.io';
+  final _base = '97c3f644.ngrok.io';
 
   Future<http.Response> get(String path, Map<String, String> data) async {
     var url = Uri.http(_base, path, data);

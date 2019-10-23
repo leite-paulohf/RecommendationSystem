@@ -37,6 +37,7 @@ class _AuthenticationState extends State<Authentication> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
+      backgroundColor: Colors.black12,
       body: Loader().body(_loading, _body()),
     );
   }
@@ -84,11 +85,7 @@ class _AuthenticationState extends State<Authentication> {
   Widget _header() {
     return Container(
       padding: EdgeInsets.only(bottom: 20),
-      child: Icon(
-        Icons.account_circle,
-        color: Colors.teal,
-        size: 50,
-      ),
+      child: Icon(Icons.account_circle, color: Colors.teal, size: 50),
     );
   }
 

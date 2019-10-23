@@ -23,6 +23,7 @@ class UsagesState extends State<Usages> {
 	Widget build(BuildContext context) {
 		return Scaffold(
 			key: _key,
+			backgroundColor: Colors.black12,
 			body: _body(),
 		);
 	}
