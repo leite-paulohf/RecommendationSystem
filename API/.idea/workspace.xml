@@ -3,276 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/components/cell.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/components/cell.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/service/service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Gemfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Gemfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Podfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Podfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/AFDateHelper/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/AFDateHelper/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/AFDateHelper/Sources/DateHelper.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/CPF-CNPJ-Validator/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/CPF-CNPJ-Validator/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/CPF-CNPJ-Validator/Source/CPF-CNPJ-Validator.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Constraints/Constraints/Classes/Constraint+NSLayoutAnchor.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Constraints/Constraints/Classes/Constraint+ShortcutMethods.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Constraints/Constraints/Classes/Constraint.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Constraints/Constraints/Classes/ConstraintsChain.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Constraints/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Constraints/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/AnimatedImageView.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/Box.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/CacheSerializer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/Filter.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/FormatIndicatedCacheSerializer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/Image.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/ImageCache.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/ImageDownloader.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/ImageModifier.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/ImagePrefetcher.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/ImageProcessor.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/ImageTransition.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/ImageView+Kingfisher.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/Indicator.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/Kingfisher.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/Kingfisher.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/KingfisherManager.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/KingfisherOptionsInfo.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/Placeholder.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/RequestModifier.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/Resource.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/String+MD5.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/ThreadHelper.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Kingfisher/Sources/UIButton+Kingfisher.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Manifest.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationAudioEqualizer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallBeat.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotate.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotateMultiple.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotatePulse.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallDoubleBounce.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallGridBeat.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallGridPulse.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallPulse.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallPulseRise.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallPulseSync.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallRotate.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallRotateChase.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScale.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScaleMultiple.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScaleRipple.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScaleRippleMultiple.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallSpinFadeLoader.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallTrianglePath.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallZigZag.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallZigZagDeflect.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBlank.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationCircleStrokeSpin.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationCubeTransition.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScale.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScaleParty.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScalePulseOut.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScalePulseOutRapid.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineSpinFadeLoader.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationOrbit.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationPacman.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationSemiCircleSpin.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationSquareSpin.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationTriangleSkewSpin.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/NVActivityIndicatorAnimationDelegate.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/NVActivityIndicatorShape.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/NVActivityIndicatorView.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Presenter/NVActivityIndicatorPresenter.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Presenter/NVActivityIndicatorViewable.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/README-CN.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/CodableTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/CustomDateFormatTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/DataTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/DateFormatterTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/DateTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/DictionaryTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/EnumOperators.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/EnumTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/FromJSON.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/HexColorTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/ISO8601DateTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/ImmutableMappable.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/IntegerOperators.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/Map.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/MapError.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/Mappable.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/Mapper.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/NSDecimalNumberTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/Operators.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/ToJSON.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/TransformOf.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/TransformOperators.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/TransformType.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/ObjectMapper/Sources/URLTransform.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/AFDateHelper.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/CPF-CNPJ-Validator.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/Constraints.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/Kingfisher.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/NVActivityIndicatorView.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/ObjectMapper.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/Pods-RecommendationSystemApp.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/Tags.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Pods.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Tags/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Tags/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Tags/Tags/Classes/Extensions.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Tags/Tags/Classes/TagButton.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Tags/Tags/Classes/TagsView.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/AFDateHelper/AFDateHelper-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/AFDateHelper/AFDateHelper-dummy.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/AFDateHelper/AFDateHelper-prefix.pch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/AFDateHelper/AFDateHelper-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/AFDateHelper/AFDateHelper.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/AFDateHelper/AFDateHelper.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/CPF-CNPJ-Validator/CPF-CNPJ-Validator-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/CPF-CNPJ-Validator/CPF-CNPJ-Validator-dummy.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/CPF-CNPJ-Validator/CPF-CNPJ-Validator-prefix.pch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/CPF-CNPJ-Validator/CPF-CNPJ-Validator-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/CPF-CNPJ-Validator/CPF-CNPJ-Validator.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/CPF-CNPJ-Validator/CPF-CNPJ-Validator.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Constraints/Constraints-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Constraints/Constraints-dummy.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Constraints/Constraints-prefix.pch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Constraints/Constraints-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Constraints/Constraints.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Constraints/Constraints.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Kingfisher/Kingfisher-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Kingfisher/Kingfisher-dummy.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Kingfisher/Kingfisher-prefix.pch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Kingfisher/Kingfisher-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Kingfisher/Kingfisher.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Kingfisher/Kingfisher.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/NVActivityIndicatorView/NVActivityIndicatorView-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/NVActivityIndicatorView/NVActivityIndicatorView-dummy.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/NVActivityIndicatorView/NVActivityIndicatorView-prefix.pch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/NVActivityIndicatorView/NVActivityIndicatorView-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/NVActivityIndicatorView/NVActivityIndicatorView.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/NVActivityIndicatorView/NVActivityIndicatorView.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/ObjectMapper/ObjectMapper-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/ObjectMapper/ObjectMapper-dummy.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/ObjectMapper/ObjectMapper-prefix.pch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/ObjectMapper/ObjectMapper-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/ObjectMapper/ObjectMapper.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/ObjectMapper/ObjectMapper.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp-acknowledgements.markdown" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp-acknowledgements.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp-dummy.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp-frameworks.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp.debug.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Pods-RecommendationSystemApp/Pods-RecommendationSystemApp.release.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Tags/Tags-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Tags/Tags-dummy.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Tags/Tags-prefix.pch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Tags/Tags-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Tags/Tags.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/Pods/Target Support Files/Tags/Tags.xcconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcodeproj/project.xcworkspace/xcuserdata/paulohf.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcodeproj/xcshareddata/xcschemes/RecommendationSystemApp.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcodeproj/xcuserdata/paulohf.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcworkspace/xcuserdata/paulohf.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp.xcworkspace/xcuserdata/paulohf.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Authentication/AuthenticationVC.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Authentication/AuthenticationViewModel.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Authentication/RegisterVC.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Base/RSystemAppTabBarVC.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Profile/ProfileVC.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Profile/ProfileViewModel.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Recommendation/RecommendationVC.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Recommendation/RecommendationViewModel.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Search/SearchVC.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Controllers/Search/SearchViewModel.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Extensions/ActivityExtension.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Extensions/DataExtension.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Extensions/NSErrorExtension.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Extensions/ReusableViewExtension.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Extensions/UIDeviceExtension.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Extensions/UINavigationControllerExtension.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Extensions/UITableViewExtension.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Extensions/UIViewControllerExtension.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Objects/Enum.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Objects/Helper.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Objects/Log.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Objects/Navigator.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Objects/PercentEncoding.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/Models/Environment.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/Models/Restaurant.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/Models/User.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/NetworkService/NetworkBaseService.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/NetworkService/NetworkDispatch.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/NetworkService/NetworkEncoding.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/NetworkService/NetworkProtocol.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/NetworkService/NetworkService.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/UsageService.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Services/UserService.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Storyboards/Authentication.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Storyboards/Main.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Storyboards/Profile.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Storyboards/Recommendation.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Storyboards/Search.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Storyboards/Storyboards.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/AppDelegate.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/AppIcon.appiconset/ItunesArtwork@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/customer.imageset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/customer.imageset/customer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/customer.imageset/customer@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/customer.imageset/customer@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/dining.imageset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/dining.imageset/dining.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/dining.imageset/dining@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/dining.imageset/dining@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/heart.imageset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/heart.imageset/heart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/heart.imageset/heart@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/heart.imageset/heart@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/iTunesArtwork.imageset/Contents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/iTunesArtwork.imageset/iTunesArtwork@1x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/iTunesArtwork.imageset/iTunesArtwork@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Assets.xcassets/iTunesArtwork.imageset/iTunesArtwork@3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Supports/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Views/ActivityIndicatorView/ActivityIndicatorView.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Views/ActivityIndicatorView/ActivityIndicatorView.xib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Views/ActivityIndicatorView/Types/TypeWithAction.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Views/ActivityIndicatorView/Types/TypeWithActivity.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OLD/RecommendationSystemApp/Views/ActivityIndicatorView/Types/TypeWithMessage.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Restaurants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Restaurants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -281,7 +13,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Restaurants.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2361">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -322,12 +67,12 @@
         <option value="$PROJECT_DIR$/Test.py" />
         <option value="$PROJECT_DIR$/Server.py" />
         <option value="$PROJECT_DIR$/Client.py" />
-        <option value="$PROJECT_DIR$/Restaurants.py" />
         <option value="$PROJECT_DIR$/Favourite.py" />
+        <option value="$PROJECT_DIR$/Restaurants.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="686" />
@@ -340,7 +85,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -352,6 +96,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,14 +176,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="690" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="686" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4932486" weight="0.46575344" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4932486" weight="0.46464646" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4041096" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -538,16 +284,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Recommendation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/sqlalchemy/sql/schema.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6927">
@@ -593,16 +329,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Restaurants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="161" column="19" lean-forward="true" selection-start-line="161" selection-end-line="162" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Favourite.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -619,6 +345,26 @@
           <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Recommendation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Restaurants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2361">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>

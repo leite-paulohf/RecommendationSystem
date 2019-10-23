@@ -2,13 +2,34 @@ import sqlalchemy as sql
 from flask import jsonify, request
 from flask_restful import Resource
 
+
+class Time(Resource):
+    def __init__(self):
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
+        metadata = sql.MetaData(engine)
+        self.connection = engine.connect()
+        self.database = sql.Table('time', metadata,
+                                  sql.Column('id', sql.Integer, primary_key=True),
+                                  sql.Column('uuid', sql.String),
+                                  sql.Column('name', sql.String))
+        metadata.create_all(engine)
+
+    def get(self, id):
+        query = sql.select([self.database])
+        query = query.where(self.database.c.id == id)
+        data = self.connection.execute(query)
+        result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
+        return result['data']
+
+
 class Kind(Resource):
     def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo = True)
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
         self.database = sql.Table('kind', metadata,
-                                  sql.Column('id', sql.String, primary_key=True),
+                                  sql.Column('id', sql.Integer, primary_key=True),
+                                  sql.Column('uuid', sql.String),
                                   sql.Column('name', sql.String))
         metadata.create_all(engine)
 
@@ -18,14 +39,16 @@ class Kind(Resource):
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
         return result['data']
+
 
 class City(Resource):
     def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo = True)
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('city', metadata,
-                                  sql.Column('id', sql.String, primary_key=True),
+        self.database = sql.Table('cities', metadata,
+                                  sql.Column('id', sql.Integer, primary_key=True),
+                                  sql.Column('uuid', sql.String),
                                   sql.Column('name', sql.String))
         metadata.create_all(engine)
 
@@ -35,14 +58,17 @@ class City(Resource):
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
         return result['data']
+
 
 class Neighbourhood(Resource):
     def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo = True)
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('neighbourhood', metadata,
-                                  sql.Column('id', sql.String, primary_key=True),
+        self.database = sql.Table('neighborhoods', metadata,
+                                  sql.Column('id', sql.Integer, primary_key=True),
+                                  sql.Column('uuid', sql.String),
+                                  sql.Column('city_id', sql.String),
                                   sql.Column('name', sql.String))
         metadata.create_all(engine)
 
@@ -52,14 +78,16 @@ class Neighbourhood(Resource):
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
         return result['data']
+
 
 class Cuisine(Resource):
     def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo = True)
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('cuisine', metadata,
-                                  sql.Column('id', sql.String, primary_key=True),
+        self.database = sql.Table('cuisines', metadata,
+                                  sql.Column('id', sql.Integer, primary_key=True),
+                                  sql.Column('uuid', sql.String),
                                   sql.Column('name', sql.String))
         metadata.create_all(engine)
 
@@ -69,14 +97,16 @@ class Cuisine(Resource):
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
         return result['data']
+
 
 class Category(Resource):
     def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo = True)
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('category', metadata,
-                                  sql.Column('id', sql.String, primary_key=True),
+        self.database = sql.Table('categories', metadata,
+                                  sql.Column('id', sql.Integer, primary_key=True),
+                                  sql.Column('uuid', sql.String),
                                   sql.Column('name', sql.String))
         metadata.create_all(engine)
 
@@ -86,14 +116,16 @@ class Category(Resource):
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
         return result['data']
+
 
 class Moment(Resource):
     def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo = True)
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('moment', metadata,
-                                  sql.Column('id', sql.String, primary_key=True),
+        self.database = sql.Table('moments', metadata,
+                                  sql.Column('id', sql.Integer, primary_key=True),
+                                  sql.Column('uuid', sql.String),
                                   sql.Column('name', sql.String))
         metadata.create_all(engine)
 
@@ -103,11 +135,12 @@ class Moment(Resource):
         data = self.connection.execute(query)
         result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
         return result['data']
+
 
 class Restaurants(Resource):
 
     def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo = True)
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
         self.database = sql.Table('restaurant', metadata,
