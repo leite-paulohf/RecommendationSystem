@@ -1,10 +1,11 @@
 from flask import Flask
 from flask_restful import Api
 from Client import Client
-from Favourite import Favourite
+from Favorite import Favorite
 from Restaurants import Restaurants
 
 app = Flask(__name__)
+
 
 #   DEFAULT
 
@@ -12,37 +13,45 @@ app = Flask(__name__)
 def root():
     return "Server Online"
 
+
 #   CLIENT
 
 @app.route('/client/search', methods=['GET'])
 def searchClient():
     return Client().search()
 
+
 @app.route('/client/register', methods=['POST'])
 def registerClient():
     return Client().register()
+
 
 @app.route('/client/login', methods=['GET'])
 def loginClient():
     return Client().login()
 
-@app.route('/client/show/<uuid>', methods=['GET'])
-def showClient(uuid):
-    return Client().show(uuid)
 
-#   FAVOURITE
+@app.route('/client/show/<id>', methods=['GET'])
+def showClient(id):
+    return Client().show(id)
 
-@app.route('/favourites', methods=['POST'])
+
+#   FAVORITES
+
+@app.route('/favorites', methods=['POST'])
 def addFavourites():
-    return Favourite().add()
+    return Favorite().add()
 
-@app.route('/favourites', methods=['DELETE'])
+
+@app.route('/favorites', methods=['DELETE'])
 def removeFavourites():
-    return Favourite().remove()
+    return Favorite().remove()
 
-@app.route('/favourites', methods=['GET'])
+
+@app.route('/favorites', methods=['GET'])
 def getAllFavourites():
-    return Favourite().getAll()
+    return Favorite().getAll()
+
 
 #   RESTAURANTS
 
@@ -50,9 +59,11 @@ def getAllFavourites():
 def getAllRestaurants():
     return Restaurants().getAll()
 
+
 @app.route('/restaurant/<uuid>', methods=['GET'])
 def detailRestaurant(uuid):
     return Restaurants().detail(uuid)
+
 
 #   RUN
 

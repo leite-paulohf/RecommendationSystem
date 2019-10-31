@@ -3,16 +3,27 @@ from flask import jsonify, request
 from flask_restful import Resource
 
 
-class Time(Resource):
+class City(Resource):
     def __init__(self):
         engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('time', metadata,
-                                  sql.Column('id', sql.Integer, primary_key=True),
-                                  sql.Column('uuid', sql.String),
-                                  sql.Column('name', sql.String))
-        metadata.create_all(engine)
+        self.database = sql.Table("cities", metadata, autoload=True)
+
+    def get(self, id):
+        query = sql.select([self.database])
+        query = query.where(self.database.c.id == id)
+        data = self.connection.execute(query)
+        result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
+        return result['data']
+
+
+class Neighborhood(Resource):
+    def __init__(self):
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
+        metadata = sql.MetaData(engine)
+        self.connection = engine.connect()
+        self.database = sql.Table("neighborhoods", metadata, autoload=True)
 
     def get(self, id):
         query = sql.select([self.database])
@@ -27,50 +38,7 @@ class Kind(Resource):
         engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('kind', metadata,
-                                  sql.Column('id', sql.Integer, primary_key=True),
-                                  sql.Column('uuid', sql.String),
-                                  sql.Column('name', sql.String))
-        metadata.create_all(engine)
-
-    def get(self, id):
-        query = sql.select([self.database])
-        query = query.where(self.database.c.id == id)
-        data = self.connection.execute(query)
-        result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
-        return result['data']
-
-
-class City(Resource):
-    def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo=True)
-        metadata = sql.MetaData(engine)
-        self.connection = engine.connect()
-        self.database = sql.Table('cities', metadata,
-                                  sql.Column('id', sql.Integer, primary_key=True),
-                                  sql.Column('uuid', sql.String),
-                                  sql.Column('name', sql.String))
-        metadata.create_all(engine)
-
-    def get(self, id):
-        query = sql.select([self.database])
-        query = query.where(self.database.c.id == id)
-        data = self.connection.execute(query)
-        result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
-        return result['data']
-
-
-class Neighbourhood(Resource):
-    def __init__(self):
-        engine = sql.create_engine('sqlite:///database.db', echo=True)
-        metadata = sql.MetaData(engine)
-        self.connection = engine.connect()
-        self.database = sql.Table('neighborhoods', metadata,
-                                  sql.Column('id', sql.Integer, primary_key=True),
-                                  sql.Column('uuid', sql.String),
-                                  sql.Column('city_id', sql.String),
-                                  sql.Column('name', sql.String))
-        metadata.create_all(engine)
+        self.database = sql.Table("kind", metadata, autoload=True)
 
     def get(self, id):
         query = sql.select([self.database])
@@ -85,11 +53,7 @@ class Cuisine(Resource):
         engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('cuisines', metadata,
-                                  sql.Column('id', sql.Integer, primary_key=True),
-                                  sql.Column('uuid', sql.String),
-                                  sql.Column('name', sql.String))
-        metadata.create_all(engine)
+        self.database = sql.Table('cuisines', metadata, autoload=True)
 
     def get(self, id):
         query = sql.select([self.database])
@@ -104,11 +68,7 @@ class Category(Resource):
         engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('categories', metadata,
-                                  sql.Column('id', sql.Integer, primary_key=True),
-                                  sql.Column('uuid', sql.String),
-                                  sql.Column('name', sql.String))
-        metadata.create_all(engine)
+        self.database = sql.Table('categories', metadata, autoload=True)
 
     def get(self, id):
         query = sql.select([self.database])
@@ -123,11 +83,22 @@ class Moment(Resource):
         engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('moments', metadata,
-                                  sql.Column('id', sql.Integer, primary_key=True),
-                                  sql.Column('uuid', sql.String),
-                                  sql.Column('name', sql.String))
-        metadata.create_all(engine)
+        self.database = sql.Table('moments', metadata, autoload=True)
+
+    def get(self, id):
+        query = sql.select([self.database])
+        query = query.where(self.database.c.id == id)
+        data = self.connection.execute(query)
+        result = {'data': dict(zip(tuple(data.keys()), i)) for i in data.cursor}
+        return result['data']
+
+
+class Offer(Resource):
+    def __init__(self):
+        engine = sql.create_engine('sqlite:///database.db', echo=True)
+        metadata = sql.MetaData(engine)
+        self.connection = engine.connect()
+        self.database = sql.Table('offers', metadata, autoload=True)
 
     def get(self, id):
         query = sql.select([self.database])
@@ -143,32 +114,20 @@ class Restaurants(Resource):
         engine = sql.create_engine('sqlite:///database.db', echo=True)
         metadata = sql.MetaData(engine)
         self.connection = engine.connect()
-        self.database = sql.Table('restaurant', metadata,
-                                  sql.Column('uuid', sql.String, primary_key=True),
-                                  sql.Column('name', sql.String),
-                                  sql.Column('kind_id', sql.Integer),
-                                  sql.Column('discount', sql.Integer),
-                                  sql.Column('city_id', sql.Integer),
-                                  sql.Column('neighbourhood_id', sql.Integer),
-                                  sql.Column('cuisine_id', sql.Integer),
-                                  sql.Column('price_range', sql.Integer),
-                                  sql.Column('rating', sql.Integer),
-                                  sql.Column('category_id', sql.Integer),
-                                  sql.Column('moment_id', sql.Integer))
-        metadata.create_all(engine)
+        self.database = sql.Table('restaurants', metadata, autoload=True)
 
     def parse(self, restaurant):
-        kind_id = restaurant.pop('kind_id')
-        kind = Kind().get(kind_id)
-        restaurant['kind'] = kind
-
         city_id = restaurant.pop('city_id')
         city = City().get(city_id)
         restaurant['city'] = city
 
-        neighbourhood_id = restaurant.pop('neighbourhood_id')
-        neighbourhood = Neighbourhood().get(neighbourhood_id)
-        restaurant['neighbourhood'] = neighbourhood
+        neighborhood_id = restaurant.pop('neighborhood_id')
+        neighborhood = Neighborhood().get(neighborhood_id)
+        restaurant['neighborhood'] = neighborhood
+
+        kind_id = restaurant.pop('kind_id')
+        kind = Kind().get(kind_id)
+        restaurant['kind'] = kind
 
         cuisine_id = restaurant.pop('cuisine_id')
         cuisine = Cuisine().get(cuisine_id)
@@ -182,16 +141,39 @@ class Restaurants(Resource):
         moment = Moment().get(moment_id)
         restaurant['moment'] = moment
 
+        offer_id = restaurant.pop('offer_id')
+        offer = Offer().get(offer_id)
+        restaurant['offer'] = offer
+
         return restaurant
+
+    def pagination(self, per_page, page):
+        offset = page * per_page
+        pagination = {
+            "per_page": per_page,
+            "page": page,
+            "next_page": page + 1,
+            "offset": offset
+        }
+        return pagination
 
     def getAll(self):
         city_id = request.args.get('city_id')
+        page = int(request.args.get('page'))
+        per_page = 25
+        offset = page * per_page
         query = sql.select([self.database])
         query = query.where(self.database.c.city_id == city_id)
+        query = query.limit(per_page).offset(offset)
         data = self.connection.execute(query)
-        result = {'data': [dict(zip(tuple(data.keys()), i)) for i in data.cursor]}
+        result = {
+            'data': {
+                'pagination': self.pagination(per_page, page),
+                'restaurants': [dict(zip(tuple(data.keys()), i)) for i in data.cursor]
+            }
+        }
         if bool(result):
-            for restaurant in result['data']:
+            for restaurant in result['data']['restaurants']:
                 self.parse(restaurant)
             return jsonify(result)
         else:
