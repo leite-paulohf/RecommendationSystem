@@ -42,9 +42,9 @@ class AuthenticationViewModel extends Model {
 
   Future<Tuple2<int, User>> register() async {
     var user = User(
-        uuid: null,
+        id: null,
         name: this.name,
-        document: this.document,
+        cpf: this.document,
         password: this.password);
     return await this.interface.register(user);
   }

@@ -1,24 +1,24 @@
 class User {
-  final String uuid;
+  final String id;
   final String name;
-  final String document;
+  final String cpf;
   final String password;
 
-  User({this.uuid, this.name, this.document, this.password});
+  User({this.id, this.name, this.cpf, this.password});
 
   factory User.fromModel(Map<String, dynamic> json) {
     var model = json['data'];
     return User(
-        uuid: model['uuid'],
+        id: model['id'],
         name: model['name'],
-        document: model['document'],
+        cpf: model['cpf'],
         password: model['password']);
   }
 
   Map<String, dynamic> toJson() => {
-        'uuid': uuid,
+        'id': id,
         'name': name,
-        'document': document,
+        'cpf': cpf,
         'password': password,
       };
 }

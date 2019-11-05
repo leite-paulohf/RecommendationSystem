@@ -53,7 +53,7 @@ class _AuthenticationState extends State<Authentication> {
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            if (snapshot.data.uuid != null)
+            if (snapshot.data.id != null)
               return Profile(viewModel: this.viewModel);
             else
               return GestureDetector(

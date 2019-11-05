@@ -34,7 +34,7 @@ class _ProfileState extends State<Profile> {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             _user = snapshot.data;
-            if (snapshot.data.uuid == null)
+            if (snapshot.data.id == null)
               return Authentication();
             else
               return ScopedModel<AuthenticationViewModel>(
@@ -73,7 +73,7 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           Text(
-            _user.document ?? "",
+            _user.cpf ?? "",
             style: TextStyle(
               fontSize: 15,
             ),
