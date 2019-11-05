@@ -1,8 +1,10 @@
 from flask import Flask
 from flask_restful import Api
-from Client import Client
-from Favorite import Favorite
-from Restaurants import Restaurants
+from endpoint.client import Client
+from endpoint.favorite import Favorite
+from endpoint.restaurants import Restaurants
+from endpoint.usages import Usages
+from endpoint.recommendation import Recommendation
 
 app = Flask(__name__)
 
@@ -17,52 +19,76 @@ def root():
 #   CLIENT
 
 @app.route('/client/search', methods=['GET'])
-def searchClient():
+def search():
     return Client().search()
 
 
 @app.route('/client/register', methods=['POST'])
-def registerClient():
+def register():
     return Client().register()
 
 
 @app.route('/client/login', methods=['GET'])
-def loginClient():
+def login():
     return Client().login()
 
 
 @app.route('/client/show/<id>', methods=['GET'])
-def showClient(id):
+def client(id):
     return Client().show(id)
 
 
 #   FAVORITES
 
 @app.route('/favorites', methods=['POST'])
-def addFavourites():
+def favorite():
     return Favorite().add()
 
 
 @app.route('/favorites', methods=['DELETE'])
-def removeFavourites():
+def unfavorite():
     return Favorite().remove()
 
 
 @app.route('/favorites', methods=['GET'])
-def getAllFavourites():
-    return Favorite().getAll()
+def favourites():
+    return Favorite().list()
 
 
 #   RESTAURANTS
 
 @app.route('/restaurants', methods=['GET'])
-def getAllRestaurants():
-    return Restaurants().getAll()
+def restaurants():
+    return Restaurants().list()
 
 
-@app.route('/restaurant/<uuid>', methods=['GET'])
-def detailRestaurant(uuid):
-    return Restaurants().detail(uuid)
+@app.route('/restaurant/<restaurant_id>', methods=['GET'])
+def restaurant(restaurant_id):
+    return Restaurants().show(restaurant_id)
+
+
+#   USAGES
+
+@app.route('/usage', methods=['POST'])
+def usage():
+    return Usages().create()
+
+
+@app.route('/usages', methods=['GET'])
+def usages():
+    return Usages().list()
+
+
+#   RECOMMENDATIONS
+
+@app.route('/usages/recommendations', methods=['GET'])
+def usages_recommendations():
+    return Recommendation().by_usages()
+
+
+@app.route('/favorites/recommendations', methods=['GET'])
+def favorites_recommendations():
+    return Recommendation().by_favorites()
 
 
 #   RUN
