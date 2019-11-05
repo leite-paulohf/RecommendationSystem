@@ -2,46 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/endpoint/restaurants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/add_favorite.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/client.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/create_usage.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/favorites.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/recommendations.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/register.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/remove_favorite.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/restaurants.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/search_client.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/api/usages.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/enum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/private/favorites.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/private/restaurants.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/query/private/usages.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Category.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/City.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoint/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cuisine.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Errors.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Favorite.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoint/favorite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kind.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Moment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Neighborhood.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Offer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Restaurants.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usages.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoint/usages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/favorites.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/recommendations.sql" beforeDir="false" afterPath="$PROJECT_DIR$/query/api/restaurant.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/restaurants.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/usages.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommendation.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoint/recommendation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/model/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/model/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RecommendationSystemAPI/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,9 +13,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server.py">
+        <entry file="file://$PROJECT_DIR$/Server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-405">
+            <state relative-caret-position="17">
               <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -169,6 +130,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,7 +142,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -265,7 +226,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="686" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -477,16 +437,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/errors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="31" column="26" lean-forward="true" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/errors.py" />
     <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -594,9 +545,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.py">
+    <entry file="file://$PROJECT_DIR$/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
+        <state relative-caret-position="17">
           <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
