@@ -6,11 +6,11 @@ class RestaurantBuilder():
     def restaurants(self, restaurants):
         for restaurant in restaurants:
             self.builder(restaurant)
-        return jsonify(restaurants)
+        return jsonify({'data': restaurants})
 
     def restaurant(self, restaurant):
         self.builder(restaurant)
-        return jsonify(restaurant)
+        return jsonify({'data': restaurant})
 
     def builder(self, restaurant):
         restaurant["city"] = {

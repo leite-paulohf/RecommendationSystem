@@ -82,7 +82,7 @@ class Cell extends StatelessWidget {
   }
 
   Widget _rating() {
-    switch (this.restaurant.price) {
+    switch (this.restaurant.rating.round()) {
       case 1:
         return Row(children: <Widget>[
           Icon(Icons.star_border, color: Colors.orangeAccent),
@@ -147,20 +147,8 @@ class Cell extends StatelessWidget {
   }
 
   String _price() {
-    switch (this.restaurant.price) {
-      case 1:
-        return r"R$25";
-      case 2:
-        return r"R$50";
-      case 3:
-        return r"R$75";
-      case 4:
-        return r"R$100";
-      case 5:
-        return r"R$150";
-      default:
-        return r"R$0";
-    }
+    var price = this.restaurant.price.round();
+    return r"R$" + price.toString();
   }
 
   Widget _detail() {
@@ -223,9 +211,9 @@ class Cell extends StatelessWidget {
   }
 
   Widget _address() {
-    var neighbourhood = this.restaurant.neighbourhood.name;
+    var neighborhood = this.restaurant.neighborhood.name;
     var city = this.restaurant.city.name;
-    var address = neighbourhood + " - " + city;
+    var address = neighborhood + " - " + city;
     double width = 2 * MediaQuery.of(_context).size.width / 3 - 8;
     return Container(
       width: width,
