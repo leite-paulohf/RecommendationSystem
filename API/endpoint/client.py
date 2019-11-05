@@ -32,8 +32,7 @@ class Client(Resource):
                   "password": password.hexdigest()}
         self.request(query, params)
         query = self.query(Query.client.value)
-        params = {'cpf': client['cpf'],
-                  'password': password.hexdigest()}
+        params = {'cpf': client['cpf'], 'password': password.hexdigest()}
         data = self.request(query, params)
         if bool(data):
             return jsonify(data)

@@ -73,7 +73,7 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           Text(
-            _user.cpf ?? "",
+            _user.cpf.toString() ?? "",
             style: TextStyle(
               fontSize: 15,
             ),

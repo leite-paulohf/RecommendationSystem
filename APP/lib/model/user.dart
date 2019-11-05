@@ -1,10 +1,11 @@
 class User {
-  final String id;
-  final String name;
-  final String cpf;
-  final String password;
+  int id;
+  String name;
+  int cpf;
+  int cityId;
+  String password;
 
-  User({this.id, this.name, this.cpf, this.password});
+  User({this.id, this.name, this.cpf, this.cityId, this.password});
 
   factory User.fromModel(Map<String, dynamic> json) {
     var model = json['data'];
@@ -12,6 +13,7 @@ class User {
         id: model['id'],
         name: model['name'],
         cpf: model['cpf'],
+        cityId: model['city_id'],
         password: model['password']);
   }
 
@@ -19,6 +21,7 @@ class User {
         'id': id,
         'name': name,
         'cpf': cpf,
+        'city_id': cityId,
         'password': password,
       };
 }

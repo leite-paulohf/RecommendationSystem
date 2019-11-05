@@ -7,6 +7,8 @@ import 'package:tcc_app/helper/loader.dart';
 import 'package:tcc_app/helper/validator.dart';
 import 'package:tcc_app/model/error.dart';
 import 'package:tcc_app/helper/alert.dart';
+import 'package:tcc_app/model/filter.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 
 class Register extends StatefulWidget {
   final AuthenticationViewModel viewModel;
@@ -58,6 +60,8 @@ class _RegisterState extends State<Register> {
             padding: EdgeInsets.all(20),
             children: <Widget>[
               _header(),
+              _citySelector(),
+              Padding(padding: EdgeInsets.only(top: 20)),
               _formName(),
               Padding(padding: EdgeInsets.only(top: 20)),
               _formDocument(),
@@ -84,20 +88,74 @@ class _RegisterState extends State<Register> {
   }
 
   InputDecoration _decoration(String label) {
-    return InputDecoration(labelText: label, border: OutlineInputBorder());
+    return InputDecoration(
+      labelText: label,
+      border: OutlineInputBorder(),
+    );
+  }
+
+  Widget _citySelector() {
+    return FutureBuilder<List<Filter>>(
+      future: this.widget.viewModel.getCities(context),
+      builder: (context, snapshot) {
+        var city = this.widget.viewModel.city;
+        var title = city?.name?.toUpperCase() ?? "SELECT CITY";
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            var cities = snapshot.data;
+            cities.sort((e1, e2) {
+              return e1.name.toLowerCase().compareTo(e2.name.toLowerCase());
+            });
+            this.widget.viewModel.cities = cities;
+            return Button(label: title, submitted: _showPicker);
+          default:
+            return Button(label: title, submitted: () {});
+        }
+      },
+    );
+  }
+
+  void _showPicker() {
+    var cities = this.widget.viewModel.cities.map((city) {
+      return city.name;
+    }).toList();
+    var city = this.widget.viewModel.city?.name ?? "";
+    var index = cities.indexOf(city);
+    Picker picker = Picker(
+        adapter: PickerDataAdapter<String>(pickerdata: cities),
+        selecteds: [index],
+        height: 200,
+        itemExtent: 40,
+        changeToFirst: true,
+        textStyle: TextStyle(color: Colors.black, fontSize: 20),
+        cancelText: "CANCEL",
+        cancelTextStyle: TextStyle(color: Colors.teal),
+        confirmText: "CONFIRM",
+        confirmTextStyle: TextStyle(color: Colors.teal),
+        textAlign: TextAlign.left,
+        columnPadding: const EdgeInsets.all(16.0),
+        onConfirm: (Picker picker, List value) {
+          setState(() {
+            var index = picker.selecteds.first;
+            var city = this.widget.viewModel.cities[index];
+            this.widget.viewModel.city = city;
+            this.widget.viewModel.user.cityId = city.id;
+          });
+        });
+    picker.show(_key.currentState);
   }
 
   Widget _formName() {
     return TextFormField(
       decoration: _decoration("Name"),
       onFieldSubmitted: (name) {
-        this.widget.viewModel.name = name;
+        this.widget.viewModel.user.name = name;
         if (_formKey.currentState.validate()) {
           _register();
         }
       },
       validator: (name) {
-        this.widget.viewModel.name = name;
+        this.widget.viewModel.user.name = name;
         if (name.isEmpty) {
           return 'The field can\'t be empty!';
         }
@@ -108,17 +166,20 @@ class _RegisterState extends State<Register> {
   Widget _formDocument() {
     return TextFormField(
       controller: MaskedTextController(
-          text: this.widget.viewModel.document, mask: '000.000.000-00'),
+          text: this.widget.viewModel.user.cpf.toString(),
+          mask: '000.000.000-00'),
       decoration: _decoration("Document"),
-      onFieldSubmitted: (document) {
-        this.widget.viewModel.document = document;
+      onFieldSubmitted: (cpf) {
+        cpf = cpf.replaceAll('.', '').replaceAll('-', '');
+        this.widget.viewModel.user.cpf = int.parse(cpf);
         if (_formKey.currentState.validate()) {
           _register();
         }
       },
-      validator: (document) {
-        this.widget.viewModel.document = document;
-        if (!CPFValidator.isValid(document)) {
+      validator: (cpf) {
+        cpf = cpf.replaceAll('.', '').replaceAll('-', '');
+        this.widget.viewModel.user.cpf = int.parse(cpf);
+        if (!CPFValidator.isValid(cpf)) {
           return 'Type a valid document!';
         }
       },
@@ -129,13 +190,13 @@ class _RegisterState extends State<Register> {
     return TextFormField(
       decoration: _decoration("Password"),
       onFieldSubmitted: (password) {
-        this.widget.viewModel.password = password;
+        this.widget.viewModel.user.password = password;
         if (_formKey.currentState.validate()) {
           _register();
         }
       },
       validator: (password) {
-        this.widget.viewModel.password = password;
+        this.widget.viewModel.user.password = password;
         if (password.length < 5) {
           return 'Type a password at least 6 characters!';
         }
@@ -148,7 +209,9 @@ class _RegisterState extends State<Register> {
       label: "REGISTER",
       submitted: () {
         if (_formKey.currentState.validate()) {
-          _register();
+          if (this.widget.viewModel.city != null) {
+            _register();
+          }
         }
       },
     );
@@ -168,5 +231,4 @@ class _RegisterState extends State<Register> {
         Alert.show(context, Error.from(code).message);
     }
   }
-
 }

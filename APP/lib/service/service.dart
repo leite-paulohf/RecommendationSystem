@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:tcc_app/model/filter.dart';
 import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/model/user.dart';
 import 'package:tuple/tuple.dart';
 
 class Service {
-  final _base = '97c3f644.ngrok.io';
+  final _base = 'ccae34b0.ngrok.io';
 
   Future<http.Response> get(String path, Map<String, String> data) async {
     var url = Uri.http(_base, path, data);
@@ -56,6 +57,19 @@ class Service {
       return Tuple2<int, List<Restaurant>>(response.statusCode, restaurants);
     } catch (error) {
       return Tuple2<int, List<Restaurant>>(response.statusCode, []);
+    }
+  }
+
+  List<Filter> parseCities(String body) {
+    try {
+      Map map = json.decode(body);
+      List list = map['data'];
+      var cities = list.map((model) {
+        return Filter.fromModel(model);
+      }).toList();
+      return cities;
+    } catch (error) {
+      return [];
     }
   }
 }

@@ -92,19 +92,21 @@ class _AuthenticationState extends State<Authentication> {
   Widget _form() {
     return TextFormField(
         controller: MaskedTextController(
-            text: this.viewModel.document, mask: '000.000.000-00'),
+            text: this.viewModel.user.cpf.toString(), mask: '000.000.000-00'),
         keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-            labelText: "Document", border: OutlineInputBorder()),
-        onFieldSubmitted: (document) {
-          this.viewModel.document = document;
+        decoration:
+            InputDecoration(labelText: "CPF", border: OutlineInputBorder()),
+        onFieldSubmitted: (cpf) {
+          cpf = cpf.replaceAll('.', '').replaceAll('-', '');
+          this.viewModel.user.cpf = int.parse(cpf);
           if (_formKey.currentState.validate()) {
             _search();
           }
         },
-        validator: (document) {
-          this.viewModel.document = document;
-          if (!CPFValidator.isValid(document)) {
+        validator: (cpf) {
+          cpf = cpf.replaceAll('.', '').replaceAll('-', '');
+          this.viewModel.user.cpf = int.parse(cpf);
+          if (!CPFValidator.isValid(cpf)) {
             return 'Type a valid document!';
           }
         });

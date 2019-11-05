@@ -88,17 +88,20 @@ class _LoginState extends State<Login> {
   Widget _formDocument() {
     return TextFormField(
       controller: MaskedTextController(
-          text: this.widget.viewModel.document, mask: '000.000.000-00'),
+          text: this.widget.viewModel.user.cpf.toString(),
+          mask: '000.000.000-00'),
       decoration: _decoration("Document"),
-      onFieldSubmitted: (document) {
-        this.widget.viewModel.document = document;
+      onFieldSubmitted: (cpf) {
+        cpf = cpf.replaceAll('.', '').replaceAll('-', '');
+        this.widget.viewModel.user.cpf = int.parse(cpf);
         if (_formKey.currentState.validate()) {
           _login();
         }
       },
-      validator: (document) {
-        this.widget.viewModel.document = document;
-        if (!CPFValidator.isValid(document)) {
+      validator: (cpf) {
+        cpf = cpf.replaceAll('.', '').replaceAll('-', '');
+        this.widget.viewModel.user.cpf = int.parse(cpf);
+        if (!CPFValidator.isValid(cpf)) {
           return 'Type a valid document!';
         }
       },
@@ -109,13 +112,13 @@ class _LoginState extends State<Login> {
     return TextFormField(
       decoration: _decoration("Password"),
       onFieldSubmitted: (password) {
-        this.widget.viewModel.password = password;
+        this.widget.viewModel.user.password = password;
         if (_formKey.currentState.validate()) {
           _login();
         }
       },
       validator: (password) {
-        this.widget.viewModel.password = password;
+        this.widget.viewModel.user.password = password;
         if (password.length < 5) {
           return 'Type a password at least 6 characters!';
         }
@@ -148,5 +151,4 @@ class _LoginState extends State<Login> {
         Alert.show(context, Error.from(code).message);
     }
   }
-
 }

@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../RecommendationSystemAPI/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../APP/assets/cities.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/endpoint/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoint/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/viewmodel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/model/filter.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/model/filter.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/model/restaurant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/model/restaurant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/model/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/model/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/service/service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/service/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,12 +28,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Server.py">
+        <entry file="file://$PROJECT_DIR$/endpoint/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+            <state relative-caret-position="297">
+              <caret line="60" column="57" lean-forward="true" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,15 +124,15 @@
         <option value="$PROJECT_DIR$/endpoint/recommendation.py" />
         <option value="$PROJECT_DIR$/query/api/add_favorite.sql" />
         <option value="$PROJECT_DIR$/query/api/remove_favorite.sql" />
-        <option value="$PROJECT_DIR$/endpoint/client.py" />
         <option value="$PROJECT_DIR$/endpoint/favorite.py" />
         <option value="$PROJECT_DIR$/query/api/create_usage.sql" />
         <option value="$PROJECT_DIR$/query/enum.py" />
         <option value="$PROJECT_DIR$/endpoint/usages.py" />
+        <option value="$PROJECT_DIR$/endpoint/client.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="686" />
@@ -130,7 +145,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,10 +152,16 @@
               <item name="RecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="API" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="API" type="462c0819:PsiDirectoryNode" />
+              <item name="endpoint" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -225,9 +245,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="686" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
@@ -235,12 +256,12 @@
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49483716" weight="0.33501685" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49483716" visible="true" weight="0.27260274" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41750842" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="6" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.32739726" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32659933" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32876712" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50119144" side_tool="true" weight="0.40547946" />
@@ -381,13 +402,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/query/api/search_client.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/sqlalchemy/testing/engines.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
@@ -476,16 +490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/endpoint/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/query/api/favorites.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
@@ -547,10 +551,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        <state relative-caret-position="1292">
+          <caret line="76" column="28" lean-forward="true" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="28" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/query/api/search_client.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/endpoint/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="60" column="57" lean-forward="true" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
