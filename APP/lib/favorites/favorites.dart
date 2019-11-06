@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/table.dart';
+import 'package:tcc_app/favorites/viewmodel.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/helper/loader.dart';
 import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/model/error.dart';
-import 'package:tcc_app/service/usages.dart';
+import 'package:tcc_app/service/favorites.dart';
 import 'package:tcc_app/service/user.dart';
-import 'package:tcc_app/usages/viewmodel.dart';
 
-class Usages extends StatefulWidget {
-  Usages({Key key}) : super(key: key);
+class Favorites extends StatefulWidget {
+  Favorites({Key key}) : super(key: key);
 
   @override
-  UsagesState createState() => UsagesState();
+  FavoritesState createState() => FavoritesState();
 }
 
-class UsagesState extends State<Usages> {
+class FavoritesState extends State<Favorites> {
   final _key = GlobalKey<ScaffoldState>();
-  final viewModel = UsagesViewModel(interface: UsagesService());
+  final viewModel = FavoritesViewModel(interface: FavoritesService());
   final authentication = AuthenticationViewModel(interface: UserService());
 
   @override
@@ -38,7 +38,7 @@ class UsagesState extends State<Usages> {
 
   Widget _body() {
     return FutureBuilder<List<Restaurant>>(
-      future: _usages(),
+      future: _favorites(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
@@ -56,7 +56,7 @@ class UsagesState extends State<Usages> {
   }
 
   Widget _list(List<Restaurant> restaurants) {
-    return ScopedModel<UsagesViewModel>(
+    return ScopedModel<FavoritesViewModel>(
       model: this.viewModel,
       child: TableView(
         direction: Axis.vertical,
@@ -83,7 +83,7 @@ class UsagesState extends State<Usages> {
     ));
   }
 
-  Future<List<Restaurant>> _usages() async {
+  Future<List<Restaurant>> _favorites() async {
     if (this.authentication.user.id == null) {
       var user = await this.authentication.getUser();
       this.authentication.user = user;
@@ -93,7 +93,21 @@ class UsagesState extends State<Usages> {
       }
     }
     var clientId = this.authentication.user.id;
-    var result = await this.viewModel.usages(clientId);
+    var result = await this.viewModel.favorites(clientId);
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        return result.item2;
+      default:
+        Alert.show(context, Error.from(code).message);
+        return [];
+    }
+  }
+
+  Future<List<Restaurant>> _removeFavourite() async {
+    var clientId = this.authentication.user.id;
+    var restaurantId = this.viewModel.restaurant.id;
+    var result = await this.viewModel.removeFavorite(clientId, restaurantId);
     var code = result.item1;
     switch (code) {
       case 200:
@@ -106,5 +120,7 @@ class UsagesState extends State<Usages> {
 
   void _booking() {}
 
-  void _favourite() {}
+  void _favourite() {
+    _removeFavourite();
+  }
 }
