@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/jbuilder/restaurant.py" beforeDir="false" afterPath="$PROJECT_DIR$/jbuilder/restaurant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/model/offer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/model/offer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/model/restaurant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/model/restaurant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +117,6 @@
         <option value="$PROJECT_DIR$/query/api/recommendations.sql" />
         <option value="$PROJECT_DIR$/query/api/restaurants.sql" />
         <option value="$PROJECT_DIR$/endpoint/recommendation.py" />
-        <option value="$PROJECT_DIR$/query/api/add_favorite.sql" />
         <option value="$PROJECT_DIR$/query/api/remove_favorite.sql" />
         <option value="$PROJECT_DIR$/endpoint/favorite.py" />
         <option value="$PROJECT_DIR$/query/api/create_usage.sql" />
@@ -123,6 +125,7 @@
         <option value="$PROJECT_DIR$/endpoint/client.py" />
         <option value="$PROJECT_DIR$/endpoint/restaurants.py" />
         <option value="$PROJECT_DIR$/jbuilder/restaurant.py" />
+        <option value="$PROJECT_DIR$/query/api/add_favorite.sql" />
       </list>
     </option>
   </component>
@@ -150,6 +153,17 @@
               <item name="RecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="API" type="462c0819:PsiDirectoryNode" />
               <item name="endpoint" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="API" type="462c0819:PsiDirectoryNode" />
+              <item name="query" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="API" type="462c0819:PsiDirectoryNode" />
+              <item name="query" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -240,8 +254,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
@@ -249,7 +264,7 @@
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49483716" visible="true" weight="0.27260274" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49483716" visible="true" weight="0.27260274" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41750842" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -490,13 +505,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/query/api/add_favorite.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="3" lean-forward="true" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/query/enum.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -562,6 +570,13 @@
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/query/api/add_favorite.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
         </state>
       </provider>
     </entry>

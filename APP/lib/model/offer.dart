@@ -15,8 +15,8 @@ class Offer {
     return Offer(
       id: model['id'],
       discount: model['discount'],
-      benefits: model['benefits'],
-      restrictions: model['restrictions'],
+      benefits: model['benefits'] == 0 ? false : true,
+      restrictions: model['restrictions'] == 0 ? false : true,
     );
   }
 

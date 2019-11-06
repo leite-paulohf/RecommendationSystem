@@ -4,14 +4,14 @@ import 'offer.dart';
 class Restaurant {
   final bool acceptHolidays;
   final String address;
-  final double price;
+  final int price;
   final double rating;
   final Filter category;
   final int chairs;
   final Filter city;
   final Filter cuisine;
   final bool hasWifi;
-  final Filter id;
+  final int id;
   final Filter kind;
   final double latitude;
   final double longitude;
@@ -42,7 +42,7 @@ class Restaurant {
 
   factory Restaurant.fromModel(Map<String, dynamic> model) {
     return Restaurant(
-      acceptHolidays: model['accept_holidays'],
+      acceptHolidays: model['accept_holidays'] == 0 ? false : true,
       address: model['address'],
       price: model['average_cost'],
       rating: model['average_rating'],
@@ -50,7 +50,7 @@ class Restaurant {
       chairs: model['chairs'],
       city: Filter.fromModel(model['city']),
       cuisine: Filter.fromModel(model['cuisine']),
-      hasWifi: model['has_wifi'],
+      hasWifi: model['has_wifi'] == 0 ? false : true,
       id: model['id'],
       kind: Filter.fromModel(model['kind']),
       latitude: model['latitude'],
