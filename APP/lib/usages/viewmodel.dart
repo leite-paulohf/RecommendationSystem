@@ -9,7 +9,7 @@ class UsagesViewModel extends Model {
 
   UsagesViewModel({@required this.interface});
 
-  Future<Tuple2<int, List<Restaurant>>> search(int city) async {
-    return await this.interface.search(city);
+  Future<Tuple2<int, List<Restaurant>>> usages(int clientId) async {
+    return await this.interface.usages(clientId);
   }
 }

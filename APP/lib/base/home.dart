@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tcc_app/authentication/authentication.dart';
 import 'package:tcc_app/usages/usages.dart';
-import 'package:tcc_app/favourites/favourites.dart';
+import 'package:tcc_app/favorites/favorites.dart';
 import 'package:tcc_app/restaurants/restaurants.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _body = [
     Restaurants(),
     Usages(),
-    Favourites(),
+    Favorites(),
     Authentication()
   ];
 

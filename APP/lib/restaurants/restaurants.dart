@@ -67,7 +67,11 @@ class RestaurantsState extends State<Restaurants> {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             var restaurants = snapshot.data ?? [];
-            return _list(restaurants);
+            if (restaurants.isNotEmpty)
+              return _list(restaurants);
+            else
+              return _empty();
+            break;
           default:
             return Container(
               height: 277,
@@ -91,6 +95,23 @@ class RestaurantsState extends State<Restaurants> {
         ),
       ),
     );
+  }
+
+  Widget _empty() {
+    return Container(
+        height: 277,
+        child: Column(
+          children: <Widget>[
+            Expanded(child: Container()),
+            Icon(Icons.error, color: Colors.black26, size: 80),
+            Text("EMPTY LIST!",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black26,
+                )),
+            Expanded(child: Container()),
+          ],
+        ));
   }
 
   Future<List<Restaurant>> _restaurants() async {
