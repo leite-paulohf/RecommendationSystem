@@ -16,7 +16,7 @@ class Cell extends StatelessWidget {
   Widget build(BuildContext context) {
     _context = context;
     return Padding(
-      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+      padding: EdgeInsets.all(8),
       child: _cell(),
     );
   }
