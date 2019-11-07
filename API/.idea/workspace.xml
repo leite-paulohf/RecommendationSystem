@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../APP/lib/favourites/favourites.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/favorites/favorites.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/favourites/viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/favorites/viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/service/favourites.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/favorites.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/components/cell.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/components/cell.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/service/service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/service.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+            <state relative-caret-position="156">
+              <caret line="49" column="30" lean-forward="true" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -235,7 +236,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
@@ -243,7 +244,7 @@
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49483716" visible="true" weight="0.27260274" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49483716" visible="true" weight="0.27260274" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41750842" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -561,8 +562,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+        <state relative-caret-position="156">
+          <caret line="49" column="30" lean-forward="true" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

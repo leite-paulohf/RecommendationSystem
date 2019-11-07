@@ -74,7 +74,7 @@ class RestaurantsState extends State<Restaurants> {
             break;
           default:
             return Container(
-              height: 277,
+              height: 258,
               child: Loader().show(),
             );
         }
@@ -84,7 +84,7 @@ class RestaurantsState extends State<Restaurants> {
 
   Widget _list(List<Restaurant> restaurants) {
     return Container(
-      height: 277,
+      height: 258,
       child: ScopedModel<RestaurantViewModel>(
         model: this.viewModel,
         child: TableView(
@@ -99,7 +99,7 @@ class RestaurantsState extends State<Restaurants> {
 
   Widget _empty() {
     return Container(
-        height: 277,
+        height: 258,
         child: Column(
           children: <Widget>[
             Expanded(child: Container()),
