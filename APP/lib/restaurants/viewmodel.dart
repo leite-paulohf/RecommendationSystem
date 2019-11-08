@@ -9,19 +9,28 @@ class RestaurantViewModel extends Model {
 
   RestaurantViewModel({@required this.interface});
 
-  Future<Tuple2<int, List<Restaurant>>> restaurants(int city) async {
+  Future<Tuple2<int, List<Restaurant>>> restaurantsAPI(int city) async {
     return await this.interface.restaurants(city);
   }
 
-  Future<Tuple2<int, List<Restaurant>>> general(int city, int client) async {
+  Future<Tuple2<int, List<Restaurant>>> generalAPI(
+    int city,
+    int client,
+  ) async {
     return await this.interface.general(city, client);
   }
 
-  Future<Tuple2<int, List<Restaurant>>> usages(int city, int client) async {
+  Future<Tuple2<int, List<Restaurant>>> usagesAPI(
+    int city,
+    int client,
+  ) async {
     return await this.interface.usages(city, client);
   }
 
-  Future<Tuple2<int, List<Restaurant>>> favorites(int city, int client) async {
+  Future<Tuple2<int, List<Restaurant>>> favoritesAPI(
+    int city,
+    int client,
+  ) async {
     return await this.interface.favorites(city, client);
   }
 }

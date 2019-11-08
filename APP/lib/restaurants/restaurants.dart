@@ -4,6 +4,7 @@ import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/table.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/helper/loader.dart';
+import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/restaurants/viewmodel.dart';
 import 'package:tcc_app/service/restaurant.dart';
@@ -19,6 +20,7 @@ class Restaurants extends StatefulWidget {
 class RestaurantsState extends State<Restaurants> {
   final _key = GlobalKey<ScaffoldState>();
   final viewModel = RestaurantViewModel(interface: RestaurantService());
+  final preferences = Preferences();
 
   @override
   Widget build(BuildContext context) {
@@ -117,10 +119,16 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _restaurants() async {
-    var result = await this.viewModel.restaurants(6);
+    var city = 10;
+    var client = 355059;
+    var key = "restaurants";
+    var restaurants = await this.preferences.restaurants(client, key);
+    if (restaurants.isNotEmpty) return restaurants;
+    var result = await this.viewModel.restaurantsAPI(city);
     var code = result.item1;
     switch (code) {
       case 200:
+        this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
         Alert.show(context, Error.from(code).message);
@@ -129,10 +137,17 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _generalRecommendations() async {
-    var result = await this.viewModel.general(6, 6);
+    return [];
+    var city = 10;
+    var client = 355059;
+    var key = "general_recommendations";
+    var restaurants = await this.preferences.restaurants(client, key);
+    if (restaurants.isNotEmpty) return restaurants;
+    var result = await this.viewModel.generalAPI(city, client);
     var code = result.item1;
     switch (code) {
       case 200:
+        this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
         Alert.show(context, Error.from(code).message);
@@ -141,10 +156,16 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _usagesRecommendations() async {
-    var result = await this.viewModel.usages(6, 6);
+    var city = 10;
+    var client = 355059;
+    var key = "usages_recommendations";
+    var restaurants = await this.preferences.restaurants(client, key);
+    if (restaurants.isNotEmpty) return restaurants;
+    var result = await this.viewModel.usagesAPI(city, client);
     var code = result.item1;
     switch (code) {
       case 200:
+        this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
         Alert.show(context, Error.from(code).message);
@@ -153,10 +174,16 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _favoritesRecommendations() async {
-    var result = await this.viewModel.favorites(6, 6);
+    var city = 10;
+    var client = 355059;
+    var key = "favorites_recommendations";
+    var restaurants = await this.preferences.restaurants(client, key);
+    if (restaurants.isNotEmpty) return restaurants;
+    var result = await this.viewModel.favoritesAPI(city, client);
     var code = result.item1;
     switch (code) {
       case 200:
+        this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
         Alert.show(context, Error.from(code).message);
