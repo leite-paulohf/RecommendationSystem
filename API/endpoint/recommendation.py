@@ -56,13 +56,14 @@ class Recommendation(Resource):
         training = self.normalize(self.features(restaurants))
         n_clusters = self.elbow(training)
         n_clusters = len(base) if n_clusters > len(base) else n_clusters
-        # if len(restaurants) <= 25 or len(personal) >= len(restaurants) or n_clusters == 1:
-        #     return restaurants['id']
-        if n_clusters == 1:
+        try:
+            recommended = self.k_means(base, training, n_clusters)
+            restaurants = restaurants.loc[recommended].reset_index(drop=True)
+            if len(restaurants) <= 25:
+                return restaurants['id']
+            return self.k_means_round(personal, restaurants)
+        except:
             return restaurants['id']
-        recommended = self.k_means(base, training, n_clusters)
-        restaurants = restaurants.loc[recommended].reset_index(drop=True)
-        return self.k_means_round(personal, restaurants)
 
     def k_means(self, base, training, n_clusters):
         k_means = KMeans(n_clusters=n_clusters, init='k-means++')
