@@ -3,13 +3,13 @@ import 'package:tcc_app/model/restaurant.dart';
 
 class Cell extends StatelessWidget {
   final Restaurant restaurant;
-  final Function booking, favourite;
+  final Function booking, favorite;
   var size;
 
   Cell({
     @required this.restaurant,
     @required this.booking,
-    @required this.favourite,
+    @required this.favorite,
   });
 
   @override
@@ -74,7 +74,7 @@ class Cell extends StatelessWidget {
         child: IconButton(
             icon: Icon(Icons.favorite, color: Colors.redAccent),
             onPressed: () {
-              this.favourite(this.restaurant);
+              this.favorite(this.restaurant);
             }),
       ),
     );

@@ -65,7 +65,7 @@ class FavoritesState extends State<Favorites> {
         direction: Axis.vertical,
         restaurants: restaurants,
         booking: _booking,
-        favourite: _favourite,
+        favorite: _favorite,
       ),
     );
   }
@@ -89,15 +89,13 @@ class FavoritesState extends State<Favorites> {
   Future<List<Restaurant>> _favorites() async {
     var user = await this.preferences.user();
     if (user.id == null) return [];
-    var client = user.id;
-    var key = "favorites";
-    var restaurants = await this.preferences.restaurants(client, key);
+    var restaurants = await this.preferences.restaurants(user.id, "favorites");
     if (restaurants.isNotEmpty) return restaurants;
     var result = await this.viewModel.favorites(user.id);
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.set(result.item2, client, key);
+        this.preferences.set(result.item2, user.id, "favorites");
         return result.item2;
       default:
         Alert.error(context, Error.from(code).message);
@@ -105,28 +103,25 @@ class FavoritesState extends State<Favorites> {
     }
   }
 
-  Future<List<Restaurant>> _removeFavourite() async {
+  void _removeFavourite(Restaurant restaurant) async {
     var user = await this.preferences.user();
-    var client = user.id;
-    var restaurant = this.viewModel.restaurant.id;
-    var key = "favorites";
-    var result = await this.viewModel.removeFavorite(client, restaurant);
+    var result = await this.viewModel.removeFavorite(user.id, restaurant.id);
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.set(result.item2, client, key);
-        return result.item2;
+        this.preferences.set(result.item2, user.id, "favorites");
+        break;
       default:
         Alert.error(context, Error.from(code).message);
-        return [];
+        break;
     }
   }
 
   void _booking() {}
 
-  void _favourite() {
+  void _favorite(Restaurant restaurant) {
     setState(() {
-      _removeFavourite();
+      _removeFavourite(restaurant);
     });
   }
 }

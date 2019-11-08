@@ -5,13 +5,13 @@ import 'package:tcc_app/model/restaurant.dart';
 class TableView extends StatelessWidget {
   final Axis direction;
   final List<Restaurant> restaurants;
-  final Function booking, favourite;
+  final Function booking, favorite;
 
   TableView(
       {@required this.direction,
       @required this.restaurants,
       @required this.booking,
-      @required this.favourite});
+      @required this.favorite});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class TableView extends StatelessWidget {
           return Cell(
               restaurant: restaurant,
               booking: this.booking,
-              favourite: this.favourite);
+              favorite: this.favorite);
         });
   }
 }

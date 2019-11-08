@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tcc_app/components/table.dart';
+import 'package:tcc_app/favorites/viewmodel.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/helper/loader.dart';
 import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/model/user.dart';
 import 'package:tcc_app/restaurants/viewmodel.dart';
+import 'package:tcc_app/service/favorites.dart';
 import 'package:tcc_app/service/restaurant.dart';
 import 'package:tcc_app/model/error.dart';
 
@@ -21,6 +23,7 @@ class RestaurantsState extends State<Restaurants> {
   final _key = GlobalKey<ScaffoldState>();
   final _height = 257.0;
   final viewModel = RestaurantViewModel(interface: RestaurantService());
+  final favorites = FavoritesViewModel(interface: FavoritesService());
   final preferences = Preferences();
 
   @override
@@ -138,7 +141,7 @@ class RestaurantsState extends State<Restaurants> {
           direction: Axis.horizontal,
           restaurants: restaurants ?? [],
           booking: _booking,
-          favourite: _favourite,
+          favorite: _favorite,
         ),
       ),
     );
@@ -240,11 +243,55 @@ class RestaurantsState extends State<Restaurants> {
     }
   }
 
-  void _booking(Restaurant restaurant) {
-
+  void _favorites(Restaurant restaurant) async {
+    var user = await this.preferences.user();
+    if (user.id == null) return;
+    var restaurants = await this.preferences.restaurants(user.id, "favorites");
+    if (restaurants.isEmpty) {
+      var result = await this.favorites.favorites(user.id);
+      this.preferences.set(result.item2, user.id, "favorites");
+      restaurants = result.item2;
+    }
+    if (restaurants.contains(restaurant)) {
+      _removeFavourite(restaurant);
+    } else {
+      _addFavourite(restaurant);
+    }
   }
 
-  void _favourite(Restaurant restaurant) {
-    
+  void _addFavourite(Restaurant restaurant) async {
+    var user = await this.preferences.user();
+    var result = await this.favorites.addFavorite(user.id, restaurant.id);
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        this.preferences.set(result.item2, user.id, "favorites");
+        Alert.show(context, restaurant.name + " adicionado aos favoritos.");
+        break;
+      default:
+        Alert.error(context, Error.from(code).message);
+        break;
+    }
+  }
+
+  void _removeFavourite(Restaurant restaurant) async {
+    var user = await this.preferences.user();
+    var result = await this.favorites.removeFavorite(user.id, restaurant.id);
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        this.preferences.set(result.item2, user.id, "favorites");
+        Alert.show(context, restaurant.name + " removido dos favoritos.");
+        break;
+      default:
+        Alert.error(context, Error.from(code).message);
+        break;
+    }
+  }
+
+  void _booking(Restaurant restaurant) {}
+
+  void _favorite(Restaurant restaurant) {
+    _favorites(restaurant);
   }
 }

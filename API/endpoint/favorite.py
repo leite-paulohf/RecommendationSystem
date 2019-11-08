@@ -28,11 +28,11 @@ class Favorite(Resource):
 
     def remove(self):
         query = self.query(Query.remove_favorite.value)
-        params = {"client_id": request.json['client_id'],
-                  "restaurant_id": request.json['restaurant_id']}
+        params = {"client_id": request.args.get('client_id'),
+                  "restaurant_id": request.args.get('restaurant_id')}
         self.request(query, params)
         query = self.query(Query.favorites.value)
-        params = {"client_id": request.json['client_id']}
+        params = {"client_id": request.args.get('client_id')}
         data = self.request(query, params)
         if 'error' in data:
             return jsonify(data)
