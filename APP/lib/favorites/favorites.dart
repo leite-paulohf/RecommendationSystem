@@ -72,7 +72,7 @@ class FavoritesState extends State<Favorites> {
         child: Column(
       children: <Widget>[
         Expanded(child: Container()),
-        Icon(Icons.error, color: Colors.black26, size: 80),
+        Icon(Icons.inbox, color: Colors.black26, size: 80),
         Text("EMPTY LIST!",
             style: TextStyle(
               fontSize: 20,

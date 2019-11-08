@@ -41,6 +41,8 @@ class RestaurantsState extends State<Restaurants> {
         Padding(padding: EdgeInsets.only(top: 8)),
         _header("CITY RESTAURANTS"),
         _section(_restaurants()),
+        _header("GENERAL RECOMMENDATIONS"),
+        _section(_generalRecommendations()),
         _header("USAGES RECOMMENDATIONS"),
         _section(_usagesRecommendations()),
         _header("FAVORITES RECOMMENDATIONS"),
@@ -103,7 +105,7 @@ class RestaurantsState extends State<Restaurants> {
         child: Column(
           children: <Widget>[
             Expanded(child: Container()),
-            Icon(Icons.error, color: Colors.black26, size: 80),
+            Icon(Icons.inbox, color: Colors.black26, size: 80),
             Text("EMPTY LIST!",
                 style: TextStyle(
                   fontSize: 20,
@@ -115,7 +117,19 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _restaurants() async {
-    var result = await this.viewModel.search(6);
+    var result = await this.viewModel.restaurants(6);
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        return result.item2;
+      default:
+        Alert.show(context, Error.from(code).message);
+        return [];
+    }
+  }
+
+  Future<List<Restaurant>> _generalRecommendations() async {
+    var result = await this.viewModel.general(6, 6);
     var code = result.item1;
     switch (code) {
       case 200:
@@ -127,7 +141,7 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _usagesRecommendations() async {
-    var result = await this.viewModel.search(6);
+    var result = await this.viewModel.usages(6, 6);
     var code = result.item1;
     switch (code) {
       case 200:
@@ -139,7 +153,7 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _favoritesRecommendations() async {
-    var result = await this.viewModel.search(6);
+    var result = await this.viewModel.favorites(6, 6);
     var code = result.item1;
     switch (code) {
       case 200:

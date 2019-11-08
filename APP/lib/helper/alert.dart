@@ -6,11 +6,17 @@ class Alert {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            title: Text("Ops!"),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.report_problem, size: 20),
+                Text(" Service Error")
+              ],
+            ),
             content: Text(text),
             actions: <Widget>[
               FlatButton(
                   child: Text("OK"),
+                  textColor: Colors.teal,
                   onPressed: () {
                     Navigator.of(context).pop();
                   })

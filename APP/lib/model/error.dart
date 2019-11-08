@@ -8,31 +8,31 @@ class Error {
     switch (code) {
       case 400:
         return Error(
-            code: code, message: '[400]: Solicitação está incorreta.');
+            code: code, message: '[400]: Request is incorrect.');
       case 401:
         return Error(
-            code: code, message: '[401]: Solicitação não autorizada.');
+            code: code, message: '[401]: Unauthorized request. Unlogged!');
       case 403:
         return Error(
-            code: code, message: '[403]: Solicitação não permitida.');
+            code: code, message: '[403]: Request not allowed.');
       case 404:
         return Error(
-            code: code, message: '[404]: Solicitação não encontrada.');
+            code: code, message: '[404]: Not found request.');
       case 410:
         return Error(
-            code: code, message: '[410]: Solicitação de acesso perdida.');
+            code: code, message: '[410]: Lost access request.');
       case 501:
         return Error(
-            code: code, message: '[501]: Solicitação não implementada.');
+            code: code, message: '[501]: Unimplemented request.');
       case 503:
         return Error(
-            code: code, message: '[503]: Serviço indisponível no momento.');
+            code: code, message: '[503]: Unavailable service at the moment.');
       case 550:
         return Error(
-            code: code, message: '[550]: Permissão de acesso negada.');
+            code: code, message: '[550]: Access denied.');
       default:
         return Error(
-            code: code, message: '[$code]: Um erro não mapeado ocorreu.');
+            code: code, message: '[$code]: Undefined error.');
     }
   }
 }
