@@ -27,7 +27,7 @@ class UsagesState extends State<Usages> {
       key: _key,
       backgroundColor: Colors.black12,
       appBar: AppBar(
-        title: Text("Usages"),
+        title: Text("Histórico"),
         centerTitle: true,
       ),
       body: _body(),
@@ -76,7 +76,7 @@ class UsagesState extends State<Usages> {
       children: <Widget>[
         Expanded(child: Container()),
         Icon(Icons.inbox, color: Colors.black26, size: 80),
-        Text("You don't have any reservation",
+        Text("Você não possui utilizações",
             style: TextStyle(
               fontSize: 20,
               color: Colors.black26,
@@ -97,7 +97,7 @@ class UsagesState extends State<Usages> {
       case 200:
         return result.item2;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
         return [];
     }
   }

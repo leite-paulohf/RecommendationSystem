@@ -27,7 +27,7 @@ class FavoritesState extends State<Favorites> {
       key: _key,
       backgroundColor: Colors.black12,
       appBar: AppBar(
-        title: Text("Favorites"),
+        title: Text("Favoritos"),
         centerTitle: true,
       ),
       body: _body(),
@@ -76,7 +76,7 @@ class FavoritesState extends State<Favorites> {
       children: <Widget>[
         Expanded(child: Container()),
         Icon(Icons.inbox, color: Colors.black26, size: 80),
-        Text("You don't have any favorite",
+        Text("Você não possui restaurantes favoritos",
             style: TextStyle(
               fontSize: 20,
               color: Colors.black26,
@@ -97,7 +97,7 @@ class FavoritesState extends State<Favorites> {
       case 200:
         return result.item2;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
         return [];
     }
   }
@@ -111,7 +111,7 @@ class FavoritesState extends State<Favorites> {
       case 200:
         return result.item2;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
         return [];
     }
   }

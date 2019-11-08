@@ -47,7 +47,7 @@ class _AuthenticationState extends State<Authentication> {
             return Scaffold(
               key: _key,
               backgroundColor: Colors.black12,
-              appBar: AppBar(title: Text("Authentication"), centerTitle: true),
+              appBar: AppBar(title: Text("Autenticação"), centerTitle: true),
               body: Loader().body(_loading, _body()),
             );
           default:
@@ -114,14 +114,14 @@ class _AuthenticationState extends State<Authentication> {
           cpf = cpf.replaceAll('.', '').replaceAll('-', '');
           this.viewModel.user.cpf = int.parse(cpf);
           if (!CPFValidator.isValid(cpf)) {
-            return 'Type a valid document!';
+            return 'Digite um CPF válido!';
           }
         });
   }
 
   Widget _button() {
     return Button(
-        label: "CONTINUE",
+        label: "CONTINUAR",
         submitted: () {
           if (_formKey.currentState.validate()) {
             _search();
@@ -140,7 +140,7 @@ class _AuthenticationState extends State<Authentication> {
       case 404:
         return _pushRegister();
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
     }
   }
 

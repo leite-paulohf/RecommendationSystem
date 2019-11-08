@@ -46,13 +46,13 @@ class RestaurantsState extends State<Restaurants> {
       scrollDirection: Axis.vertical,
       children: <Widget>[
         Padding(padding: EdgeInsets.only(top: 8)),
-        _header("CITY RESTAURANTS"),
+        _header("RESTAURANTES"),
         _section(_restaurants()),
-        _headerLogged("GENERAL RECOMMENDATIONS"),
+        _headerLogged("RESTAURANTES RECOMENDADOS"),
         _sectionLogged(_generalRecommendations()),
-        _headerLogged("USAGES RECOMMENDATIONS"),
+        _headerLogged("RECOMENDAÇÕES: SUA PRÓXIMA RESERVA"),
         _sectionLogged(_usagesRecommendations()),
-        _headerLogged("FAVORITES RECOMMENDATIONS"),
+        _headerLogged("RECOMENDAÇÕES: SEU PRÓXIMO FAVORITO"),
         _sectionLogged(_favoritesRecommendations()),
       ],
     );
@@ -151,7 +151,7 @@ class RestaurantsState extends State<Restaurants> {
           children: <Widget>[
             Expanded(child: Container()),
             Icon(Icons.inbox, color: Colors.black26, size: 80),
-            Text("You don't have any recommendation",
+            Text("Sem restaurantes disponíveis",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.black26,
@@ -175,7 +175,7 @@ class RestaurantsState extends State<Restaurants> {
         this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
         return [];
     }
   }
@@ -195,7 +195,7 @@ class RestaurantsState extends State<Restaurants> {
         this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
         return [];
     }
   }
@@ -215,7 +215,7 @@ class RestaurantsState extends State<Restaurants> {
         this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
         return [];
     }
   }
@@ -235,12 +235,16 @@ class RestaurantsState extends State<Restaurants> {
         this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
         return [];
     }
   }
 
-  void _booking() {}
+  void _booking(Restaurant restaurant) {
 
-  void _favourite() {}
+  }
+
+  void _favourite(Restaurant restaurant) {
+    
+  }
 }

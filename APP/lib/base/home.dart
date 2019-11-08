@@ -42,19 +42,19 @@ class _HomeState extends State<Home> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.restaurant),
-          title: Text('Restaurants'),
+          title: Text('Restaurantes'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.history),
-          title: Text('Usages'),
+          title: Text('Histórico'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
-          title: Text('Favourites'),
+          title: Text('Favoritos'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          title: Text('Profile'),
+          title: Text('Perfil'),
         ),
       ],
       currentIndex: this._index,

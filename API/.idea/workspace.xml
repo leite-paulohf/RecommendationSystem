@@ -6,8 +6,11 @@
       <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/login.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/register.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/base/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/base/home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/components/cell.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/components/cell.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/favorites/favorites.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/favorites/favorites.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/helper/alert.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/helper/alert.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/usages/usages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/usages/usages.dart" afterDir="false" />
     </list>
@@ -19,7 +22,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
@@ -27,6 +30,15 @@
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/sqlalchemy/pool/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="269" selection-start-line="269" selection-end-line="269" />
             </state>
           </provider>
         </entry>
@@ -249,6 +261,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -258,8 +271,8 @@
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49483716" weight="0.27260274" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.41643837" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49483716" visible="true" weight="0.27260274" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.41643837" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="6" />
@@ -303,13 +316,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/sqlalchemy/sql/schema.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6927">
@@ -581,6 +587,13 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/sqlalchemy/pool/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="269" selection-start-line="269" selection-end-line="269" />
         </state>
       </provider>
     </entry>

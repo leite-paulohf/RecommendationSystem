@@ -33,7 +33,7 @@ class _ProfileState extends State<Profile> {
             return Scaffold(
               key: _key,
               backgroundColor: Colors.black12,
-              appBar: AppBar(title: Text("Profile"), centerTitle: true),
+              appBar: AppBar(title: Text("Perfil"), centerTitle: true),
               body: Center(child: _body()),
             );
           default:
@@ -92,7 +92,7 @@ class _ProfileState extends State<Profile> {
 
   Widget _logout() {
     return Button(
-      label: "LOGOUT",
+      label: "SAIR",
       submitted: () {
         setState(() {
           this.preferences.setUser(User());

@@ -38,7 +38,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       key: _key,
       appBar: AppBar(
-        title: Text("Register"),
+        title: Text("Registro"),
       ),
       body: Loader().body(_loading, _body()),
     );
@@ -101,7 +101,7 @@ class _RegisterState extends State<Register> {
       future: this.widget.viewModel.getCities(context),
       builder: (context, snapshot) {
         var city = this.widget.viewModel.city;
-        var title = city?.name?.toUpperCase() ?? "SELECT CITY";
+        var title = city?.name?.toUpperCase() ?? "SELECIONE SUA CIDADE";
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             var cities = snapshot.data;
@@ -130,9 +130,9 @@ class _RegisterState extends State<Register> {
         itemExtent: 40,
         changeToFirst: true,
         textStyle: TextStyle(color: Colors.black, fontSize: 20),
-        cancelText: "CANCEL",
+        cancelText: "CANCELAR",
         cancelTextStyle: TextStyle(color: Colors.teal),
-        confirmText: "CONFIRM",
+        confirmText: "CONFIRMAR",
         confirmTextStyle: TextStyle(color: Colors.teal),
         textAlign: TextAlign.left,
         columnPadding: const EdgeInsets.all(16.0),
@@ -149,7 +149,7 @@ class _RegisterState extends State<Register> {
 
   Widget _formName() {
     return TextFormField(
-      decoration: _decoration("Name"),
+      decoration: _decoration("Nome"),
       onFieldSubmitted: (name) {
         this.widget.viewModel.user.name = name;
         if (_formKey.currentState.validate()) {
@@ -159,7 +159,7 @@ class _RegisterState extends State<Register> {
       validator: (name) {
         this.widget.viewModel.user.name = name;
         if (name.isEmpty) {
-          return 'The field can\'t be empty!';
+          return 'O campo não pode estar vazio!';
         }
       },
     );
@@ -170,7 +170,7 @@ class _RegisterState extends State<Register> {
       controller: MaskedTextController(
           text: this.widget.viewModel.user.cpf.toString(),
           mask: '000.000.000-00'),
-      decoration: _decoration("Document"),
+      decoration: _decoration("CPF"),
       onFieldSubmitted: (cpf) {
         cpf = cpf.replaceAll('.', '').replaceAll('-', '');
         this.widget.viewModel.user.cpf = int.parse(cpf);
@@ -182,7 +182,7 @@ class _RegisterState extends State<Register> {
         cpf = cpf.replaceAll('.', '').replaceAll('-', '');
         this.widget.viewModel.user.cpf = int.parse(cpf);
         if (!CPFValidator.isValid(cpf)) {
-          return 'Type a valid document!';
+          return 'Digite um CPF válido!';
         }
       },
     );
@@ -190,7 +190,7 @@ class _RegisterState extends State<Register> {
 
   Widget _formPassword() {
     return TextFormField(
-      decoration: _decoration("Password"),
+      decoration: _decoration("Senha"),
       onFieldSubmitted: (password) {
         this.widget.viewModel.user.password = password;
         if (_formKey.currentState.validate()) {
@@ -200,7 +200,7 @@ class _RegisterState extends State<Register> {
       validator: (password) {
         this.widget.viewModel.user.password = password;
         if (password.length < 5) {
-          return 'Type a password at least 6 characters!';
+          return 'Digite uma senha com pelo menos 6 caracteres!';
         }
       },
     );
@@ -208,7 +208,7 @@ class _RegisterState extends State<Register> {
 
   Widget _button() {
     return Button(
-      label: "REGISTER",
+      label: "ENTRAR",
       submitted: () {
         if (_formKey.currentState.validate()) {
           if (this.widget.viewModel.city != null) {
@@ -230,7 +230,7 @@ class _RegisterState extends State<Register> {
         Navigator.pop(context);
         break;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
     }
   }
 }

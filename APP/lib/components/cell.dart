@@ -17,7 +17,11 @@ class Cell extends StatelessWidget {
     this.size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.all(8),
-      child: _cell(),
+      child: GestureDetector(
+          onTap: () {
+            this.booking(this.restaurant);
+          },
+          child: _cell()),
     );
   }
 
@@ -69,7 +73,9 @@ class Cell extends StatelessWidget {
         alignment: AlignmentDirectional.topEnd,
         child: IconButton(
             icon: Icon(Icons.favorite, color: Colors.redAccent),
-            onPressed: this.favourite),
+            onPressed: () {
+              this.favourite(this.restaurant);
+            }),
       ),
     );
   }
@@ -153,7 +159,7 @@ class Cell extends StatelessWidget {
 
   String _price() {
     var price = this.restaurant.price.round();
-    return "Average price: " + r"R$" + price.toString();
+    return "Preço médio: " + r"R$" + price.toString();
   }
 
   Widget _detail() {

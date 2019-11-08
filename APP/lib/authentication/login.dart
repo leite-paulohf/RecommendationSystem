@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      appBar: AppBar(title: Text("Login")),
+      appBar: AppBar(title: Text("Entrar")),
       body: Loader().body(_loading, _body()),
     );
   }
@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
       controller: MaskedTextController(
           text: this.widget.viewModel.user.cpf.toString(),
           mask: '000.000.000-00'),
-      decoration: _decoration("Document"),
+      decoration: _decoration("CPF"),
       onFieldSubmitted: (cpf) {
         cpf = cpf.replaceAll('.', '').replaceAll('-', '');
         this.widget.viewModel.user.cpf = int.parse(cpf);
@@ -102,7 +102,7 @@ class _LoginState extends State<Login> {
         cpf = cpf.replaceAll('.', '').replaceAll('-', '');
         this.widget.viewModel.user.cpf = int.parse(cpf);
         if (!CPFValidator.isValid(cpf)) {
-          return 'Type a valid document!';
+          return 'Digite um CPF válido!';
         }
       },
     );
@@ -110,7 +110,7 @@ class _LoginState extends State<Login> {
 
   Widget _formPassword() {
     return TextFormField(
-      decoration: _decoration("Password"),
+      decoration: _decoration("Senha"),
       onFieldSubmitted: (password) {
         this.widget.viewModel.user.password = password;
         if (_formKey.currentState.validate()) {
@@ -120,7 +120,7 @@ class _LoginState extends State<Login> {
       validator: (password) {
         this.widget.viewModel.user.password = password;
         if (password.length < 5) {
-          return 'Type a password at least 6 characters!';
+          return 'Digite uma senha com pelo menos 6 caracteres!';
         }
       },
     );
@@ -128,7 +128,7 @@ class _LoginState extends State<Login> {
 
   Widget _button() {
     return Button(
-      label: "ENTER",
+      label: "ENTRAR",
       submitted: () {
         if (_formKey.currentState.validate()) {
           _login();
@@ -148,7 +148,7 @@ class _LoginState extends State<Login> {
         Navigator.pop(context);
         break;
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert.error(context, Error.from(code).message);
     }
   }
 }
