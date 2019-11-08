@@ -21,18 +21,12 @@ class _HomeState extends State<Home> {
     Authentication()
   ];
 
-  final _title = ["Restaurants", "Usages", "Favourites", "Profile"];
-
   int _index = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        appBar: AppBar(
-          title: Text(_title[_index]),
-          centerTitle: true,
-        ),
         body: _body[_index],
         bottomNavigationBar: _bottomNavigationBar());
   }

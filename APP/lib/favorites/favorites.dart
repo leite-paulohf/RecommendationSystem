@@ -26,6 +26,10 @@ class FavoritesState extends State<Favorites> {
     return Scaffold(
       key: _key,
       backgroundColor: Colors.black12,
+      appBar: AppBar(
+        title: Text("Favorites"),
+        centerTitle: true,
+      ),
       body: _body(),
     );
   }
@@ -72,7 +76,7 @@ class FavoritesState extends State<Favorites> {
       children: <Widget>[
         Expanded(child: Container()),
         Icon(Icons.inbox, color: Colors.black26, size: 80),
-        Text("EMPTY LIST!",
+        Text("You don't have any favorite",
             style: TextStyle(
               fontSize: 20,
               color: Colors.black26,
@@ -85,7 +89,6 @@ class FavoritesState extends State<Favorites> {
   Future<List<Restaurant>> _favorites() async {
     var user = await this.preferences.user();
     if (user.id == null) {
-      Alert.show(context, Error.from(401).message);
       return [];
     }
     var result = await this.viewModel.favorites(user.id);

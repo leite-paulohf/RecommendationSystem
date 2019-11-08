@@ -26,6 +26,10 @@ class UsagesState extends State<Usages> {
     return Scaffold(
       key: _key,
       backgroundColor: Colors.black12,
+      appBar: AppBar(
+        title: Text("Usages"),
+        centerTitle: true,
+      ),
       body: _body(),
     );
   }
@@ -72,7 +76,7 @@ class UsagesState extends State<Usages> {
       children: <Widget>[
         Expanded(child: Container()),
         Icon(Icons.inbox, color: Colors.black26, size: 80),
-        Text("EMPTY LIST!",
+        Text("You don't have any reservation",
             style: TextStyle(
               fontSize: 20,
               color: Colors.black26,
@@ -85,7 +89,6 @@ class UsagesState extends State<Usages> {
   Future<List<Restaurant>> _usages() async {
     var user = await this.preferences.user();
     if (user.id == null) {
-      Alert.show(context, Error.from(401).message);
       return [];
     }
     var result = await this.viewModel.usages(user.id);

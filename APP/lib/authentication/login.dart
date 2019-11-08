@@ -35,9 +35,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
+      appBar: AppBar(title: Text("Login")),
       body: Loader().body(_loading, _body()),
     );
   }

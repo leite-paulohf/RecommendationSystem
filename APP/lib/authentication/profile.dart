@@ -17,41 +17,46 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final _key = GlobalKey<ScaffoldState>();
   final preferences = Preferences();
   User _user;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.black12,
-        body: Center(
-          child: _body(),
-        ));
-  }
-
-  Widget _body() {
     return FutureBuilder<User>(
       future: this.preferences.user(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             _user = snapshot.data;
-            if (snapshot.data.id == null)
-              return Authentication();
-            else
-              return ScopedModel<AuthenticationViewModel>(
-                  model: this.widget.viewModel,
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    child: Column(
-                      children: <Widget>[_header(), _detail(), _logout()],
-                    ),
-                  ));
-            break;
+            if (snapshot.data.id == null) return Authentication();
+            return Scaffold(
+              key: _key,
+              backgroundColor: Colors.black12,
+              appBar: AppBar(title: Text("Profile"), centerTitle: true),
+              body: Center(child: _body()),
+            );
           default:
-            return Loader().show();
+            return Scaffold(
+              key: _key,
+              backgroundColor: Colors.black12,
+              appBar: AppBar(),
+              body: Loader().show(),
+            );
         }
       },
+    );
+  }
+
+  Widget _body() {
+    return ScopedModel<AuthenticationViewModel>(
+      model: this.widget.viewModel,
+      child: Container(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: <Widget>[_header(), _detail(), _logout()],
+        ),
+      ),
     );
   }
 

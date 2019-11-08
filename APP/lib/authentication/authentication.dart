@@ -37,10 +37,28 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _key,
-      backgroundColor: Colors.black12,
-      body: Loader().body(_loading, _body()),
+    return FutureBuilder<User>(
+      future: this.preferences.user(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            if (snapshot.data.id != null)
+              return Profile(viewModel: this.viewModel);
+            return Scaffold(
+              key: _key,
+              backgroundColor: Colors.black12,
+              appBar: AppBar(title: Text("Authentication"), centerTitle: true),
+              body: Loader().body(_loading, _body()),
+            );
+          default:
+            return Scaffold(
+              key: _key,
+              backgroundColor: Colors.black12,
+              appBar: AppBar(),
+              body: Loader().show(),
+            );
+        }
+      },
     );
   }
 
@@ -50,37 +68,24 @@ class _AuthenticationState extends State<Authentication> {
   }
 
   Widget _body() {
-    return FutureBuilder<User>(
-      future: this.preferences.user(),
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.done:
-            if (snapshot.data.id != null)
-              return Profile(viewModel: this.viewModel);
-            else
-              return GestureDetector(
-                  onTap: () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
-                  child: ScopedModel<AuthenticationViewModel>(
-                    model: this.viewModel,
-                    child: Form(
-                        key: _formKey,
-                        child: ListView(
-                          padding: EdgeInsets.all(20),
-                          children: <Widget>[
-                            _header(),
-                            _form(),
-                            Padding(padding: EdgeInsets.only(top: 20)),
-                            _button(),
-                          ],
-                        )),
-                  ));
-            break;
-          default:
-            return Loader().show();
-        }
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
       },
+      child: ScopedModel<AuthenticationViewModel>(
+        model: this.viewModel,
+        child: Form(
+            key: _formKey,
+            child: ListView(
+              padding: EdgeInsets.all(20),
+              children: <Widget>[
+                _header(),
+                _formDocument(),
+                Padding(padding: EdgeInsets.only(top: 20)),
+                _button(),
+              ],
+            )),
+      ),
     );
   }
 
@@ -91,7 +96,7 @@ class _AuthenticationState extends State<Authentication> {
     );
   }
 
-  Widget _form() {
+  Widget _formDocument() {
     return TextFormField(
         controller: MaskedTextController(
             text: this.viewModel.user.cpf.toString(), mask: '000.000.000-00'),

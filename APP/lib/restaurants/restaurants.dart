@@ -19,6 +19,7 @@ class Restaurants extends StatefulWidget {
 
 class RestaurantsState extends State<Restaurants> {
   final _key = GlobalKey<ScaffoldState>();
+  final _height = 257.0;
   final viewModel = RestaurantViewModel(interface: RestaurantService());
   final preferences = Preferences();
 
@@ -27,6 +28,10 @@ class RestaurantsState extends State<Restaurants> {
     return Scaffold(
       key: _key,
       backgroundColor: Colors.black12,
+      appBar: AppBar(
+        title: Text("Restaurants"),
+        centerTitle: true,
+      ),
       body: _body(),
     );
   }
@@ -96,9 +101,9 @@ class RestaurantsState extends State<Restaurants> {
       padding: EdgeInsets.all(8),
       child: Text(title,
           style: TextStyle(
-            color: Colors.black54,
-            fontSize: 17,
-          )),
+              color: Colors.black54,
+              fontSize: 17,
+              fontWeight: FontWeight.w700)),
     );
   }
 
@@ -116,7 +121,7 @@ class RestaurantsState extends State<Restaurants> {
             break;
           default:
             return Container(
-              height: 258,
+              height: _height,
               child: Loader().show(),
             );
         }
@@ -126,7 +131,7 @@ class RestaurantsState extends State<Restaurants> {
 
   Widget _list(List<Restaurant> restaurants) {
     return Container(
-      height: 258,
+      height: _height,
       child: ScopedModel<RestaurantViewModel>(
         model: this.viewModel,
         child: TableView(
@@ -141,12 +146,12 @@ class RestaurantsState extends State<Restaurants> {
 
   Widget _empty() {
     return Container(
-        height: 258,
+        height: _height,
         child: Column(
           children: <Widget>[
             Expanded(child: Container()),
             Icon(Icons.inbox, color: Colors.black26, size: 80),
-            Text("Restaurants not found",
+            Text("You don't have any recommendation",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.black26,
