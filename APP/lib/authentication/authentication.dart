@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tcc_app/authentication/profile.dart';
 import 'package:tcc_app/helper/loader.dart';
+import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/helper/validator.dart';
 import 'package:tcc_app/model/user.dart';
 import 'login.dart';
@@ -24,6 +25,7 @@ class _AuthenticationState extends State<Authentication> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final viewModel = AuthenticationViewModel(interface: UserService());
+  final preferences = Preferences();
 
   var _loading = false;
 
@@ -49,7 +51,7 @@ class _AuthenticationState extends State<Authentication> {
 
   Widget _body() {
     return FutureBuilder<User>(
-      future: this.viewModel.getUser(),
+      future: this.preferences.user(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:

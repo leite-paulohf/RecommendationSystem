@@ -4,6 +4,7 @@ import 'package:tcc_app/authentication/authentication.dart';
 import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/button.dart';
 import 'package:tcc_app/helper/loader.dart';
+import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/model/user.dart';
 
 class Profile extends StatefulWidget {
@@ -16,6 +17,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final preferences = Preferences();
   User _user;
 
   @override
@@ -29,7 +31,7 @@ class _ProfileState extends State<Profile> {
 
   Widget _body() {
     return FutureBuilder<User>(
-      future: this.widget.viewModel.getUser(),
+      future: this.preferences.user(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
@@ -88,7 +90,7 @@ class _ProfileState extends State<Profile> {
       label: "LOGOUT",
       submitted: () {
         setState(() {
-          this.widget.viewModel.set(User());
+          this.preferences.setUser(User());
         });
       },
     );

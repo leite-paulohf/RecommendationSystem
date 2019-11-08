@@ -4,6 +4,7 @@ import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/button.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:tcc_app/helper/loader.dart';
+import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/helper/validator.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/model/error.dart';
@@ -20,6 +21,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
+  final preferences = Preferences();
 
   var _loading = false;
 
@@ -144,7 +146,7 @@ class _LoginState extends State<Login> {
     var code = result.item1;
     switch (code) {
       case 200:
-        this.widget.viewModel.set(result.item2);
+        this.preferences.setUser(result.item2);
         Navigator.pop(context);
         break;
       default:

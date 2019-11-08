@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/table.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/helper/loader.dart';
+import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/model/error.dart';
 import 'package:tcc_app/service/usages.dart';
-import 'package:tcc_app/service/user.dart';
 import 'package:tcc_app/usages/viewmodel.dart';
 
 class Usages extends StatefulWidget {
@@ -20,7 +19,7 @@ class Usages extends StatefulWidget {
 class UsagesState extends State<Usages> {
   final _key = GlobalKey<ScaffoldState>();
   final viewModel = UsagesViewModel(interface: UsagesService());
-  final authentication = AuthenticationViewModel(interface: UserService());
+  final preferences = Preferences();
 
   @override
   Widget build(BuildContext context) {
@@ -84,16 +83,12 @@ class UsagesState extends State<Usages> {
   }
 
   Future<List<Restaurant>> _usages() async {
-    if (this.authentication.user.id == null) {
-      var user = await this.authentication.getUser();
-      this.authentication.user = user;
-      if (user.id == null) {
-        Alert.show(context, Error.from(401).message);
-        return [];
-      }
+    var user = await this.preferences.user();
+    if (user.id == null) {
+      Alert.show(context, Error.from(401).message);
+      return [];
     }
-    var clientId = this.authentication.user.id;
-    var result = await this.viewModel.usages(clientId);
+    var result = await this.viewModel.usages(user.id);
     var code = result.item1;
     switch (code) {
       case 200:

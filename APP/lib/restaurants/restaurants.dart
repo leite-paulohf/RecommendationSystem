@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/table.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/helper/loader.dart';
 import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/model/restaurant.dart';
+import 'package:tcc_app/model/user.dart';
 import 'package:tcc_app/restaurants/viewmodel.dart';
 import 'package:tcc_app/service/restaurant.dart';
 import 'package:tcc_app/model/error.dart';
@@ -43,13 +43,51 @@ class RestaurantsState extends State<Restaurants> {
         Padding(padding: EdgeInsets.only(top: 8)),
         _header("CITY RESTAURANTS"),
         _section(_restaurants()),
-        _header("GENERAL RECOMMENDATIONS"),
-        _section(_generalRecommendations()),
-        _header("USAGES RECOMMENDATIONS"),
-        _section(_usagesRecommendations()),
-        _header("FAVORITES RECOMMENDATIONS"),
-        _section(_favoritesRecommendations()),
+        _headerLogged("GENERAL RECOMMENDATIONS"),
+        _sectionLogged(_generalRecommendations()),
+        _headerLogged("USAGES RECOMMENDATIONS"),
+        _sectionLogged(_usagesRecommendations()),
+        _headerLogged("FAVORITES RECOMMENDATIONS"),
+        _sectionLogged(_favoritesRecommendations()),
       ],
+    );
+  }
+
+  Widget _headerLogged(String title) {
+    return FutureBuilder<User>(
+      future: this.preferences.user(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            var user = snapshot.data;
+            if (user.id != null)
+              return _header(title);
+            else
+              return Container();
+            break;
+          default:
+            return Container();
+        }
+      },
+    );
+  }
+
+  Widget _sectionLogged(Future future) {
+    return FutureBuilder<User>(
+      future: this.preferences.user(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            var user = snapshot.data;
+            if (user.id != null)
+              return _section(future);
+            else
+              return Container();
+            break;
+          default:
+            return Container();
+        }
+      },
     );
   }
 
@@ -108,7 +146,7 @@ class RestaurantsState extends State<Restaurants> {
           children: <Widget>[
             Expanded(child: Container()),
             Icon(Icons.inbox, color: Colors.black26, size: 80),
-            Text("EMPTY LIST!",
+            Text("Restaurants not found",
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.black26,
@@ -119,8 +157,9 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _restaurants() async {
-    var city = 10;
-    var client = 355059;
+    var user = await this.preferences.user();
+    var city = user.cityId ?? 10;
+    var client = user.id;
     var key = "restaurants";
     var restaurants = await this.preferences.restaurants(client, key);
     if (restaurants.isNotEmpty) return restaurants;
@@ -137,9 +176,10 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _generalRecommendations() async {
-    return [];
-    var city = 10;
-    var client = 355059;
+    var user = await this.preferences.user();
+    if (user.id == null) return [];
+    var city = user.cityId;
+    var client = user.id;
     var key = "general_recommendations";
     var restaurants = await this.preferences.restaurants(client, key);
     if (restaurants.isNotEmpty) return restaurants;
@@ -156,8 +196,10 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _usagesRecommendations() async {
-    var city = 10;
-    var client = 355059;
+    var user = await this.preferences.user();
+    if (user.id == null) return [];
+    var city = user.cityId;
+    var client = user.id;
     var key = "usages_recommendations";
     var restaurants = await this.preferences.restaurants(client, key);
     if (restaurants.isNotEmpty) return restaurants;
@@ -174,8 +216,10 @@ class RestaurantsState extends State<Restaurants> {
   }
 
   Future<List<Restaurant>> _favoritesRecommendations() async {
-    var city = 10;
-    var client = 355059;
+    var user = await this.preferences.user();
+    if (user.id == null) return [];
+    var city = user.cityId;
+    var client = user.id;
     var key = "favorites_recommendations";
     var restaurants = await this.preferences.restaurants(client, key);
     if (restaurants.isNotEmpty) return restaurants;
