@@ -109,7 +109,10 @@ class FavoritesState extends State<Favorites> {
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.set(result.item2, user.id, "favorites");
+        setState(() {
+          this.preferences.set(result.item2, user.id, "favorites");
+          Alert.show(context, restaurant.name + " removido dos favoritos.");
+        });
         break;
       default:
         Alert.error(context, Error.from(code).message);
@@ -120,8 +123,6 @@ class FavoritesState extends State<Favorites> {
   void _booking() {}
 
   void _favorite(Restaurant restaurant) {
-    setState(() {
-      _removeFavourite(restaurant);
-    });
+    _removeFavourite(restaurant);
   }
 }

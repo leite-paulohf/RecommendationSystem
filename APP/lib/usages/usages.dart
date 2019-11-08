@@ -115,7 +115,12 @@ class UsagesState extends State<Usages> {
       this.preferences.set(result.item2, user.id, "favorites");
       restaurants = result.item2;
     }
-    if (restaurants.contains(restaurant)) {
+
+    var ids = restaurants.map((restaurant) {
+      return restaurant.id;
+    }).toList();
+
+    if (ids.contains(restaurant.id)) {
       _removeFavourite(restaurant);
     } else {
       _addFavourite(restaurant);

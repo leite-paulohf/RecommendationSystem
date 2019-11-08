@@ -73,7 +73,7 @@ class _ProfileState extends State<Profile> {
       child: Column(
         children: <Widget>[
           Text(
-            _user.name ?? "",
+            _user.name.toUpperCase() ?? "",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
