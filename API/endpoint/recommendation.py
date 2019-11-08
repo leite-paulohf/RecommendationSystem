@@ -2,7 +2,7 @@ import collections as coll
 import numpy as np
 import pandas as pd
 import sqlalchemy as sql
-from flask import request
+from flask import request, jsonify
 from flask_restful import Resource
 from sklearn import preprocessing
 from sklearn.cluster import KMeans
@@ -18,16 +18,35 @@ class Recommendation(Resource):
         self.engine = sql.create_engine('sqlite:///database.db', echo=True)
         self.connection = self.engine.connect()
 
+    def general(self):
+        usages = self.usages(request)
+        if usages.empty:
+            return jsonify({'data': []})
+        restaurants = self.restaurants(request)
+        if restaurants.empty:
+            return jsonify({'data': []})
+        recommended = self.k_means_round(usages, restaurants)
+        recommendations = self.recommendations(tuple(recommended))
+        return recommendations
+
     def by_usages(self):
         usages = self.usages(request)
+        if usages.empty:
+            return jsonify({'data': []})
         restaurants = self.restaurants(request)
+        if restaurants.empty:
+            return jsonify({'data': []})
         recommended = self.k_means_round(usages, restaurants)
         recommendations = self.recommendations(tuple(recommended))
         return recommendations
 
     def by_favorites(self):
         favorites = self.favorites(request)
+        if favorites.empty:
+            return jsonify({'data': []})
         restaurants = self.restaurants(request)
+        if restaurants.empty:
+            return jsonify({'data': []})
         recommended = self.k_means_round(favorites, restaurants)
         recommendations = self.recommendations(tuple(recommended))
         return recommendations
@@ -37,7 +56,9 @@ class Recommendation(Resource):
         training = self.normalize(self.features(restaurants))
         n_clusters = self.elbow(training)
         n_clusters = len(base) if n_clusters > len(base) else n_clusters
-        if len(restaurants) <= 25 or len(personal) >= len(restaurants) or n_clusters == 1:
+        # if len(restaurants) <= 25 or len(personal) >= len(restaurants) or n_clusters == 1:
+        #     return restaurants['id']
+        if n_clusters == 1:
             return restaurants['id']
         recommended = self.k_means(base, training, n_clusters)
         restaurants = restaurants.loc[recommended].reset_index(drop=True)

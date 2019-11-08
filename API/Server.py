@@ -81,6 +81,11 @@ def usages():
 
 #   RECOMMENDATIONS
 
+@app.route('/restaurants/recommendations', methods=['GET'])
+def general_recommendations():
+    return Recommendation().general()
+
+
 @app.route('/usages/recommendations', methods=['GET'])
 def usages_recommendations():
     return Recommendation().by_usages()
