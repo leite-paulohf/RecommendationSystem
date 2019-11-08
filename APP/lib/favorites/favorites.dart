@@ -88,13 +88,16 @@ class FavoritesState extends State<Favorites> {
 
   Future<List<Restaurant>> _favorites() async {
     var user = await this.preferences.user();
-    if (user.id == null) {
-      return [];
-    }
+    if (user.id == null) return [];
+    var client = user.id;
+    var key = "favorites";
+    var restaurants = await this.preferences.restaurants(client, key);
+    if (restaurants.isNotEmpty) return restaurants;
     var result = await this.viewModel.favorites(user.id);
     var code = result.item1;
     switch (code) {
       case 200:
+        this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
         Alert.error(context, Error.from(code).message);
@@ -104,11 +107,14 @@ class FavoritesState extends State<Favorites> {
 
   Future<List<Restaurant>> _removeFavourite() async {
     var user = await this.preferences.user();
-    var restaurant = this.viewModel.restaurant;
-    var result = await this.viewModel.removeFavorite(user.id, restaurant.id);
+    var client = user.id;
+    var restaurant = this.viewModel.restaurant.id;
+    var key = "favorites";
+    var result = await this.viewModel.removeFavorite(client, restaurant);
     var code = result.item1;
     switch (code) {
       case 200:
+        this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
         Alert.error(context, Error.from(code).message);
@@ -119,6 +125,8 @@ class FavoritesState extends State<Favorites> {
   void _booking() {}
 
   void _favourite() {
-    _removeFavourite();
+    setState(() {
+      _removeFavourite();
+    });
   }
 }

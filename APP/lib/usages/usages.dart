@@ -88,13 +88,16 @@ class UsagesState extends State<Usages> {
 
   Future<List<Restaurant>> _usages() async {
     var user = await this.preferences.user();
-    if (user.id == null) {
-      return [];
-    }
+    if (user.id == null) return [];
+    var client = user.id;
+    var key = "usages";
+    var restaurants = await this.preferences.restaurants(client, key);
+    if (restaurants.isNotEmpty) return restaurants;
     var result = await this.viewModel.usages(user.id);
     var code = result.item1;
     switch (code) {
       case 200:
+        this.preferences.set(result.item2, client, key);
         return result.item2;
       default:
         Alert.error(context, Error.from(code).message);
