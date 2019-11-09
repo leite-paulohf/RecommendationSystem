@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tcc_app/favorites/viewmodel.dart';
+import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/model/restaurant.dart';
+import 'package:tcc_app/service/favorites.dart';
 
 class Cell extends StatefulWidget {
   final Restaurant restaurant;
@@ -17,6 +20,8 @@ class Cell extends StatefulWidget {
 }
 
 class _CellState extends State<Cell> {
+  final favorites = FavoritesViewModel(interface: FavoritesService());
+  final preferences = Preferences();
   Size _size;
 
   @override
@@ -74,13 +79,33 @@ class _CellState extends State<Cell> {
 
   Widget _favourite() {
     double width = (_size.width / 2) - 8;
+    return FutureBuilder<List<int>>(
+      future: _favorites(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            var restaurants = snapshot.data ?? [];
+            var restaurant = this.widget.restaurant.id;
+            var favorite = restaurants.contains(restaurant);
+            return _favouriteButton(favorite);
+          default:
+            return Container(height: 75, width: width);
+        }
+      },
+    );
+  }
+
+  Widget _favouriteButton(bool favorite) {
+    double width = (_size.width / 2) - 8;
+    var icon = favorite ? Icons.favorite : Icons.favorite_border;
+    var color = favorite ? Colors.redAccent : Colors.white;
     return Container(
       height: 75,
       width: width,
       child: Align(
         alignment: AlignmentDirectional.topEnd,
         child: IconButton(
-            icon: Icon(Icons.favorite, color: Colors.redAccent),
+            icon: Icon(icon, color: color),
             onPressed: () {
               this.widget.favorite(this.widget.restaurant);
             }),
@@ -263,5 +288,22 @@ class _CellState extends State<Cell> {
           fontSize: size,
           fontWeight: FontWeight.w400,
         ));
+  }
+
+  Future<List<int>> _favorites() async {
+    var user = await this.preferences.user();
+    if (user.id == null) return [];
+    var restaurants = await this.preferences.restaurants(user.id, "favorites");
+    if (restaurants.isEmpty) {
+      var result = await this.favorites.favorites(user.id);
+      this.preferences.set(result.item2, user.id, "favorites");
+      restaurants = result.item2;
+    }
+
+    var ids = restaurants.map((restaurant) {
+      return restaurant.id;
+    }).toList();
+
+    return ids;
   }
 }
