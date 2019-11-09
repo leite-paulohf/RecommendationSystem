@@ -12,7 +12,9 @@ abstract class UserInterface {
 
   Future<Tuple2<int, User>> register(User user);
 
-  Future<List<Filter>> cities(BuildContext context);
+  Future<Tuple2<int, User>> update(User user);
+
+  Future<Tuple2<int, List<Filter>>> cities();
 }
 
 class UserService implements UserInterface {
@@ -44,9 +46,15 @@ class UserService implements UserInterface {
   }
 
   @override
-  Future<List<Filter>> cities(BuildContext context) async {
-    var path = 'assets/cities.json';
-    var body = await DefaultAssetBundle.of(context).loadString(path);
-    return Service().parseCities(body);
+  Future<Tuple2<int, User>> update(User user) async {
+    Map data = user.toJson();
+    var response = await Service().put('client/update', {'client': data});
+    return Service().parseUser(response);
+  }
+
+  @override
+  Future<Tuple2<int, List<Filter>>> cities() async {
+    var response = await Service().get('cities', {});
+    return Service().parseCities(response);
   }
 }

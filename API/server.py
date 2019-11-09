@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from endpoint.cities import Cities
 from endpoint.client import Client
 from endpoint.favorite import Favorite
 from endpoint.restaurants import Restaurants
@@ -16,6 +17,13 @@ def root():
     return "Server Online"
 
 
+#   CITY
+
+@app.route('/cities', methods=['GET'])
+def cities():
+    return Cities().list()
+
+
 #   CLIENT
 
 @app.route('/client/search', methods=['GET'])
@@ -26,6 +34,11 @@ def search():
 @app.route('/client/register', methods=['POST'])
 def register():
     return Client().register()
+
+
+@app.route('/client/update', methods=['PUT'])
+def update():
+    return Client().update()
 
 
 @app.route('/client/login', methods=['GET'])

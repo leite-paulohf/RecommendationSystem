@@ -98,33 +98,40 @@ class _RegisterState extends State<Register> {
 
   Widget _citySelector() {
     return FutureBuilder<List<Filter>>(
-      future: this.widget.viewModel.getCities(context),
+      future: _regions(),
       builder: (context, snapshot) {
-        var city = this.widget.viewModel.city;
-        var title = city?.name?.toUpperCase() ?? "SELECIONE SUA CIDADE";
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            var cities = snapshot.data;
-            cities.sort((e1, e2) {
-              return e1.name.toLowerCase().compareTo(e2.name.toLowerCase());
-            });
-            this.widget.viewModel.cities = cities;
+            this.widget.viewModel.cities = snapshot.data;
+            var city = this.widget.viewModel.city;
+            var title = city?.name?.toUpperCase() ?? "SELECIONE SUA CIDADE";
             return Button(label: title, submitted: _showPicker);
           default:
-            return Button(label: title, submitted: () {});
+            return Button(label: "CARREGANDO...", submitted: () {});
         }
       },
     );
   }
 
-  void _showPicker() {
+  List<String> _cityNames() {
     var cities = this.widget.viewModel.cities.map((city) {
       return city.name;
     }).toList();
-    var city = this.widget.viewModel.city?.name ?? "";
-    var index = cities.indexOf(city);
+    return cities;
+  }
+
+  List<int> _cityIds() {
+    var cities = this.widget.viewModel.cities.map((city) {
+      return city.id;
+    }).toList();
+    return cities;
+  }
+
+  void _showPicker() {
+    var cityId = this.widget.viewModel.city?.id ?? 10;
+    var index = _cityIds().indexOf(cityId);
     Picker picker = Picker(
-        adapter: PickerDataAdapter<String>(pickerdata: cities),
+        adapter: PickerDataAdapter<String>(pickerdata: _cityNames()),
         selecteds: [index],
         height: 200,
         itemExtent: 40,
@@ -153,7 +160,10 @@ class _RegisterState extends State<Register> {
       onFieldSubmitted: (name) {
         this.widget.viewModel.user.name = name;
         if (_formKey.currentState.validate()) {
-          _register();
+          if (this.widget.viewModel.city != null)
+            _register();
+          else
+            Alert.error(context, "Selecione sua cidade!");
         }
       },
       validator: (name) {
@@ -175,7 +185,10 @@ class _RegisterState extends State<Register> {
         cpf = cpf.replaceAll('.', '').replaceAll('-', '');
         this.widget.viewModel.user.cpf = int.parse(cpf);
         if (_formKey.currentState.validate()) {
-          _register();
+          if (this.widget.viewModel.city != null)
+            _register();
+          else
+            Alert.error(context, "Selecione sua cidade!");
         }
       },
       validator: (cpf) {
@@ -194,7 +207,10 @@ class _RegisterState extends State<Register> {
       onFieldSubmitted: (password) {
         this.widget.viewModel.user.password = password;
         if (_formKey.currentState.validate()) {
-          _register();
+          if (this.widget.viewModel.city != null)
+            _register();
+          else
+            Alert.error(context, "Selecione sua cidade!");
         }
       },
       validator: (password) {
@@ -211,9 +227,10 @@ class _RegisterState extends State<Register> {
       label: "ENTRAR",
       submitted: () {
         if (_formKey.currentState.validate()) {
-          if (this.widget.viewModel.city != null) {
+          if (this.widget.viewModel.city != null)
             _register();
-          }
+          else
+            Alert.error(context, "Selecione sua cidade!");
         }
       },
     );
@@ -231,6 +248,22 @@ class _RegisterState extends State<Register> {
         break;
       default:
         Alert.error(context, Error.from(code).message);
+    }
+  }
+
+  Future<List<Filter>> _regions() async {
+    var cities = await this.preferences.cities("cities");
+    if (cities.isNotEmpty) return cities;
+    var result = await this.widget.viewModel.regions();
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        this.preferences.setCities(result.item2, "cities");
+        return result.item2;
+        break;
+      default:
+        Alert.error(context, Error.from(code).message);
+        return [];
     }
   }
 }

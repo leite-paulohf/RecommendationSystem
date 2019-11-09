@@ -30,7 +30,11 @@ class AuthenticationViewModel extends Model {
     return await this.interface.register(this.user);
   }
 
-  Future<List<Filter>> getCities(BuildContext context) async {
-    return await this.interface.cities(context);
+  Future<Tuple2<int, User>> update() async {
+    return await this.interface.update(this.user);
+  }
+
+  Future<Tuple2<int, List<Filter>>> regions() async {
+    return await this.interface.cities();
   }
 }

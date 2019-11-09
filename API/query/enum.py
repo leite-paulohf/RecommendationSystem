@@ -2,9 +2,11 @@ from enum import Enum
 
 
 class Query(Enum):
+    cities = 'query/api/cities.sql'
     client = 'query/api/client.sql'
     search_client = 'query/api/search_client.sql'
     create_client = 'query/api/register.sql'
+    update_client = 'query/api/update_client.sql'
     usages = 'query/api/usages.sql'
     create_usage = 'query/api/create_usage.sql'
     favorites = 'query/api/favorites.sql'

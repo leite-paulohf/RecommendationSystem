@@ -8,11 +8,10 @@ import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/helper/validator.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/model/error.dart';
+import 'package:tcc_app/service/user.dart';
 
 class OnBoarding extends StatefulWidget {
-  final AuthenticationViewModel viewModel;
-
-  OnBoarding({Key key, @required this.viewModel}) : super(key: key);
+  OnBoarding({Key key}) : super(key: key);
 
   @override
   _OnBoardingState createState() => _OnBoardingState();
@@ -20,6 +19,7 @@ class OnBoarding extends StatefulWidget {
 
 class _OnBoardingState extends State<OnBoarding> {
   final _key = GlobalKey<ScaffoldState>();
+  final viewModel = AuthenticationViewModel(interface: UserService());
   final preferences = Preferences();
 
   @override
@@ -27,7 +27,9 @@ class _OnBoardingState extends State<OnBoarding> {
     return Scaffold(
       key: _key,
       appBar: AppBar(title: Text("Bem Vindo!")),
-      body: Container(),
+      body: Container(
+        child: Text("Hello World!"),
+      ),
     );
   }
 

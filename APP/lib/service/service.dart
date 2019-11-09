@@ -8,7 +8,7 @@ import 'package:tcc_app/model/user.dart';
 import 'package:tuple/tuple.dart';
 
 class Service {
-  final _base = 'b898affd.ngrok.io';
+  final _base = '34a161c7.ngrok.io';
 
   Future<http.Response> get(String path, Map<String, String> data) async {
     var url = Uri.http(_base, path, data);
@@ -24,6 +24,16 @@ class Service {
     var headers = {HttpHeaders.contentTypeHeader: 'application/json'};
     var body = json.encode(data);
     var response = await http.post(url, headers: headers, body: body);
+    print(response.statusCode);
+    print(response.body);
+    return response;
+  }
+
+  Future<http.Response> put(String path, Map data) async {
+    var url = Uri.http(_base, path);
+    var headers = {HttpHeaders.contentTypeHeader: 'application/json'};
+    var body = json.encode(data);
+    var response = await http.put(url, headers: headers, body: body);
     print(response.statusCode);
     print(response.body);
     return response;
@@ -60,16 +70,16 @@ class Service {
     }
   }
 
-  List<Filter> parseCities(String body) {
+  Tuple2<int, List<Filter>> parseCities(http.Response response) {
     try {
-      Map map = json.decode(body);
+      Map map = json.decode(response.body);
       List list = map['data'];
       var cities = list.map((model) {
         return Filter.fromModel(model);
       }).toList();
-      return cities;
+      return Tuple2<int, List<Filter>>(response.statusCode, cities);
     } catch (error) {
-      return [];
+      return Tuple2<int, List<Filter>>(response.statusCode, []);
     }
   }
 }

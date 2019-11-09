@@ -131,7 +131,7 @@ class UsagesState extends State<Usages> {
     }
   }
 
-  void _favorites(Restaurant restaurant) async {
+  void _updateFavorite(Restaurant restaurant) async {
     var user = await this.preferences.user();
     if (user.id == null) return;
     var restaurants = await this.preferences.restaurants(user.id, "favorites");
@@ -209,6 +209,6 @@ class UsagesState extends State<Usages> {
   }
 
   void _favorite(Restaurant restaurant) {
-    _favorites(restaurant);
+    _updateFavorite(restaurant);
   }
 }

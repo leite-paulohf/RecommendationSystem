@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tcc_app/authentication/authentication.dart';
+import 'package:tcc_app/helper/alert.dart';
+import 'package:tcc_app/model/filter.dart';
+import 'package:tcc_app/restaurants/onboarding.dart';
 import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/button.dart';
 import 'package:tcc_app/helper/loader.dart';
 import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/model/user.dart';
+import 'package:tcc_app/model/error.dart';
 
 class Profile extends StatefulWidget {
   final AuthenticationViewModel viewModel;
@@ -19,7 +24,6 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final _key = GlobalKey<ScaffoldState>();
   final preferences = Preferences();
-  User _user;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +32,8 @@ class _ProfileState extends State<Profile> {
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            _user = snapshot.data;
-            if (snapshot.data.id == null) return Authentication();
+            this.widget.viewModel.user = snapshot.data;
+            if (this.widget.viewModel.user.id == null) return Authentication();
             return Scaffold(
               key: _key,
               backgroundColor: Colors.black12,
@@ -54,7 +58,13 @@ class _ProfileState extends State<Profile> {
       child: Container(
         padding: EdgeInsets.all(20),
         child: Column(
-          children: <Widget>[_header(), _detail(), _logout()],
+          children: <Widget>[
+            _header(),
+            _detail(),
+            _citySelector(),
+            Padding(padding: EdgeInsets.only(bottom: 20)),
+            _logout(),
+          ],
         ),
       ),
     );
@@ -72,22 +82,76 @@ class _ProfileState extends State<Profile> {
       padding: EdgeInsets.only(bottom: 20),
       child: Column(
         children: <Widget>[
-          Text(
-            _user.name.toUpperCase() ?? "",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            _user.cpf.toString() ?? "",
-            style: TextStyle(
-              fontSize: 15,
-            ),
-          ),
+          Text(this.widget.viewModel.user.name.toUpperCase() ?? "",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              )),
+          Text(this.widget.viewModel.user.cpf.toString() ?? "",
+              style: TextStyle(fontSize: 15)),
         ],
       ),
     );
+  }
+
+  Widget _citySelector() {
+    return FutureBuilder<List<Filter>>(
+      future: _regions(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            this.widget.viewModel.cities = snapshot.data;
+            var cityId = this.widget.viewModel.user.cityId ?? 10;
+            var index = _cityIds().indexOf(cityId);
+            var city = this.widget.viewModel.cities[index];
+            var title = city?.name?.toUpperCase() ?? "SELECIONE SUA CIDADE";
+            return Button(label: title, submitted: _showPicker);
+          default:
+            return Button(label: "CARREGANDO...", submitted: () {});
+        }
+      },
+    );
+  }
+
+  List<String> _cityNames() {
+    var cities = this.widget.viewModel.cities.map((city) {
+      return city.name;
+    }).toList();
+    return cities;
+  }
+
+  List<int> _cityIds() {
+    var cities = this.widget.viewModel.cities.map((city) {
+      return city.id;
+    }).toList();
+    return cities;
+  }
+
+  void _showPicker() {
+    var cityId = this.widget.viewModel.user.cityId ?? 10;
+    var index = _cityIds().indexOf(cityId);
+
+    Picker picker = Picker(
+        adapter: PickerDataAdapter<String>(pickerdata: _cityNames()),
+        selecteds: [index],
+        height: 200,
+        itemExtent: 40,
+        changeToFirst: true,
+        textStyle: TextStyle(color: Colors.black, fontSize: 20),
+        cancelText: "CANCELAR",
+        cancelTextStyle: TextStyle(color: Colors.teal),
+        confirmText: "CONFIRMAR",
+        confirmTextStyle: TextStyle(color: Colors.teal),
+        textAlign: TextAlign.left,
+        columnPadding: const EdgeInsets.all(16.0),
+        onConfirm: (Picker picker, List value) {
+          var index = picker.selecteds.first;
+          var city = this.widget.viewModel.cities[index];
+          this.widget.viewModel.user.cityId = city.id;
+          _update();
+        });
+
+    picker.show(_key.currentState);
   }
 
   Widget _logout() {
@@ -99,5 +163,35 @@ class _ProfileState extends State<Profile> {
         });
       },
     );
+  }
+
+  Future<List<Filter>> _regions() async {
+    var cities = await this.preferences.cities("cities");
+    if (cities.isNotEmpty) return cities;
+    var result = await this.widget.viewModel.regions();
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        this.preferences.setCities(result.item2, "cities");
+        return result.item2;
+        break;
+      default:
+        Alert.error(context, Error.from(code).message);
+        return [];
+    }
+  }
+
+  void _update() async {
+    var result = await this.widget.viewModel.update();
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        setState(() {
+          this.preferences.setUser(result.item2);
+        });
+        break;
+      default:
+        Alert.error(context, Error.from(code).message);
+    }
   }
 }

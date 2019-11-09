@@ -1,9 +1,35 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tcc_app/model/filter.dart';
 import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/model/user.dart';
 
 class Preferences {
+  Future<List<Filter>> cities(String key) async {
+    var preferences = await SharedPreferences.getInstance();
+    var data = preferences.get(key);
+    if (data != null) {
+      Map map = json.decode(data);
+      List list = map['data'];
+      var cities = list.map((model) {
+        return Filter.fromModel(model);
+      }).toList();
+      return cities;
+    } else {
+      return [];
+    }
+  }
+
+  void setCities(List<Filter> cities, String key) async {
+    var preferences = await SharedPreferences.getInstance();
+    var list = cities.map((city) {
+      return city.toJson();
+    }).toList();
+    var model = {'data': list};
+    var data = json.encode(model);
+    await preferences.setString(key, data);
+  }
+
   Future<User> user() async {
     var preferences = await SharedPreferences.getInstance();
     var user = preferences.get("user");
