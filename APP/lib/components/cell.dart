@@ -1,36 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:tcc_app/model/restaurant.dart';
 
-class Cell extends StatelessWidget {
+class Cell extends StatefulWidget {
   final Restaurant restaurant;
   final Function booking, favorite;
-  var size;
 
   Cell({
+    Key key,
     @required this.restaurant,
     @required this.booking,
     @required this.favorite,
-  });
+  }) : super(key: key);
+
+  @override
+  _CellState createState() => _CellState();
+}
+
+class _CellState extends State<Cell> {
+  Size _size;
 
   @override
   Widget build(BuildContext context) {
-    this.size = MediaQuery.of(context).size;
+    _size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.all(8),
       child: GestureDetector(
           onTap: () {
-            this.booking(this.restaurant);
+            this.widget.booking(this.widget.restaurant);
           },
           child: _cell()),
     );
   }
 
   Widget _cell() {
+    var id = this.widget.restaurant.cuisine.id.toString();
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
         image: DecorationImage(
-          image: AssetImage('assets/login.jpg'),
+          image: AssetImage('assets/cuisine-$id.jpg'),
           fit: BoxFit.fitWidth,
         ),
       ),
@@ -65,7 +73,7 @@ class Cell extends StatelessWidget {
   }
 
   Widget _favourite() {
-    double width = (this.size.width / 2) - 8;
+    double width = (_size.width / 2) - 8;
     return Container(
       height: 75,
       width: width,
@@ -74,14 +82,14 @@ class Cell extends StatelessWidget {
         child: IconButton(
             icon: Icon(Icons.favorite, color: Colors.redAccent),
             onPressed: () {
-              this.favorite(this.restaurant);
+              this.widget.favorite(this.widget.restaurant);
             }),
       ),
     );
   }
 
   Widget _ratingRange() {
-    double width = (this.size.width / 2) - 8;
+    double width = (_size.width / 2) - 8;
     return Container(
       height: 75,
       width: width,
@@ -91,7 +99,7 @@ class Cell extends StatelessWidget {
   }
 
   Widget _rating() {
-    switch (this.restaurant.rating.round()) {
+    switch (this.widget.restaurant.rating.round()) {
       case 1:
         return Row(children: <Widget>[
           Icon(Icons.star_border, color: Colors.orangeAccent),
@@ -140,7 +148,7 @@ class Cell extends StatelessWidget {
   Widget _priceRange() {
     return Container(
       height: 75,
-      width: this.size.width - 16,
+      width: _size.width - 16,
       padding: EdgeInsets.all(8),
       child: Align(
         alignment: AlignmentDirectional.bottomEnd,
@@ -158,7 +166,7 @@ class Cell extends StatelessWidget {
   }
 
   String _price() {
-    var price = this.restaurant.price.round();
+    var price = this.widget.restaurant.price.round();
     return "Preço médio: " + r"R$" + price.toString();
   }
 
@@ -181,19 +189,19 @@ class Cell extends StatelessWidget {
   }
 
   Widget _name() {
-    double width = 2 * this.size.width / 3 - 8;
+    double width = 2 * _size.width / 3 - 8;
     return Container(
         width: width,
         padding: EdgeInsets.all(8),
         child: Align(
           alignment: AlignmentDirectional.centerStart,
-          child: _label(this.restaurant.name, 20),
+          child: _label(this.widget.restaurant.name, 20),
         ));
   }
 
   Widget _cuisine() {
-    var cuisine = this.restaurant.cuisine.name;
-    double width = this.size.width / 3 - 8;
+    var cuisine = this.widget.restaurant.cuisine.name;
+    double width = _size.width / 3 - 8;
     return Container(
       width: width,
       padding: EdgeInsets.all(8),
@@ -205,10 +213,10 @@ class Cell extends StatelessWidget {
   }
 
   Widget _location() {
-    var neighborhood = this.restaurant.neighborhood.name;
-    var city = this.restaurant.city.name;
+    var neighborhood = this.widget.restaurant.neighborhood.name;
+    var city = this.widget.restaurant.city.name;
     var location = city + " - " + neighborhood;
-    double width = 2 * this.size.width / 3 - 8;
+    double width = 2 * _size.width / 3 - 8;
     return Container(
       width: width,
       padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
@@ -220,8 +228,8 @@ class Cell extends StatelessWidget {
   }
 
   Widget _category() {
-    var category = this.restaurant.category.name;
-    double width = this.size.width / 3 - 8;
+    var category = this.widget.restaurant.category.name;
+    double width = _size.width / 3 - 8;
     return Container(
       width: width,
       padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
@@ -233,8 +241,8 @@ class Cell extends StatelessWidget {
   }
 
   Widget _address() {
-    var address = this.restaurant.address;
-    double width = this.size.width - 16;
+    var address = this.widget.restaurant.address;
+    double width = _size.width - 16;
     return Container(
       width: width,
       padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
