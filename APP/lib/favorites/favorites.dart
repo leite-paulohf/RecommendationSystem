@@ -115,6 +115,7 @@ class FavoritesState extends State<Favorites> {
       case 200:
         setState(() {
           this.preferences.set(result.item2, user.id, "favorites");
+          this.preferences.set([], user.id, "favorites_recommendations");
           Alert.show(context, restaurant.name + " removido dos favoritos.");
         });
         break;
@@ -139,6 +140,7 @@ class FavoritesState extends State<Favorites> {
           var kind = restaurant.kind.id == 1 ? "Check-in" : "Reserva";
           var name = restaurant.name;
           this.preferences.set(result.item2, user.id, "usages");
+          this.preferences.set([], user.id, "usages_recommendations");
           Alert.show(context, "$kind com sucesso em $name.");
         });
         break;
