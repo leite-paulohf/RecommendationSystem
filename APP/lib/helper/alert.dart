@@ -50,4 +50,35 @@ class Alert {
       },
     );
   }
+
+  static void booking(
+      BuildContext context, String title, String text, Function function) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.restaurant, size: 20),
+                Text(" $title"),
+              ],
+            ),
+            content: Text(text),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("CANCELAR"),
+                textColor: Colors.teal,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                child: Text("CONCLUIR"),
+                textColor: Colors.teal,
+                onPressed: function,
+              )
+            ]);
+      },
+    );
+  }
 }

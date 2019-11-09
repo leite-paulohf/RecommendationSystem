@@ -106,6 +106,30 @@ class UsagesState extends State<Usages> {
     }
   }
 
+  void _createUsage(Restaurant restaurant) async {
+    var user = await this.preferences.user();
+    if (user.id == null) return;
+    var result = await this.viewModel.usage(
+          restaurant.chairs,
+          user.id,
+          restaurant.id,
+        );
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        setState(() {
+          var kind = restaurant.kind.id == 1 ? "Check-in" : "Reserva";
+          var name = restaurant.name;
+          this.preferences.set(result.item2, user.id, "usages");
+          Alert.show(context, "$kind com sucesso em $name.");
+        });
+        break;
+      default:
+        Alert.error(context, Error.from(code).message);
+        break;
+    }
+  }
+
   void _favorites(Restaurant restaurant) async {
     var user = await this.preferences.user();
     if (user.id == null) return;
@@ -161,7 +185,25 @@ class UsagesState extends State<Usages> {
     }
   }
 
-  void _booking(Restaurant restaurant) {}
+  void _booking(Restaurant restaurant) {
+    var kind = restaurant.kind.id == 1 ? "Check-in" : "Reserva";
+    var discount = restaurant.offer.discount;
+    var benefit = discount > 0 ? " com $discount%OFF" : " sem desconto";
+    var usage = kind + benefit;
+    var restrictions = restaurant.offer.restrictions
+        ? "Válido para conta toda"
+        : "Não válido para bebidas e sobremesas";
+    var benefits = restaurant.offer.benefits
+        ? "Com benefício extra"
+        : "Sem benefício extra";
+    var moment = restaurant.moment.name;
+    var chairs = "Válido para " + restaurant.chairs.toString() + " pessoa(s)";
+    var info = "$usage\n$chairs\n$benefits\n$restrictions\n$moment";
+    Alert.booking(context, restaurant.name, info, () {
+      Navigator.of(context).pop();
+      _createUsage(restaurant);
+    });
+  }
 
   void _favorite(Restaurant restaurant) {
     _favorites(restaurant);

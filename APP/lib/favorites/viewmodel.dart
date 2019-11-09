@@ -9,9 +9,6 @@ class FavoritesViewModel extends Model {
 
   FavoritesViewModel({@required this.interface});
 
-//  Restaurant restaurant = Restaurant();
-//  List<Restaurant> restaurants = [];
-
   Future<Tuple2<int, List<Restaurant>>> addFavorite(
       int clientId, int restaurantId) async {
     return await this.interface.addFavorite(clientId, restaurantId);

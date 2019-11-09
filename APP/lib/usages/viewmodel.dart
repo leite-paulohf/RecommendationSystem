@@ -12,4 +12,9 @@ class UsagesViewModel extends Model {
   Future<Tuple2<int, List<Restaurant>>> usages(int clientId) async {
     return await this.interface.usages(clientId);
   }
+
+  Future<Tuple2<int, List<Restaurant>>> usage(
+      int chairs, int clientId, int restaurantId) async {
+    return await this.interface.usage(chairs, clientId, restaurantId);
+  }
 }
