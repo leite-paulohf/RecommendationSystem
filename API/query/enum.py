@@ -3,6 +3,11 @@ from enum import Enum
 
 class Query(Enum):
     cities = 'query/api/cities.sql'
+    cuisines = 'query/api/cuisines.sql'
+    rating = 'query/api/rating.sql'
+    prices = 'query/api/prices.sql'
+    chairs = 'query/api/chairs.sql'
+    moments = 'query/api/moments.sql'
     client = 'query/api/client.sql'
     search_client = 'query/api/search_client.sql'
     create_client = 'query/api/register.sql'

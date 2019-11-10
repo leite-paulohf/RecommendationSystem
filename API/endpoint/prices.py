@@ -5,14 +5,14 @@ from flask_restful import Resource, abort
 from query.enum import Query
 
 
-class Cities(Resource):
+class Prices(Resource):
 
     def __init__(self):
         self.engine = sql.create_engine('sqlite:///database.db', echo=True)
         self.connection = self.engine.connect()
 
     def list(self):
-        query = self.query(Query.cities.value)
+        query = self.query(Query.prices.value)
         data = self.request(query)
         if bool(data):
             return jsonify({'data': data})

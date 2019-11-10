@@ -1,1 +1,6 @@
-select * from cities
+select
+  *
+from
+  cities
+order by
+  cities.name asc

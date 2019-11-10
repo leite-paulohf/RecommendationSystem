@@ -1,6 +1,11 @@
 from flask import Flask
 from flask_restful import Api
 from endpoint.cities import Cities
+from endpoint.moments import Moments
+from endpoint.chairs import Chairs
+from endpoint.rating import Rating
+from endpoint.prices import Prices
+from endpoint.cuisines import Cuisines
 from endpoint.client import Client
 from endpoint.favorite import Favorite
 from endpoint.restaurants import Restaurants
@@ -22,6 +27,41 @@ def root():
 @app.route('/cities', methods=['GET'])
 def cities():
     return Cities().list()
+
+
+#	MOMENTS
+
+@app.route('/moments', methods=['GET'])
+def moments():
+    return Moments().list()
+
+
+#	CHAIRS
+
+@app.route('/chairs', methods=['GET'])
+def chairs():
+    return Chairs().list()
+
+
+#	RATING
+
+@app.route('/rating', methods=['GET'])
+def rating():
+    return Rating().list()
+
+
+#	PRICES
+
+@app.route('/prices', methods=['GET'])
+def prices():
+    return Prices().list()
+
+
+#	CUISINES
+
+@app.route('/cuisines', methods=['GET'])
+def cuisines():
+    return Cuisines().list()
 
 
 #   CLIENT
