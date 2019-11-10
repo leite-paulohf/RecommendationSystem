@@ -20,7 +20,7 @@ class OnBoarding extends StatefulWidget {
 class _OnBoardingState extends State<OnBoarding> {
   final _key = GlobalKey<ScaffoldState>();
   final viewModel = RestaurantViewModel(interface: RestaurantService());
-  final preferences = Preferences();
+  final cache = Preferences();
   final alert = Alert();
 
   @override
@@ -235,13 +235,13 @@ class _OnBoardingState extends State<OnBoarding> {
   }
 
   Future<List<Filter>> _filters(Future future, String key) async {
-    var filters = await this.preferences.filters(key);
+    var filters = await this.cache.filtersCache(key);
     if (filters.isNotEmpty) return filters;
     Tuple2<int, List<Filter>> result = await future;
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.setFilters(result.item2, key);
+        this.cache.setFilters(result.item2, key);
         return result.item2;
         break;
       default:

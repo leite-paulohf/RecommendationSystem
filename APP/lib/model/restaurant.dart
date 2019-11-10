@@ -5,7 +5,7 @@ class Restaurant {
   final bool acceptHolidays;
   final String address;
   final int price;
-  final double rating;
+  final int rating;
   final Filter category;
   final int chairs;
   final Filter city;

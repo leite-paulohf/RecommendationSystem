@@ -21,7 +21,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  final preferences = Preferences();
+  final cache = Preferences();
   final alert = Alert();
 
   var _loading = false;
@@ -145,7 +145,7 @@ class _LoginState extends State<Login> {
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.setUser(result.item2);
+        this.cache.setUser(result.item2);
         Navigator.pop(context);
         break;
       default:

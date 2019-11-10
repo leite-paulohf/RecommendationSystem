@@ -25,7 +25,7 @@ class _AuthenticationState extends State<Authentication> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final viewModel = AuthenticationViewModel(interface: UserService());
-  final preferences = Preferences();
+  final cache = Preferences();
   final alert = Alert();
   var _loading = false;
 
@@ -38,7 +38,7 @@ class _AuthenticationState extends State<Authentication> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<User>(
-      future: this.preferences.user(),
+      future: this.cache.userCache(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:

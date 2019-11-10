@@ -23,7 +23,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  final preferences = Preferences();
+  final cache = Preferences();
   final alert = Alert();
 
   var _loading = false;
@@ -244,7 +244,7 @@ class _RegisterState extends State<Register> {
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.setUser(result.item2);
+        this.cache.setUser(result.item2);
         Navigator.pop(context);
         break;
       default:
@@ -253,13 +253,13 @@ class _RegisterState extends State<Register> {
   }
 
   Future<List<Filter>> _regions() async {
-    var cities = await this.preferences.filters("cities");
+    var cities = await this.cache.filtersCache("cities");
     if (cities.isNotEmpty) return cities;
     var result = await this.widget.viewModel.regions();
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.setFilters(result.item2, "cities");
+        this.cache.setFilters(result.item2, "cities");
         return result.item2;
         break;
       default:

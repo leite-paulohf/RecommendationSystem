@@ -22,13 +22,13 @@ class Recommendations extends StatefulWidget {
 
 class _RecommendationsState extends State<Recommendations> {
   final _key = GlobalKey<ScaffoldState>();
-  final preferences = Preferences();
+  final cache = Preferences();
   final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<User>(
-      future: this.preferences.user(),
+      future: this.cache.userCache(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:

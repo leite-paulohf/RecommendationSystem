@@ -21,7 +21,7 @@ class Cell extends StatefulWidget {
 
 class _CellState extends State<Cell> {
   final favorites = FavoritesViewModel(interface: FavoritesService());
-  final preferences = Preferences();
+  final cache = Preferences();
   Size _size;
 
   @override
@@ -291,12 +291,12 @@ class _CellState extends State<Cell> {
   }
 
   Future<List<int>> _favorites() async {
-    var user = await this.preferences.user();
+    var user = await this.cache.userCache();
     if (user.id == null) return [];
-    var restaurants = await this.preferences.restaurants(user.id, "favorites");
+    var restaurants = await this.cache.restaurantsCache(user.id, "favorites");
     if (restaurants.isEmpty) {
       var result = await this.favorites.favorites(user.id);
-      this.preferences.set(result.item2, user.id, "favorites");
+      this.cache.setRestaurants(result.item2, user.id, "favorites");
       restaurants = result.item2;
     }
 

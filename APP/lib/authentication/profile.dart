@@ -22,13 +22,13 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final _key = GlobalKey<ScaffoldState>();
-  final preferences = Preferences();
+  final cache = Preferences();
   final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<User>(
-      future: this.preferences.user(),
+      future: this.cache.userCache(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
@@ -159,20 +159,20 @@ class _ProfileState extends State<Profile> {
       label: "SAIR",
       submitted: () {
         setState(() {
-          this.preferences.setUser(User());
+          this.cache.setUser(User());
         });
       },
     );
   }
 
   Future<List<Filter>> _regions() async {
-    var cities = await this.preferences.filters("cities");
+    var cities = await this.cache.filtersCache("cities");
     if (cities.isNotEmpty) return cities;
     var result = await this.widget.viewModel.regions();
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.setFilters(result.item2, "cities");
+        this.cache.setFilters(result.item2, "cities");
         return result.item2;
         break;
       default:
@@ -187,7 +187,8 @@ class _ProfileState extends State<Profile> {
     switch (code) {
       case 200:
         setState(() {
-          this.preferences.setUser(result.item2);
+          this.cache.setUser(result.item2);
+          this.cache.setRestaurants([], result.item2.id, "restaurants");
         });
         break;
       default:
