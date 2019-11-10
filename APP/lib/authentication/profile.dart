@@ -4,7 +4,6 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:tcc_app/authentication/authentication.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/model/filter.dart';
-import 'package:tcc_app/restaurants/onboarding.dart';
 import 'package:tcc_app/authentication/viewmodel.dart';
 import 'package:tcc_app/components/button.dart';
 import 'package:tcc_app/helper/loader.dart';
@@ -166,13 +165,13 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<List<Filter>> _regions() async {
-    var cities = await this.preferences.cities("cities");
+    var cities = await this.preferences.filters("cities");
     if (cities.isNotEmpty) return cities;
     var result = await this.widget.viewModel.regions();
     var code = result.item1;
     switch (code) {
       case 200:
-        this.preferences.setCities(result.item2, "cities");
+        this.preferences.setFilters(result.item2, "cities");
         return result.item2;
         break;
       default:

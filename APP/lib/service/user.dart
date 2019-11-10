@@ -55,6 +55,6 @@ class UserService implements UserInterface {
   @override
   Future<Tuple2<int, List<Filter>>> cities() async {
     var response = await Service().get('cities', {});
-    return Service().parseCities(response);
+    return Service().parseFilter(response);
   }
 }

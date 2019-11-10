@@ -5,7 +5,7 @@ import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/model/user.dart';
 
 class Preferences {
-  Future<List<Filter>> cities(String key) async {
+  Future<List<Filter>> filters(String key) async {
     var preferences = await SharedPreferences.getInstance();
     var data = preferences.get(key);
     if (data != null) {
@@ -20,9 +20,9 @@ class Preferences {
     }
   }
 
-  void setCities(List<Filter> cities, String key) async {
+  void setFilters(List<Filter> filters, String key) async {
     var preferences = await SharedPreferences.getInstance();
-    var list = cities.map((city) {
+    var list = filters.map((city) {
       return city.toJson();
     }).toList();
     var model = {'data': list};

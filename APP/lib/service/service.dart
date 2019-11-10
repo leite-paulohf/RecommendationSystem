@@ -8,7 +8,7 @@ import 'package:tcc_app/model/user.dart';
 import 'package:tuple/tuple.dart';
 
 class Service {
-  final _base = '34a161c7.ngrok.io';
+  final _base = 'fc2fdc9d.ngrok.io';
 
   Future<http.Response> get(String path, Map<String, String> data) async {
     var url = Uri.http(_base, path, data);
@@ -70,7 +70,7 @@ class Service {
     }
   }
 
-  Tuple2<int, List<Filter>> parseCities(http.Response response) {
+  Tuple2<int, List<Filter>> parseFilter(http.Response response) {
     try {
       Map map = json.decode(response.body);
       List list = map['data'];
