@@ -23,6 +23,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   final _key = GlobalKey<ScaffoldState>();
   final preferences = Preferences();
+  final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +176,7 @@ class _ProfileState extends State<Profile> {
         return result.item2;
         break;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
         return [];
     }
   }
@@ -190,7 +191,7 @@ class _ProfileState extends State<Profile> {
         });
         break;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
     }
   }
 }

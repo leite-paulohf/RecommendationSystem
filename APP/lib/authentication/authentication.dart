@@ -26,7 +26,7 @@ class _AuthenticationState extends State<Authentication> {
   final _formKey = GlobalKey<FormState>();
   final viewModel = AuthenticationViewModel(interface: UserService());
   final preferences = Preferences();
-
+  final alert = Alert();
   var _loading = false;
 
   set loading(bool value) {
@@ -140,7 +140,7 @@ class _AuthenticationState extends State<Authentication> {
       case 404:
         return _pushRegister();
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
     }
   }
 

@@ -22,6 +22,7 @@ class _LoginState extends State<Login> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final preferences = Preferences();
+  final alert = Alert();
 
   var _loading = false;
 
@@ -148,7 +149,7 @@ class _LoginState extends State<Login> {
         Navigator.pop(context);
         break;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
     }
   }
 }

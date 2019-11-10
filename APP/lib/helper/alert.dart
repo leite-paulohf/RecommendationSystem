@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Alert {
-  static void show(BuildContext context, String text) {
+  bool _isShowing = false;
+
+  void show(BuildContext context, String text) {
+    if (_isShowing) return;
+    _isShowing = true;
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -18,6 +22,7 @@ class Alert {
                 child: Text("OK"),
                 textColor: Colors.teal,
                 onPressed: () {
+                  _isShowing = false;
                   Navigator.of(context).pop();
                 },
               )
@@ -26,7 +31,9 @@ class Alert {
     );
   }
 
-  static void error(BuildContext context, String text) {
+  void error(BuildContext context, String text) {
+    if (_isShowing) return;
+    _isShowing = true;
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -43,6 +50,7 @@ class Alert {
                 child: Text("OK"),
                 textColor: Colors.teal,
                 onPressed: () {
+                  _isShowing = false;
                   Navigator.of(context).pop();
                 },
               )
@@ -51,8 +59,10 @@ class Alert {
     );
   }
 
-  static void booking(
+  void booking(
       BuildContext context, String title, String text, Function function) {
+    if (_isShowing) return;
+    _isShowing = true;
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -69,6 +79,7 @@ class Alert {
                 child: Text("CANCELAR"),
                 textColor: Colors.teal,
                 onPressed: () {
+                  _isShowing = false;
                   Navigator.of(context).pop();
                 },
               ),

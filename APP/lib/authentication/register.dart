@@ -24,6 +24,7 @@ class _RegisterState extends State<Register> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final preferences = Preferences();
+  final alert = Alert();
 
   var _loading = false;
 
@@ -163,7 +164,7 @@ class _RegisterState extends State<Register> {
           if (this.widget.viewModel.city != null)
             _register();
           else
-            Alert.error(context, "Selecione sua cidade!");
+            this.alert.error(context, "Selecione sua cidade!");
         }
       },
       validator: (name) {
@@ -188,7 +189,7 @@ class _RegisterState extends State<Register> {
           if (this.widget.viewModel.city != null)
             _register();
           else
-            Alert.error(context, "Selecione sua cidade!");
+            this.alert.error(context, "Selecione sua cidade!");
         }
       },
       validator: (cpf) {
@@ -210,7 +211,7 @@ class _RegisterState extends State<Register> {
           if (this.widget.viewModel.city != null)
             _register();
           else
-            Alert.error(context, "Selecione sua cidade!");
+            this.alert.error(context, "Selecione sua cidade!");
         }
       },
       validator: (password) {
@@ -230,7 +231,7 @@ class _RegisterState extends State<Register> {
           if (this.widget.viewModel.city != null)
             _register();
           else
-            Alert.error(context, "Selecione sua cidade!");
+            this.alert.error(context, "Selecione sua cidade!");
         }
       },
     );
@@ -247,7 +248,7 @@ class _RegisterState extends State<Register> {
         Navigator.pop(context);
         break;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
     }
   }
 
@@ -262,7 +263,7 @@ class _RegisterState extends State<Register> {
         return result.item2;
         break;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
         return [];
     }
   }

@@ -23,6 +23,7 @@ class FavoritesState extends State<Favorites> {
   final viewModel = FavoritesViewModel(interface: FavoritesService());
   final usages = UsagesViewModel(interface: UsagesService());
   final preferences = Preferences();
+  final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +102,7 @@ class FavoritesState extends State<Favorites> {
         this.preferences.set(result.item2, user.id, "favorites");
         return result.item2;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
         return [];
     }
   }
@@ -116,11 +117,13 @@ class FavoritesState extends State<Favorites> {
         setState(() {
           this.preferences.set(result.item2, user.id, "favorites");
           this.preferences.set([], user.id, "favorites_recommendations");
-          Alert.show(context, restaurant.name + " removido dos favoritos.");
+          this
+              .alert
+              .show(context, restaurant.name + " removido dos favoritos.");
         });
         break;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
         break;
     }
   }
@@ -141,11 +144,11 @@ class FavoritesState extends State<Favorites> {
           var name = restaurant.name;
           this.preferences.set(result.item2, user.id, "usages");
           this.preferences.set([], user.id, "usages_recommendations");
-          Alert.show(context, "$kind com sucesso em $name.");
+          this.alert.show(context, "$kind com sucesso em $name.");
         });
         break;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
         break;
     }
   }
@@ -164,7 +167,7 @@ class FavoritesState extends State<Favorites> {
     var moment = restaurant.moment.name;
     var chairs = "Válido para " + restaurant.chairs.toString() + " pessoa(s)";
     var info = "$usage\n$chairs\n$benefits\n$restrictions\n$moment";
-    Alert.booking(context, restaurant.name, info, () {
+    this.alert.booking(context, restaurant.name, info, () {
       Navigator.of(context).pop();
       _createUsage(restaurant);
     });

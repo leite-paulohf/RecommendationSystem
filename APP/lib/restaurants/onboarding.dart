@@ -5,6 +5,7 @@ import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/model/error.dart';
 import 'package:tcc_app/model/filter.dart';
+import 'package:tcc_app/restaurants/recommendations.dart';
 import 'package:tcc_app/restaurants/viewmodel.dart';
 import 'package:tcc_app/service/restaurant.dart';
 import 'package:tuple/tuple.dart';
@@ -20,6 +21,7 @@ class _OnBoardingState extends State<OnBoarding> {
   final _key = GlobalKey<ScaffoldState>();
   final viewModel = RestaurantViewModel(interface: RestaurantService());
   final preferences = Preferences();
+  final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +182,55 @@ class _OnBoardingState extends State<OnBoarding> {
     return Container(
       width: 200,
       padding: EdgeInsets.only(top: 60, bottom: 30),
-      child: Button(label: "VER RESTAURANTES", submitted: () {}),
+      child: Button(
+          label: "VER RESTAURANTES",
+          submitted: () {
+            if (this.viewModel.selectedMoments.isEmpty) {
+              this.alert.error(
+                    context,
+                    "Selecione ao menos um momento para comer fora de casa",
+                  );
+              return;
+            }
+            if (this.viewModel.selectedCuisines.isEmpty) {
+              this.alert.error(
+                    context,
+                    "Selecione ao menos uma culinária favorita",
+                  );
+              return;
+            }
+            if (this.viewModel.selectedChairs.isEmpty) {
+              this.alert.error(
+                    context,
+                    "Selecione ao menos uma referência de pessoas na mesa",
+                  );
+              return;
+            }
+            if (this.viewModel.selectedPrices.isEmpty) {
+              this.alert.error(
+                    context,
+                    "Selecione ao menos um preço desejado",
+                  );
+              return;
+            }
+            if (this.viewModel.selectedRating.isEmpty) {
+              this.alert.error(
+                    context,
+                    "Selecione ao menos uma avaliação",
+                  );
+              return;
+            }
+            _pushRecommendations();
+          }),
+    );
+  }
+
+  void _pushRecommendations() {
+    Navigator.push(
+      this.context,
+      MaterialPageRoute(builder: (context) {
+        return Recommendations();
+      }),
     );
   }
 
@@ -195,7 +245,7 @@ class _OnBoardingState extends State<OnBoarding> {
         return result.item2;
         break;
       default:
-        Alert.error(context, Error.from(code).message);
+        this.alert.error(context, Error.from(code).message);
         return [];
     }
   }

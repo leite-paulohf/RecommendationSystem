@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../APP/lib/restaurants/recommendations.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/favorites/favorites.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/favorites/favorites.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/helper/alert.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/helper/alert.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/onboarding.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/onboarding.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/service/service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/usages/usages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/usages/usages.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
