@@ -1,5 +1,5 @@
 select
-  distinct average_rating as name
+  distinct average_rating as id
 from
   restaurants
 order by

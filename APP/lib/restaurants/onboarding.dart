@@ -45,40 +45,45 @@ class _OnBoardingState extends State<OnBoarding> {
         _title("Olá, seja bem vindo!"),
         _title("Para oferecer a melhor experiência,"),
         _title("precisamos te conhecer melhor"),
-        _header("Quais são as suas culinárias favoritas?"),
+        _header("Qual é a sua culinária favorita?"),
         _selector(
           "CULINÁRIAS",
           _filters(this.viewModel.cuisinesAPI(), "cuisines"),
           this.viewModel.cuisines,
-          this.viewModel.selectedCuisines,
+          this.viewModel.cuisine,
+          this.viewModel.setCuisine,
         ),
-        _header("Gostaria de conhecer restaurantes com quais avaliações?"),
+        _header("Deseja conhecer restaurantes a partir de qual avaliação?"),
         _selector(
           "AVALIAÇÕES",
           _filters(this.viewModel.ratingAPI(), "rating"),
+          this.viewModel.ratings,
           this.viewModel.rating,
-          this.viewModel.selectedRating,
+          this.viewModel.setRating,
         ),
-        _header("Quais faixas de preço te agrada?"),
+        _header("Qual é o valor médio que deseja gastar em um restaurante?"),
         _selector(
-          "PREÇO MÉDIO",
+          "VALORES",
           _filters(this.viewModel.pricesAPI(), "prices"),
           this.viewModel.prices,
-          this.viewModel.selectedPrices,
+          this.viewModel.price,
+          this.viewModel.setPrice,
         ),
         _header("Constuma sair para comer com quantas pessoas?"),
         _selector(
           "PESSOAS NA MESA",
           _filters(this.viewModel.chairsAPI(), "chairs"),
           this.viewModel.chairs,
-          this.viewModel.selectedChairs,
+          this.viewModel.chair,
+          this.viewModel.setChair,
         ),
-        _header("Quais ocasiões mais te levam para comer fora de casa?"),
+        _header("Qual ocasião mais combina com seu perfil?"),
         _selector(
-          "MOMENTOS",
+          "OCASIÕES",
           _filters(this.viewModel.momentsAPI(), "moments"),
           this.viewModel.moments,
-          this.viewModel.selectedMoments,
+          this.viewModel.moment,
+          this.viewModel.setMoment,
         ),
         _sendButton()
       ],
@@ -109,7 +114,8 @@ class _OnBoardingState extends State<OnBoarding> {
     String title,
     Future future,
     List<Filter> filters,
-    List<Filter> selectedFilters,
+    Filter filter,
+    Function update,
   ) {
     return FutureBuilder<List<Filter>>(
       future: future,
@@ -118,9 +124,9 @@ class _OnBoardingState extends State<OnBoarding> {
           case ConnectionState.done:
             filters = snapshot.data;
             return Button(
-                label: title,
+                label: filter?.name?.toUpperCase() ?? title,
                 submitted: () {
-                  _showPicker(filters, selectedFilters);
+                  _showPicker(filters, update);
                 });
           default:
             return Button(label: "CARREGANDO...", submitted: () {});
@@ -129,33 +135,17 @@ class _OnBoardingState extends State<OnBoarding> {
     );
   }
 
-  List<String> _filterNames(List<Filter> filters) {
+  List<String> _names(List<Filter> filters) {
     var names = filters.map((filter) {
       return filter.name;
     }).toList();
     return names;
   }
 
-  List<int> _filterIds(List<Filter> filters) {
-    var ids = filters.map((filter) {
-      return filter.id;
-    }).toList();
-    return ids;
-  }
-
-  void _showPicker(List<Filter> filters, List<Filter> selectedFilters) {
-    var data = _filterNames(filters);
-    var filterIds = _filterIds(filters);
-    var selectedFilterIds = _filterIds(selectedFilters);
-
-    var ids = selectedFilterIds.map((filter) {
-      return filterIds.indexOf(filter);
-    });
-    ids = ids.isEmpty ? [0] : ids;
-
+  void _showPicker(List<Filter> filters, Function update) {
     Picker picker = Picker(
-        adapter: PickerDataAdapter<String>(pickerdata: data),
-        selecteds: ids ?? [0],
+        adapter: PickerDataAdapter<String>(pickerdata: _names(filters)),
+        selecteds: [0],
         height: 200,
         itemExtent: 40,
         changeToFirst: true,
@@ -167,11 +157,10 @@ class _OnBoardingState extends State<OnBoarding> {
         textAlign: TextAlign.left,
         columnPadding: const EdgeInsets.all(16.0),
         onConfirm: (Picker picker, List value) {
-          selectedFilters = [];
-          var selected = picker.selecteds;
-          selected.forEach((index) {
+          setState(() {
+            var index = picker.selecteds.first;
             var filter = filters.elementAt(index);
-            selectedFilters.add(filter);
+            update(filter);
           });
         });
 
@@ -185,39 +174,29 @@ class _OnBoardingState extends State<OnBoarding> {
       child: Button(
           label: "VER RESTAURANTES",
           submitted: () {
-            if (this.viewModel.selectedMoments.isEmpty) {
-              this.alert.error(
-                    context,
-                    "Selecione ao menos um momento para comer fora de casa",
-                  );
+            if (this.viewModel.cuisine == null) {
+              var text = "Selecione sua culinária favorita";
+              this.alert.error(context, text);
               return;
             }
-            if (this.viewModel.selectedCuisines.isEmpty) {
-              this.alert.error(
-                    context,
-                    "Selecione ao menos uma culinária favorita",
-                  );
+            if (this.viewModel.rating == null) {
+              var text = "Selecione uma avaliação inicial";
+              this.alert.error(context, text);
               return;
             }
-            if (this.viewModel.selectedChairs.isEmpty) {
-              this.alert.error(
-                    context,
-                    "Selecione ao menos uma referência de pessoas na mesa",
-                  );
+            if (this.viewModel.price == null) {
+              var text = "Selecione o valor médio desejado";
+              this.alert.error(context, text);
               return;
             }
-            if (this.viewModel.selectedPrices.isEmpty) {
-              this.alert.error(
-                    context,
-                    "Selecione ao menos um preço desejado",
-                  );
+            if (this.viewModel.chair == null) {
+              var text = "Selecione uma referência de pessoas na mesa";
+              this.alert.error(context, text);
               return;
             }
-            if (this.viewModel.selectedRating.isEmpty) {
-              this.alert.error(
-                    context,
-                    "Selecione ao menos uma avaliação",
-                  );
+            if (this.viewModel.moment == null) {
+              var text = "Selecione um momento para comer fora";
+              this.alert.error(context, text);
               return;
             }
             _pushRecommendations();
@@ -226,12 +205,9 @@ class _OnBoardingState extends State<OnBoarding> {
   }
 
   void _pushRecommendations() {
-    Navigator.push(
-      this.context,
-      MaterialPageRoute(builder: (context) {
-        return Recommendations();
-      }),
-    );
+    Navigator.push(this.context, MaterialPageRoute(builder: (context) {
+      return Recommendations(viewModel: this.viewModel);
+    }));
   }
 
   Future<List<Filter>> _filters(Future future, String key) async {

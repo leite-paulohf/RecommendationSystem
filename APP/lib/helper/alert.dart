@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Alert {
-  bool _isShowing = false;
+  bool isShowing = false;
 
   void show(BuildContext context, String text) {
-    if (_isShowing) return;
-    _isShowing = true;
+    if (this.isShowing) return;
+    this.isShowing = true;
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -22,7 +22,7 @@ class Alert {
                 child: Text("OK"),
                 textColor: Colors.teal,
                 onPressed: () {
-                  _isShowing = false;
+                  this.isShowing = false;
                   Navigator.of(context).pop();
                 },
               )
@@ -32,8 +32,8 @@ class Alert {
   }
 
   void error(BuildContext context, String text) {
-    if (_isShowing) return;
-    _isShowing = true;
+    if (this.isShowing) return;
+    this.isShowing = true;
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -41,7 +41,7 @@ class Alert {
             title: Row(
               children: <Widget>[
                 Icon(Icons.report_problem, size: 20),
-                Text(" Service Error")
+                Text(" Ops!")
               ],
             ),
             content: Text(text),
@@ -50,7 +50,7 @@ class Alert {
                 child: Text("OK"),
                 textColor: Colors.teal,
                 onPressed: () {
-                  _isShowing = false;
+                  this.isShowing = false;
                   Navigator.of(context).pop();
                 },
               )
@@ -61,8 +61,8 @@ class Alert {
 
   void booking(
       BuildContext context, String title, String text, Function function) {
-    if (_isShowing) return;
-    _isShowing = true;
+    if (this.isShowing) return;
+    this.isShowing = true;
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -79,7 +79,7 @@ class Alert {
                 child: Text("CANCELAR"),
                 textColor: Colors.teal,
                 onPressed: () {
-                  _isShowing = false;
+                  this.isShowing = false;
                   Navigator.of(context).pop();
                 },
               ),

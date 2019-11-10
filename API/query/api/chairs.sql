@@ -1,5 +1,5 @@
 select
-  distinct chairs as name
+  distinct chairs as id
 from
   restaurants
 order by

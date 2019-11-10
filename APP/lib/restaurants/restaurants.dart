@@ -79,7 +79,7 @@ class RestaurantsState extends State<Restaurants> {
         _header("RESTAURANTES"),
         _section(_restaurants()),
         _headerLogged("RESTAURANTES RECOMENDADOS"),
-        _sectionLogged(_generalRecommendations()),
+        _sectionLogged(_suggestions()),
         _headerLogged("RECOMENDAÇÕES: SUA PRÓXIMA RESERVA"),
         _sectionLogged(_usagesRecommendations()),
         _headerLogged("RECOMENDAÇÕES: SEU PRÓXIMO FAVORITO"),
@@ -210,19 +210,18 @@ class RestaurantsState extends State<Restaurants> {
     }
   }
 
-  Future<List<Restaurant>> _generalRecommendations() async {
+  Future<List<Restaurant>> _suggestions() async {
     var user = await this.cache.userCache();
     if (user.id == null) return [];
     var city = user.cityId;
     var client = user.id;
-    var key = "general_recommendations";
-    var restaurants = await this.cache.restaurantsCache(client, key);
+    var restaurants = await this.cache.restaurantsCache(client, "suggestions");
     if (restaurants.isNotEmpty) return restaurants;
-    var result = await this.viewModel.generalAPI(city, client);
+    var result = await this.viewModel.suggestionsAPI(city, client);
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setRestaurants(result.item2, client, key);
+        this.cache.setRestaurants(result.item2, client, "suggestions");
         return result.item2;
       default:
         this.alert.error(context, Error.from(code).message);
@@ -316,11 +315,10 @@ class RestaurantsState extends State<Restaurants> {
     switch (code) {
       case 200:
         setState(() {
+          var name = restaurant.name;
           this.cache.setRestaurants(result.item2, user.id, "favorites");
           this.cache.setRestaurants([], user.id, "favorites_recommendations");
-          this
-              .alert
-              .show(context, restaurant.name + " adicionado aos favoritos.");
+          this.alert.show(context, "$name adicionado aos favoritos.");
         });
         break;
       default:
@@ -336,12 +334,10 @@ class RestaurantsState extends State<Restaurants> {
     switch (code) {
       case 200:
         setState(() {
+          var name = restaurant.name;
           this.cache.setRestaurants(result.item2, user.id, "favorites");
           this.cache.setRestaurants([], user.id, "favorites_recommendations");
-          this.alert.show(
-                context,
-                restaurant.name + " removido dos favoritos.",
-              );
+          this.alert.show(context, "$name removido dos favoritos.");
         });
         break;
       default:
@@ -352,7 +348,10 @@ class RestaurantsState extends State<Restaurants> {
 
   void _createUsage(Restaurant restaurant) async {
     var user = await this.cache.userCache();
-    if (user.id == null) return;
+    if (user.id == null) {
+      this.alert.error(context, "Necessário entrar com uma conta!");
+      return;
+    }
     var result = await this.usages.usage(
           restaurant.chairs,
           user.id,
@@ -390,6 +389,7 @@ class RestaurantsState extends State<Restaurants> {
     var chairs = "Válido para " + restaurant.chairs.toString() + " pessoa(s)";
     var info = "$usage\n$chairs\n$benefits\n$restrictions\n$moment";
     this.alert.booking(context, restaurant.name, info, () {
+      this.alert.isShowing = false;
       Navigator.of(context).pop();
       _createUsage(restaurant);
     });
