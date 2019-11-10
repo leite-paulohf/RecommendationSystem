@@ -39,7 +39,7 @@ class _RecommendationsState extends State<Recommendations> {
 
   Widget _body() {
     return FutureBuilder<List<Restaurant>>(
-      future: _suggestions(),
+      future: _onboarding(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
@@ -107,18 +107,18 @@ class _RecommendationsState extends State<Recommendations> {
     );
   }
 
-  Future<List<Restaurant>> _suggestions() async {
+  Future<List<Restaurant>> _onboarding() async {
     var user = await this.cache.userCache();
     if (user.id == null) return [];
     var city = user.cityId;
     var client = user.id;
-    var restaurants = await this.cache.restaurantsCache(client, "suggestions");
+    var restaurants = await this.cache.restaurantsCache(client, "onboarding");
     if (restaurants.isNotEmpty) return restaurants;
-    var result = await this.widget.viewModel.suggestionsAPI(city, client);
+    var result = await this.widget.viewModel.onboardingAPI(city);
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setRestaurants(result.item2, client, "suggestions");
+        this.cache.setRestaurants(result.item2, client, "onboarding");
         return result.item2;
       default:
         this.alert.error(context, Error.from(code).message);

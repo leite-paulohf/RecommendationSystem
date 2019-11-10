@@ -26,3 +26,4 @@ class PrivateQuery(Enum):
     usages = 'query/private/usages.sql'
     favorites = 'query/private/favorites.sql'
     restaurants = 'query/private/restaurants.sql'
+    preferences = 'query/private/preferences.sql'

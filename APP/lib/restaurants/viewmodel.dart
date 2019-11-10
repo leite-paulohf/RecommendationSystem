@@ -46,9 +46,19 @@ class RestaurantViewModel extends Model {
     return await this.interface.restaurants(city);
   }
 
-  Future<Tuple2<int, List<Restaurant>>> suggestionsAPI(
+  Future<Tuple2<int, List<Restaurant>>> onboardingAPI(int city) async {
+    var restaurant = Restaurant(
+        price: this.price.id,
+        rating: this.rating.id,
+        chairs: this.chair.id,
+        cuisine: this.cuisine,
+        moment: this.moment);
+    return await this.interface.onboarding(city, restaurant);
+  }
+
+  Future<Tuple2<int, List<Restaurant>>> recommendationsAPI(
       int city, int client) async {
-    return await this.interface.suggestions(city, client);
+    return await this.interface.recommendations(city, client);
   }
 
   Future<Tuple2<int, List<Restaurant>>> usagesAPI(int city, int client) async {

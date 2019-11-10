@@ -79,7 +79,7 @@ class RestaurantsState extends State<Restaurants> {
         _header("RESTAURANTES"),
         _section(_restaurants()),
         _headerLogged("RESTAURANTES RECOMENDADOS"),
-        _sectionLogged(_suggestions()),
+        _sectionLogged(_recommendations()),
         _headerLogged("RECOMENDAÇÕES: SUA PRÓXIMA RESERVA"),
         _sectionLogged(_usagesRecommendations()),
         _headerLogged("RECOMENDAÇÕES: SEU PRÓXIMO FAVORITO"),
@@ -210,18 +210,19 @@ class RestaurantsState extends State<Restaurants> {
     }
   }
 
-  Future<List<Restaurant>> _suggestions() async {
+  Future<List<Restaurant>> _recommendations() async {
     var user = await this.cache.userCache();
     if (user.id == null) return [];
     var city = user.cityId;
     var client = user.id;
-    var restaurants = await this.cache.restaurantsCache(client, "suggestions");
+    var key = "recommendations";
+    var restaurants = await this.cache.restaurantsCache(client, key);
     if (restaurants.isNotEmpty) return restaurants;
-    var result = await this.viewModel.suggestionsAPI(city, client);
+    var result = await this.viewModel.recommendationsAPI(city, client);
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setRestaurants(result.item2, client, "suggestions");
+        this.cache.setRestaurants(result.item2, client, key);
         return result.item2;
       default:
         this.alert.error(context, Error.from(code).message);

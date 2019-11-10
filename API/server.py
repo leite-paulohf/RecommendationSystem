@@ -134,9 +134,14 @@ def usages():
 
 #   RECOMMENDATIONS
 
+@app.route('/restaurants/onboarding', methods=['GET'])
+def onboarding():
+    return Recommendation().by_onboarding()
+
+
 @app.route('/restaurants/recommendations', methods=['GET'])
-def general_recommendations():
-    return Recommendation().general()
+def recommendations():
+    return Recommendation().by_preferences()
 
 
 @app.route('/usages/recommendations', methods=['GET'])

@@ -18,14 +18,25 @@ class Recommendation(Resource):
         self.engine = sql.create_engine('sqlite:///database.db', echo=True)
         self.connection = self.engine.connect()
 
-    def general(self):
-        usages = self.usages(request)
-        if usages.empty:
+    def by_onboarding(self):
+        onboarding = self.onboarding(request)
+        if onboarding.empty:
             return jsonify({'data': []})
         restaurants = self.restaurants(request)
         if restaurants.empty:
             return jsonify({'data': []})
-        recommended = self.k_means_round(usages, restaurants)
+        recommended = self.k_means_round(onboarding, restaurants)
+        recommendations = self.recommendations(tuple(recommended))
+        return recommendations
+
+    def by_preferences(self):
+        preferences = self.preferences(request)
+        if preferences.empty:
+            return jsonify({'data': []})
+        restaurants = self.restaurants(request)
+        if restaurants.empty:
+            return jsonify({'data': []})
+        recommended = self.k_means_round(preferences, restaurants)
         recommendations = self.recommendations(tuple(recommended))
         return recommendations
 
@@ -93,6 +104,32 @@ class Recommendation(Resource):
         average = np.average(variations)
         variations = list(filter(lambda variation: variation > average, variations))
         return len(variations)
+
+    def onboarding(self, request):
+        data = [{'id': 0,
+                 'accept_holidays': 0,
+                 'average_cost': request.args.get('price'),
+                 'average_rating': request.args.get('rating'),
+                 'benefits': 0,
+                 'category_id': 0,
+                 'chairs': request.args.get('chairs'),
+                 'cuisine_id': request.args.get('cuisine'),
+                 'discount': 0,
+                 'has_wifi': 0,
+                 'kind_id': 0,
+                 'latitude': 0,
+                 'longitude': 0,
+                 'moment_id': request.args.get('moment'),
+                 'neighborhood_id': 0,
+                 'restrictions': 0,
+                 'offer_id': 0}]
+        return pd.DataFrame(data)
+
+    def preferences(self, request):
+        query = self.query(PrivateQuery.preferences.value)
+        params = {"client_id": request.args.get('client_id')}
+        data = self.request(query, params)
+        return pd.DataFrame(data)
 
     def usages(self, request):
         query = self.query(PrivateQuery.usages.value)

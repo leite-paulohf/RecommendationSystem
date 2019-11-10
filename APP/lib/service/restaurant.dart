@@ -7,7 +7,10 @@ import 'package:tuple/tuple.dart';
 abstract class RestaurantInterface {
   Future<Tuple2<int, List<Restaurant>>> restaurants(int city);
 
-  Future<Tuple2<int, List<Restaurant>>> suggestions(int city, int client);
+  Future<Tuple2<int, List<Restaurant>>> onboarding(
+      int city, Restaurant restaurant);
+
+  Future<Tuple2<int, List<Restaurant>>> recommendations(int city, int client);
 
   Future<Tuple2<int, List<Restaurant>>> usages(int city, int client);
 
@@ -39,13 +42,28 @@ class RestaurantService implements RestaurantInterface {
   }
 
   @override
-  Future<Tuple2<int, List<Restaurant>>> suggestions(
+  Future<Tuple2<int, List<Restaurant>>> onboarding(
+      int city, Restaurant restaurant) async {
+    Map<String, String> data = {
+      'city_id': city.toString(),
+      'price': restaurant.price.toString(),
+      'rating': restaurant.rating.toString(),
+      'chairs': restaurant.chairs.toString(),
+      'cuisine': restaurant.cuisine.id.toString(),
+      'moment': restaurant.moment.id.toString(),
+    };
+    var response = await Service().get('restaurants/onboarding', data);
+    return Service().parseRestaurants(response);
+  }
+
+  @override
+  Future<Tuple2<int, List<Restaurant>>> recommendations(
       int city, int client) async {
     Map<String, String> data = {
       'city_id': city.toString(),
       'client_id': client.toString()
     };
-    var response = await Service().get('usages/recommendations', data);
+    var response = await Service().get('restaurants/recommendations', data);
     return Service().parseRestaurants(response);
   }
 
