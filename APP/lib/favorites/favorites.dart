@@ -29,7 +29,7 @@ class FavoritesState extends State<Favorites> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
         title: Text("Favoritos"),
         centerTitle: true,

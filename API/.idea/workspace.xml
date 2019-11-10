@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/endpoint/recommendation.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoint/recommendation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/enum.py" beforeDir="false" afterPath="$PROJECT_DIR$/query/enum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/service/restaurant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/restaurant.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/service/service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="127" column="11" selection-start-line="127" selection-start-column="11" selection-end-line="127" selection-end-column="11" />
+            <state relative-caret-position="378">
+              <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -158,12 +153,6 @@
               <item name="API" type="462c0819:PsiDirectoryNode" />
               <item name="query" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="RecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API" type="462c0819:PsiDirectoryNode" />
-              <item name="query" type="462c0819:PsiDirectoryNode" />
-              <item name="private" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -252,7 +241,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="698" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -263,7 +251,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49483716" weight="0.28877887" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.41584158" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4950495" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="6" />
@@ -643,8 +631,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="127" column="11" selection-start-line="127" selection-start-column="11" selection-end-line="127" selection-end-column="11" />
+        <state relative-caret-position="378">
+          <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

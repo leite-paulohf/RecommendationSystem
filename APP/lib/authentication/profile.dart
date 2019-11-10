@@ -36,14 +36,14 @@ class _ProfileState extends State<Profile> {
             if (this.widget.viewModel.user.id == null) return Authentication();
             return Scaffold(
               key: _key,
-              backgroundColor: Colors.black12,
+              backgroundColor: Colors.grey.shade200,
               appBar: AppBar(title: Text("Perfil"), centerTitle: true),
               body: Center(child: _body()),
             );
           default:
             return Scaffold(
               key: _key,
-              backgroundColor: Colors.black12,
+              backgroundColor: Colors.grey.shade200,
               appBar: AppBar(),
               body: Loader().show(),
             );

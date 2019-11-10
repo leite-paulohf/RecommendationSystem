@@ -46,14 +46,14 @@ class _AuthenticationState extends State<Authentication> {
               return Profile(viewModel: this.viewModel);
             return Scaffold(
               key: _key,
-              backgroundColor: Colors.black12,
+              backgroundColor: Colors.grey.shade200,
               appBar: AppBar(title: Text("Autenticação"), centerTitle: true),
               body: Loader().body(_loading, _body()),
             );
           default:
             return Scaffold(
               key: _key,
-              backgroundColor: Colors.black12,
+              backgroundColor: Colors.grey.shade200,
               appBar: AppBar(),
               body: Loader().show(),
             );

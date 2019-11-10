@@ -44,11 +44,9 @@ packages:
   flutter_picker:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: f4976191695864ab4bdddf2a64478e7039b3e2a1
-      url: "git://github.com/yangyxd/flutter_picker.git"
-    source: git
+      name: flutter_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.1.0"
   flutter_spinkit:
     dependency: "direct main"
@@ -158,6 +156,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  synchronized:
+    dependency: "direct main"
+    description:
+      name: synchronized
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0+1"
   term_glyph:
     dependency: transitive
     description:

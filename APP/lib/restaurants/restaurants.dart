@@ -46,7 +46,7 @@ class RestaurantsState extends State<Restaurants> {
             else
               return Scaffold(
                 key: _key,
-                backgroundColor: Colors.black12,
+                backgroundColor: Colors.grey.shade200,
                 appBar: AppBar(
                   title: Text("Restaurants"),
                   centerTitle: true,
@@ -57,7 +57,7 @@ class RestaurantsState extends State<Restaurants> {
           default:
             return Scaffold(
               key: _key,
-              backgroundColor: Colors.black12,
+              backgroundColor: Colors.grey.shade200,
               appBar: AppBar(),
               body: Loader().show(),
             );

@@ -31,7 +31,7 @@ class _RecommendationsState extends State<Recommendations> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _key,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(title: Text("Sugestões"), centerTitle: true),
       body: _body(),
     );
@@ -52,23 +52,20 @@ class _RecommendationsState extends State<Recommendations> {
   }
 
   Widget _content(List<Restaurant> restaurants) {
-    return Padding(
-      padding: EdgeInsets.only(left: 32, right: 32),
-      child: Column(
-        children: <Widget>[
-          Padding(padding: EdgeInsets.only(top: 20)),
-          _title("Estamos quase lá!"),
-          _title("Escolha 5 restaurantes sugeridos"),
-          Padding(padding: EdgeInsets.only(top: 20)),
-          Expanded(child: _list(restaurants)),
-          _continue()
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        Padding(padding: EdgeInsets.only(top: 20)),
+        _title("Estamos quase lá!"),
+        _title("Escolha 5 restaurantes sugeridos"),
+        Padding(padding: EdgeInsets.only(top: 20)),
+        Expanded(child: _list(restaurants)),
+        _continue()
+      ],
     );
   }
 
   Widget _title(String text) {
-    var width = MediaQuery.of(context).size.width - 64;
+    var width = MediaQuery.of(context).size.width - 16;
     return Container(
       width: width,
       child: Text(text,
@@ -108,6 +105,7 @@ class _RecommendationsState extends State<Recommendations> {
   }
 
   Future<List<Restaurant>> _onboarding() async {
+    print("ENTREI!");
     var user = await this.cache.userCache();
     if (user.id == null) return [];
     var city = user.cityId;
