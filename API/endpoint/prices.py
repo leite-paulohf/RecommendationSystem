@@ -15,6 +15,8 @@ class Prices(Resource):
         query = self.query(Query.prices.value)
         data = self.request(query)
         if bool(data):
+            for index, item in enumerate(data):
+                item["id"] = index
             return jsonify({'data': data})
         else:
             abort(401)

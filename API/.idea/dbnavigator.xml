@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="411807b3-3b82-491e-ac74-addcd53f3412">
-        <schema name="main" object-types="table, column, view" />
+        <schema name="main" object-types="view, column, table" />
       </connection>
     </loaded-nodes>
   </component>
@@ -47,16 +47,16 @@
     <mapping file-url="file://$PROJECT_DIR$/query/api/remove_favorite.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/chairs.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/moments.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/query/api/cuisines.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/restaurant.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/search_client.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
-    <mapping file-url="file://$PROJECT_DIR$/query/api/prices.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/register.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/query/api/prices.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/add_favorite.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/create_usage.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/update_client.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/favorites.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/recommendations.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
-    <mapping file-url="file://$PROJECT_DIR$/query/api/cuisines.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/client.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/usages.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/restaurants.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />

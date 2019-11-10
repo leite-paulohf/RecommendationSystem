@@ -1,5 +1,5 @@
 select
-  distinct chairs
+  distinct chairs as name
 from
   restaurants
 order by

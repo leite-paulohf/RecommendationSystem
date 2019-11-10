@@ -1,5 +1,5 @@
 select
-  distinct average_cost
+  distinct average_cost as name
 from
   restaurants
 order by
