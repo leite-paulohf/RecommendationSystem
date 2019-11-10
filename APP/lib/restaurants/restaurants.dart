@@ -315,12 +315,10 @@ class RestaurantsState extends State<Restaurants> {
     var code = result.item1;
     switch (code) {
       case 200:
-        setState(() {
-          var name = restaurant.name;
-          this.cache.setRestaurants(result.item2, user.id, "favorites");
-          this.cache.setRestaurants([], user.id, "favorites_recommendations");
-          this.alert.show(context, "$name adicionado aos favoritos.");
-        });
+        var name = restaurant.name;
+        this.cache.setRestaurants(result.item2, user.id, "favorites");
+        this.cache.setRestaurants([], user.id, "favorites_recommendations");
+        this.alert.show(context, "$name adicionado aos favoritos.");
         break;
       default:
         this.alert.error(context, Error.from(code).message);
@@ -334,12 +332,10 @@ class RestaurantsState extends State<Restaurants> {
     var code = result.item1;
     switch (code) {
       case 200:
-        setState(() {
-          var name = restaurant.name;
-          this.cache.setRestaurants(result.item2, user.id, "favorites");
-          this.cache.setRestaurants([], user.id, "favorites_recommendations");
-          this.alert.show(context, "$name removido dos favoritos.");
-        });
+        var name = restaurant.name;
+        this.cache.setRestaurants(result.item2, user.id, "favorites");
+        this.cache.setRestaurants([], user.id, "favorites_recommendations");
+        this.alert.show(context, "$name removido dos favoritos.");
         break;
       default:
         this.alert.error(context, Error.from(code).message);

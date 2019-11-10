@@ -139,13 +139,11 @@ class FavoritesState extends State<Favorites> {
     var code = result.item1;
     switch (code) {
       case 200:
-        setState(() {
-          var kind = restaurant.kind.id == 1 ? "Check-in" : "Reserva";
-          var name = restaurant.name;
-          this.cache.setRestaurants(result.item2, user.id, "usages");
-          this.cache.setRestaurants([], user.id, "usages_recommendations");
-          this.alert.show(context, "$kind com sucesso em $name.");
-        });
+        var kind = restaurant.kind.id == 1 ? "Check-in" : "Reserva";
+        var name = restaurant.name;
+        this.cache.setRestaurants(result.item2, user.id, "usages");
+        this.cache.setRestaurants([], user.id, "usages_recommendations");
+        this.alert.show(context, "$kind com sucesso em $name.");
         break;
       default:
         this.alert.error(context, Error.from(code).message);
