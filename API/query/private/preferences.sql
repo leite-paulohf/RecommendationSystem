@@ -26,5 +26,7 @@ where
     from
       preferences
     where
-      client_id == :client_id
+      preferences.client_id == :client_id
+    and
+      preferences.like == :like
   )

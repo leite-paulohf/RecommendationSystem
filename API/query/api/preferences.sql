@@ -42,4 +42,6 @@ where
       preferences
     where
       preferences.client_id == :client_id
+    and
+      preferences.like == 1
   )

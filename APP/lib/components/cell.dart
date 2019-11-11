@@ -270,7 +270,7 @@ class _CellState extends State<Cell> {
               color: Colors.redAccent,
             ),
             onPressed: () {
-              this.widget.like(this.widget.restaurant);
+              this.widget.unlike(this.widget.restaurant);
             }),
       ]),
     );

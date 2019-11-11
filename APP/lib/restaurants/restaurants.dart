@@ -345,8 +345,15 @@ class RestaurantsState extends State<Restaurants> {
         );
     switch (code) {
       case 200:
-        var name = restaurant.name;
-        Alert().message(context, "$name adicionado a suas preferências.");
+        setState(() {
+          Cache().setRestaurants([], user.id, "recommendations");
+          var name = restaurant.name;
+          if (like == 1)
+            Alert()
+                .message(context, "$name será usado para novas recomendações.");
+          else
+            Alert().message(context, "$name não será mais recomendado.");
+        });
         break;
       default:
         Alert().error(context, Error.from(code).message);

@@ -122,7 +122,7 @@ class Recommendation(Resource):
 
     def preferences(self, request):
         query = self.query(PrivateQuery.preferences.value)
-        params = {"client_id": request.args.get('client_id')}
+        params = {"client_id": request.args.get('client_id'), "like": 1}
         data = self.request(query, params)
         return pd.DataFrame(data)
 
@@ -140,7 +140,8 @@ class Recommendation(Resource):
 
     def restaurants(self, request):
         query = self.query(PrivateQuery.restaurants.value)
-        params = {"city_id": request.args.get('city_id')}
+        params = {"city_id": request.args.get('city_id'),
+                  "client_id": request.args.get('client_id')}
         data = self.request(query, params)
         return pd.DataFrame(data)
 

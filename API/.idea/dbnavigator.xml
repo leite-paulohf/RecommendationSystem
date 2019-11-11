@@ -47,26 +47,26 @@
     <mapping file-url="file://$PROJECT_DIR$/query/api/remove_favorite.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/chairs.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/moments.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
-    <mapping file-url="file://$PROJECT_DIR$/query/api/usages.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/cuisines.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/private/restaurants.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/search_client.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/private/preferences.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
-    <mapping file-url="file://$PROJECT_DIR$/query/api/update_client.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/query/api/register.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/prices.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/add_favorite.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/create_usage.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/restaurant.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
-    <mapping file-url="file://$PROJECT_DIR$/query/api/register.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/query/api/update_client.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/favorites.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/recommendations.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
-    <mapping file-url="file://$PROJECT_DIR$/query/api/preferences.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/query/private/favorites.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/query/private/usages.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/client.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/add_preference.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
-    <mapping file-url="file://$PROJECT_DIR$/query/private/favorites.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/query/api/usages.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/restaurants.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/rating.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
-    <mapping file-url="file://$PROJECT_DIR$/query/private/usages.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
+    <mapping file-url="file://$PROJECT_DIR$/query/api/preferences.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
     <mapping file-url="file://$PROJECT_DIR$/query/api/cities.sql" connection-id="411807b3-3b82-491e-ac74-addcd53f3412" session-id="MAIN" current-schema="main" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
@@ -576,17 +576,28 @@
       <file file-url="file://$PROJECT_DIR$/query/api/search_client.sql">
         <variable name=":client_id" dataType="LITERAL" values="4055" />
       </file>
-      <file file-url="file://$PROJECT_DIR$/query/api/recommendations.sql">
-        <variable name=":ids" dataType="LITERAL" values="8, 9, 10, [8, 9, 10], (8, 9, 10)" />
+      <file file-url="file://$PROJECT_DIR$/query/private/preferences.sql">
+        <variable name=":client_id" dataType="LITERAL" values="1075395" />
+        <variable name=":like" dataType="LITERAL" values="1, 0" />
+      </file>
+      <file file-url="file://$PROJECT_DIR$/query/private/restaurants.sql">
+        <variable name=":client_id" dataType="LITERAL" values="1075395" />
+        <variable name=":city_id" dataType="LITERAL" values="10" />
+      </file>
+      <file file-url="file://$PROJECT_DIR$/query/api/client.sql">
+        <variable name=":cpf" dataType="LITERAL" values="38872074835, 10811229785" />
+        <variable name=": cpf" dataType="LITERAL" values="10811229785" />
+        <variable name=": password" dataType="LITERAL" values="e10adc3949ba59abbe56e057f20f883e" />
+        <variable name=":password" dataType="LITERAL" values="e10adc3949ba59abbe56e057f20f883e" />
+      </file>
+      <file file-url="file://$PROJECT_DIR$/query/api/preferences.sql">
+        <variable name=":client_id" dataType="LITERAL" values="1075395" />
       </file>
       <file file-url="file://$PROJECT_DIR$/query/api/restaurant.sql">
         <variable name=":restaurant_id" dataType="LITERAL" values="8" />
       </file>
-      <file file-url="file://$PROJECT_DIR$/query/api/client.sql">
-        <variable name=":cpf" dataType="LITERAL" values="10811229785" />
-        <variable name=": cpf" dataType="LITERAL" values="10811229785" />
-        <variable name=": password" dataType="LITERAL" values="e10adc3949ba59abbe56e057f20f883e" />
-        <variable name=":password" dataType="LITERAL" values="e10adc3949ba59abbe56e057f20f883e" />
+      <file file-url="file://$PROJECT_DIR$/query/api/recommendations.sql">
+        <variable name=":ids" dataType="LITERAL" values="8, 9, 10, [8, 9, 10], (8, 9, 10)" />
       </file>
     </execution-variables>
   </component>
