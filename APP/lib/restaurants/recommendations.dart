@@ -89,11 +89,12 @@ class _RecommendationsState extends State<Recommendations> {
     return Padding(
       padding: EdgeInsets.all(20),
       child: Button(
-        label: "SALVAR PREFERÊNCIAS",
+        label: "CONTINUAR",
         submitted: () {
           var preferences = this.widget.viewModel.preferences;
           if (preferences.isEmpty)
             Alert().error(context, "Escolha ao menos um restaurante.");
+          Navigator.pop(context);
         },
       ),
     );

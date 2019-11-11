@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/endpoint/recommendation.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoint/recommendation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query/enum.py" beforeDir="false" afterPath="$PROJECT_DIR$/query/enum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/onboarding.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/onboarding.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/components/cell.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/components/cell.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/components/table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/components/table.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/recommendations.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/recommendations.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/service/service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/service.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,25 +16,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="183">
-              <caret line="121" lean-forward="true" selection-start-line="121" selection-end-line="121" />
+              <caret line="121" selection-start-line="121" selection-end-line="121" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="97" column="20" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -281,17 +264,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Data View" order="3" />
     </layout>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/endpoint/recommendation.py</url>
-          <line>96</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pandas/io/sql.py">
@@ -633,22 +605,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.py">
+    <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="121" lean-forward="true" selection-start-line="121" selection-end-line="121" />
+        <state relative-caret-position="123">
+          <caret line="90" column="14" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
+    <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="97" column="20" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="20" />
+        <state relative-caret-position="183">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -35,6 +35,7 @@ class _TableViewState extends State<TableView> {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             return ListView.builder(
+                shrinkWrap: true,
                 scrollDirection: this.widget.direction,
                 itemCount: this.widget.restaurants.length ?? 0,
                 itemBuilder: (_, index) {

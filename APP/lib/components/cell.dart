@@ -4,16 +4,20 @@ import 'package:tcc_app/model/restaurant.dart';
 class Cell extends StatefulWidget {
   final Size size;
   final Restaurant restaurant;
-  final bool favorited;
-  final Function booking, favorite;
+  final bool favorited, preference, liked;
+  final Function booking, favorite, like, unlike;
 
   Cell({
     Key key,
     @required this.size,
     @required this.restaurant,
     @required this.favorited,
+    @required this.preference,
+    @required this.liked,
     @required this.booking,
     @required this.favorite,
+    @required this.like,
+    @required this.unlike,
   }) : super(key: key);
 
   @override
@@ -22,29 +26,26 @@ class Cell extends StatefulWidget {
 
 class _CellState extends State<Cell> {
   bool _favorited;
+  Restaurant _restaurant;
 
   @override
   Widget build(BuildContext context) {
     _favorited = this.widget.favorited;
+    _restaurant = this.widget.restaurant;
     return Padding(
       padding: EdgeInsets.all(8),
       child: GestureDetector(
           onTap: () {
-            this.widget.booking(this.widget.restaurant);
+            this.widget.booking(_restaurant);
           },
           child: _cell()),
     );
   }
 
   Widget _cell() {
-    var id = this.widget.restaurant.cuisine.id.toString();
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
-        image: DecorationImage(
-          image: AssetImage('assets/cuisine-$id.jpg'),
-          fit: BoxFit.fitWidth,
-        ),
       ),
       child: Column(
         children: <Widget>[
@@ -56,9 +57,13 @@ class _CellState extends State<Cell> {
   }
 
   Widget _banner() {
+    var id = this.widget.restaurant.cuisine.id.toString();
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black26,
+        image: DecorationImage(
+            image: AssetImage('assets/cuisine-$id.jpg'),
+            fit: BoxFit.fitWidth,
+            colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken)),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(8),
           topRight: Radius.circular(8),
@@ -70,7 +75,10 @@ class _CellState extends State<Cell> {
             _ratingRange(),
             _favouriteButton(),
           ]),
-          _priceRange(),
+          Row(children: <Widget>[
+            _discount(),
+            _priceRange(),
+          ]),
         ],
       ),
     );
@@ -88,10 +96,7 @@ class _CellState extends State<Cell> {
         child: IconButton(
             icon: Icon(icon, color: color),
             onPressed: () {
-              setState(() {
-                _favorited = !this.widget.favorited;
-                this.widget.favorite(this.widget.restaurant);
-              });
+              this.widget.favorite(this.widget.restaurant);
             }),
       ),
     );
@@ -154,10 +159,34 @@ class _CellState extends State<Cell> {
     }
   }
 
-  Widget _priceRange() {
+  Widget _discount() {
+    var discount = this.widget.restaurant.offer.discount;
+    var text = discount > 0 ? "$discount%OFF" : "Sem desconto";
+    double width = (this.widget.size.width / 2) - 8;
     return Container(
       height: 75,
-      width: this.widget.size.width - 16,
+      width: width,
+      padding: EdgeInsets.all(8),
+      child: Align(
+        alignment: AlignmentDirectional.bottomStart,
+        child: Text(
+          text,
+          textAlign: TextAlign.right,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _priceRange() {
+    double width = (this.widget.size.width / 2) - 8;
+    return Container(
+      height: 75,
+      width: width,
       padding: EdgeInsets.all(8),
       child: Align(
         alignment: AlignmentDirectional.bottomEnd,
@@ -191,9 +220,55 @@ class _CellState extends State<Cell> {
         children: <Widget>[
           Row(children: <Widget>[_name(), _cuisine()]),
           Row(children: <Widget>[_location(), _category()]),
-          _address()
+          _address(),
+          _preferenceView(
+            this.widget.preference ?? false,
+            this.widget.liked ?? false,
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _preferenceView(bool preference, bool liked) {
+    if (!preference) return Container();
+    if (liked) return _likedView();
+    return _preferenceButtons();
+  }
+
+  Widget _likedView() {
+    return Container(
+      height: 48,
+      width: this.widget.size.width - 16,
+      padding: EdgeInsets.only(left: 8),
+      child: Row(children: <Widget>[
+        Icon(Icons.check_circle, color: Colors.lightGreen),
+        Text(" Recomendação aprovada!"),
+      ]),
+    );
+  }
+
+  Widget _preferenceButtons() {
+    return Container(
+      height: 48,
+      width: this.widget.size.width - 16,
+      padding: EdgeInsets.only(left: 8),
+      child: Row(children: <Widget>[
+        Text("Aprovado:"),
+        IconButton(
+            icon: Icon(
+              Icons.check_circle,
+              color: Colors.lightGreen,
+            ),
+            onPressed: this.widget.like ?? () {}),
+        Text("Não aprovado:"),
+        IconButton(
+            icon: Icon(
+              Icons.cancel,
+              color: Colors.redAccent,
+            ),
+            onPressed: this.widget.unlike ?? () {}),
+      ]),
     );
   }
 

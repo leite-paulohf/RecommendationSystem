@@ -24,7 +24,7 @@ class Restaurants extends StatefulWidget {
 
 class RestaurantsState extends State<Restaurants> {
   final _key = GlobalKey<ScaffoldState>();
-  final _height = 257.0;
+  final _height = 305.0;
   final viewModel = RestaurantViewModel(interface: RestaurantService());
   final favorites = FavoritesViewModel(interface: FavoritesService());
   final usages = UsagesViewModel(interface: UsagesService());
@@ -293,10 +293,12 @@ class RestaurantsState extends State<Restaurants> {
     var code = result.item1;
     switch (code) {
       case 200:
-        var name = restaurant.name;
-        Cache().setRestaurants(result.item2, user.id, "favorites");
-        Cache().setRestaurants([], user.id, "favorites_recommendations");
-        Alert().message(context, "$name adicionado aos favoritos.");
+        setState(() {
+          var name = restaurant.name;
+          Cache().setRestaurants(result.item2, user.id, "favorites");
+          Cache().setRestaurants([], user.id, "favorites_recommendations");
+          Alert().message(context, "$name adicionado aos favoritos.");
+        });
         break;
       default:
         Alert().error(context, Error.from(code).message);
@@ -310,10 +312,12 @@ class RestaurantsState extends State<Restaurants> {
     var code = result.item1;
     switch (code) {
       case 200:
-        var name = restaurant.name;
-        Cache().setRestaurants(result.item2, user.id, "favorites");
-        Cache().setRestaurants([], user.id, "favorites_recommendations");
-        Alert().message(context, "$name removido dos favoritos.");
+        setState(() {
+          var name = restaurant.name;
+          Cache().setRestaurants(result.item2, user.id, "favorites");
+          Cache().setRestaurants([], user.id, "favorites_recommendations");
+          Alert().message(context, "$name removido dos favoritos.");
+        });
         break;
       default:
         Alert().error(context, Error.from(code).message);
