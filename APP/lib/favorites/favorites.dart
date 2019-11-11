@@ -22,8 +22,6 @@ class FavoritesState extends State<Favorites> {
   final _key = GlobalKey<ScaffoldState>();
   final viewModel = FavoritesViewModel(interface: FavoritesService());
   final usages = UsagesViewModel(interface: UsagesService());
-  final cache = Preferences();
-  final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
@@ -91,45 +89,44 @@ class FavoritesState extends State<Favorites> {
   }
 
   Future<List<Restaurant>> _favorites() async {
-    var user = await this.cache.userCache();
+    var user = await Cache().userCache();
     if (user.id == null) return [];
-    var restaurants = await this.cache.restaurantsCache(user.id, "favorites");
+    var restaurants = await Cache().restaurantsCache(user.id, "favorites");
     if (restaurants.isNotEmpty) return restaurants;
     var result = await this.viewModel.favorites(user.id);
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setRestaurants(result.item2, user.id, "favorites");
+        Cache().setRestaurants(result.item2, user.id, "favorites");
         return result.item2;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
         return [];
     }
   }
 
   void _removeFavourite(Restaurant restaurant) async {
-    var user = await this.cache.userCache();
+    var user = await Cache().userCache();
     if (user.id == null) return;
     var result = await this.viewModel.removeFavorite(user.id, restaurant.id);
     var code = result.item1;
     switch (code) {
       case 200:
         setState(() {
-          this.cache.setRestaurants(result.item2, user.id, "favorites");
-          this.cache.setRestaurants([], user.id, "favorites_recommendations");
-          this
-              .alert
-              .show(context, restaurant.name + " removido dos favoritos.");
+          var name = restaurant.name;
+          Cache().setRestaurants(result.item2, user.id, "favorites");
+          Cache().setRestaurants([], user.id, "favorites_recommendations");
+          Alert().message(context, "$name removido dos favoritos.");
         });
         break;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
         break;
     }
   }
 
   void _createUsage(Restaurant restaurant) async {
-    var user = await this.cache.userCache();
+    var user = await Cache().userCache();
     if (user.id == null) return;
     var result = await this.usages.usage(
           restaurant.chairs,
@@ -141,12 +138,12 @@ class FavoritesState extends State<Favorites> {
       case 200:
         var kind = restaurant.kind.id == 1 ? "Check-in" : "Reserva";
         var name = restaurant.name;
-        this.cache.setRestaurants(result.item2, user.id, "usages");
-        this.cache.setRestaurants([], user.id, "usages_recommendations");
-        this.alert.show(context, "$kind com sucesso em $name.");
+        Cache().setRestaurants(result.item2, user.id, "usages");
+        Cache().setRestaurants([], user.id, "usages_recommendations");
+        Alert().message(context, "$kind com sucesso em $name.");
         break;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
         break;
     }
   }
@@ -163,9 +160,10 @@ class FavoritesState extends State<Favorites> {
         ? "Com benefício extra"
         : "Sem benefício extra";
     var moment = restaurant.moment.name;
-    var chairs = "Válido para " + restaurant.chairs.toString() + " pessoa(s)";
+    var chairs = restaurant.chairs.toString();
+    chairs = "Válido para $chairs pessoa(s)";
     var info = "$usage\n$chairs\n$benefits\n$restrictions\n$moment";
-    this.alert.booking(context, restaurant.name, info, () {
+    Alert().booking(context, restaurant.name, info, () {
       Navigator.of(context).pop();
       _createUsage(restaurant);
     });

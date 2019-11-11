@@ -20,8 +20,6 @@ class OnBoarding extends StatefulWidget {
 class _OnBoardingState extends State<OnBoarding> {
   final _key = GlobalKey<ScaffoldState>();
   final viewModel = RestaurantViewModel(interface: RestaurantService());
-  final cache = Preferences();
-  final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
@@ -176,27 +174,27 @@ class _OnBoardingState extends State<OnBoarding> {
           submitted: () {
             if (this.viewModel.cuisine == null) {
               var text = "Selecione sua culinária favorita";
-              this.alert.error(context, text);
+              Alert().error(context, text);
               return;
             }
             if (this.viewModel.rating == null) {
               var text = "Selecione uma avaliação inicial";
-              this.alert.error(context, text);
+              Alert().error(context, text);
               return;
             }
             if (this.viewModel.price == null) {
               var text = "Selecione o valor médio desejado";
-              this.alert.error(context, text);
+              Alert().error(context, text);
               return;
             }
             if (this.viewModel.chair == null) {
               var text = "Selecione uma referência de pessoas na mesa";
-              this.alert.error(context, text);
+              Alert().error(context, text);
               return;
             }
             if (this.viewModel.moment == null) {
               var text = "Selecione um momento para comer fora";
-              this.alert.error(context, text);
+              Alert().error(context, text);
               return;
             }
             _pushRecommendations();
@@ -211,17 +209,17 @@ class _OnBoardingState extends State<OnBoarding> {
   }
 
   Future<List<Filter>> _filters(Future future, String key) async {
-    var filters = await this.cache.filtersCache(key);
+    var filters = await Cache().filtersCache(key);
     if (filters.isNotEmpty) return filters;
     Tuple2<int, List<Filter>> result = await future;
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setFilters(result.item2, key);
+        Cache().setFilters(result.item2, key);
         return result.item2;
         break;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
         return [];
     }
   }

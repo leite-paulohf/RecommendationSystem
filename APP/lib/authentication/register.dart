@@ -23,9 +23,6 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  final cache = Preferences();
-  final alert = Alert();
-
   var _loading = false;
 
   set loading(bool value) {
@@ -164,7 +161,7 @@ class _RegisterState extends State<Register> {
           if (this.widget.viewModel.city != null)
             _register();
           else
-            this.alert.error(context, "Selecione sua cidade!");
+            Alert().error(context, "Selecione sua cidade!");
         }
       },
       validator: (name) {
@@ -189,7 +186,7 @@ class _RegisterState extends State<Register> {
           if (this.widget.viewModel.city != null)
             _register();
           else
-            this.alert.error(context, "Selecione sua cidade!");
+            Alert().error(context, "Selecione sua cidade!");
         }
       },
       validator: (cpf) {
@@ -211,7 +208,7 @@ class _RegisterState extends State<Register> {
           if (this.widget.viewModel.city != null)
             _register();
           else
-            this.alert.error(context, "Selecione sua cidade!");
+            Alert().error(context, "Selecione sua cidade!");
         }
       },
       validator: (password) {
@@ -231,7 +228,7 @@ class _RegisterState extends State<Register> {
           if (this.widget.viewModel.city != null)
             _register();
           else
-            this.alert.error(context, "Selecione sua cidade!");
+            Alert().error(context, "Selecione sua cidade!");
         }
       },
     );
@@ -244,26 +241,26 @@ class _RegisterState extends State<Register> {
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setUser(result.item2);
+        Cache().setUser(result.item2);
         Navigator.pop(context);
         break;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
     }
   }
 
   Future<List<Filter>> _regions() async {
-    var cities = await this.cache.filtersCache("cities");
+    var cities = await Cache().filtersCache("cities");
     if (cities.isNotEmpty) return cities;
     var result = await this.widget.viewModel.regions();
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setFilters(result.item2, "cities");
+        Cache().setFilters(result.item2, "cities");
         return result.item2;
         break;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
         return [];
     }
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tcc_app/components/table.dart';
-import 'package:tcc_app/favorites/viewmodel.dart';
 import 'package:tcc_app/helper/alert.dart';
 import 'package:tcc_app/components/button.dart';
 import 'package:tcc_app/helper/loader.dart';
@@ -10,7 +9,6 @@ import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/model/user.dart';
 import 'package:tcc_app/model/error.dart';
 import 'package:tcc_app/restaurants/viewmodel.dart';
-import 'package:tcc_app/service/favorites.dart';
 
 class Recommendations extends StatefulWidget {
   final RestaurantViewModel viewModel;
@@ -23,9 +21,6 @@ class Recommendations extends StatefulWidget {
 
 class _RecommendationsState extends State<Recommendations> {
   final _key = GlobalKey<ScaffoldState>();
-  final favorites = FavoritesViewModel(interface: FavoritesService());
-  final cache = Preferences();
-  final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +92,7 @@ class _RecommendationsState extends State<Recommendations> {
         label: "SALVAR PREFERÊNCIAS",
         submitted: () {
           setState(() {
-            this.cache.setUser(User());
+            Cache().setUser(User());
           });
         },
       ),
@@ -105,85 +100,23 @@ class _RecommendationsState extends State<Recommendations> {
   }
 
   Future<List<Restaurant>> _onboarding() async {
-    print("ENTREI!");
-    var user = await this.cache.userCache();
+    var user = await Cache().userCache();
     if (user.id == null) return [];
     var city = user.cityId;
     var client = user.id;
-    var restaurants = await this.cache.restaurantsCache(client, "onboarding");
+    var restaurants = await Cache().restaurantsCache(client, "onboarding");
     if (restaurants.isNotEmpty) return restaurants;
     var result = await this.widget.viewModel.onboardingAPI(city);
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setRestaurants(result.item2, client, "onboarding");
+        Cache().setRestaurants(result.item2, client, "onboarding");
         return result.item2;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
         return [];
     }
   }
 
-  void _updateFavorite(Restaurant restaurant) async {
-    var user = await this.cache.userCache();
-    if (user.id == null) return;
-    var restaurants = await this.cache.restaurantsCache(user.id, "favorites");
-    if (restaurants.isEmpty) {
-      var result = await this.favorites.favorites(user.id);
-      this.cache.setRestaurants(result.item2, user.id, "favorites");
-      restaurants = result.item2;
-    }
-
-    var ids = restaurants.map((restaurant) {
-      return restaurant.id;
-    }).toList();
-
-    if (ids.contains(restaurant.id)) {
-      _removeFavourite(restaurant);
-    } else {
-      _addFavourite(restaurant);
-    }
-  }
-
-  void _addFavourite(Restaurant restaurant) async {
-    var user = await this.cache.userCache();
-    var result = await this.favorites.addFavorite(user.id, restaurant.id);
-    var code = result.item1;
-    switch (code) {
-      case 200:
-        setState(() {
-          var name = restaurant.name;
-          this.cache.setRestaurants(result.item2, user.id, "favorites");
-          this.cache.setRestaurants([], user.id, "favorites_recommendations");
-          this.alert.show(context, "$name adicionado aos favoritos.");
-        });
-        break;
-      default:
-        this.alert.error(context, Error.from(code).message);
-        break;
-    }
-  }
-
-  void _removeFavourite(Restaurant restaurant) async {
-    var user = await this.cache.userCache();
-    var result = await this.favorites.removeFavorite(user.id, restaurant.id);
-    var code = result.item1;
-    switch (code) {
-      case 200:
-        setState(() {
-          var name = restaurant.name;
-          this.cache.setRestaurants(result.item2, user.id, "favorites");
-          this.cache.setRestaurants([], user.id, "favorites_recommendations");
-          this.alert.show(context, "$name removido dos favoritos.");
-        });
-        break;
-      default:
-        this.alert.error(context, Error.from(code).message);
-        break;
-    }
-  }
-
-  void _favorite(Restaurant restaurant) {
-    _updateFavorite(restaurant);
-  }
+  void _favorite(Restaurant restaurant) {}
 }

@@ -25,7 +25,7 @@ class TableView extends StatefulWidget {
 
 class _TableViewState extends State<TableView> {
   final favorites = FavoritesViewModel(interface: FavoritesService());
-  final cache = Preferences();
+  final cache = Cache();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _TableViewState extends State<TableView> {
                       favorite: this.widget.favorite);
                 });
           default:
-            return Expanded(child: Loader().show());
+            return Loader().show();
         }
       },
     );

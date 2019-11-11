@@ -5,14 +5,14 @@ import 'package:tcc_app/model/filter.dart';
 import 'package:tcc_app/model/restaurant.dart';
 import 'package:tcc_app/model/user.dart';
 
-class Preferences {
-  static final Preferences _singleton = Preferences._internal();
+class Cache {
+  static final Cache _singleton = Cache._internal();
 
-  factory Preferences() {
+  factory Cache() {
     return _singleton;
   }
 
-  Preferences._internal();
+  Cache._internal();
 
   final _lock = Lock();
 

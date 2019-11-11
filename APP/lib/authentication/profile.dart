@@ -22,13 +22,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final _key = GlobalKey<ScaffoldState>();
-  final cache = Preferences();
-  final alert = Alert();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<User>(
-      future: this.cache.userCache(),
+      future: Cache().userCache(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
@@ -105,9 +103,21 @@ class _ProfileState extends State<Profile> {
             var index = _cityIds().indexOf(cityId);
             var city = this.widget.viewModel.cities[index];
             var title = city?.name?.toUpperCase() ?? "SELECIONE SUA CIDADE";
-            return Button(label: title, submitted: _showPicker);
+            return Container(
+              width: 250,
+              child: Button(
+                label: title,
+                submitted: _showPicker,
+              ),
+            );
           default:
-            return Button(label: "CARREGANDO...", submitted: () {});
+            return Container(
+              width: 250,
+              child: Button(
+                label: "CARREGANDO...",
+                submitted: () {},
+              ),
+            );
         }
       },
     );
@@ -145,9 +155,14 @@ class _ProfileState extends State<Profile> {
         textAlign: TextAlign.left,
         columnPadding: const EdgeInsets.all(16.0),
         onConfirm: (Picker picker, List value) {
-          var index = picker.selecteds.first;
-          var city = this.widget.viewModel.cities[index];
-          this.widget.viewModel.user.cityId = city.id;
+          setState(() {
+            var index = picker.selecteds.first;
+            var city = this.widget.viewModel.cities[index];
+            this.widget.viewModel.user.cityId = city.id;
+            var user = this.widget.viewModel.user;
+            Cache().setUser(user);
+            Cache().setRestaurants([], user.id, "restaurants");
+          });
           _update();
         });
 
@@ -159,24 +174,24 @@ class _ProfileState extends State<Profile> {
       label: "SAIR",
       submitted: () {
         setState(() {
-          this.cache.setUser(User());
+          Cache().setUser(User());
         });
       },
     );
   }
 
   Future<List<Filter>> _regions() async {
-    var cities = await this.cache.filtersCache("cities");
+    var cities = await Cache().filtersCache("cities");
     if (cities.isNotEmpty) return cities;
     var result = await this.widget.viewModel.regions();
     var code = result.item1;
     switch (code) {
       case 200:
-        this.cache.setFilters(result.item2, "cities");
+        Cache().setFilters(result.item2, "cities");
         return result.item2;
         break;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
         return [];
     }
   }
@@ -186,13 +201,10 @@ class _ProfileState extends State<Profile> {
     var code = result.item1;
     switch (code) {
       case 200:
-        setState(() {
-          this.cache.setUser(result.item2);
-          this.cache.setRestaurants([], result.item2.id, "restaurants");
-        });
+        Alert().message(context, "Cidade alterada com sucesso!");
         break;
       default:
-        this.alert.error(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
     }
   }
 }

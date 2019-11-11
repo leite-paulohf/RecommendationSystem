@@ -43,15 +43,14 @@ class Client(Resource):
 
     def update(self):
         client = request.json['client']
-        password = hashlib.md5(client['password'].encode())
         query = self.query(Query.update_client.value)
         params = {"name": client['name'],
                   "cpf": client['cpf'],
                   "city_id": client['city_id'],
-                  "password": password.hexdigest()}
+                  "password": client['password']}
         self.request(query, params)
         query = self.query(Query.client.value)
-        params = {'cpf': client['cpf'], 'password': password.hexdigest()}
+        params = {'cpf': client['cpf'], 'password': client['password']}
         data = self.request(query, params)
         if bool(data):
             return jsonify(data)

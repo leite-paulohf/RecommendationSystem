@@ -3,9 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/lib/service/service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../APP/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/endpoint/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoint/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query/api/restaurants.sql" beforeDir="false" afterPath="$PROJECT_DIR$/query/api/restaurants.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/authentication.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/authentication/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/authentication/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/components/table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/components/table.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/favorites/favorites.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/favorites/favorites.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/helper/alert.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/helper/alert.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/helper/preferences.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/helper/preferences.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/onboarding.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/onboarding.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/recommendations.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/recommendations.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/restaurants/restaurants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/usages/usages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/usages/usages.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,14 +26,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+            <state relative-caret-position="86">
+              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/endpoint/client.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/query/api/restaurants.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -97,12 +129,10 @@
         <option value="$PROJECT_DIR$/jbuilder/restaurant.py" />
         <option value="$PROJECT_DIR$/query/api/add_favorite.sql" />
         <option value="$PROJECT_DIR$/Server.py" />
-        <option value="$PROJECT_DIR$/query/api/restaurants.sql" />
         <option value="$PROJECT_DIR$/endpoint/favorite.py" />
         <option value="$PROJECT_DIR$/query/api/register.sql" />
         <option value="$PROJECT_DIR$/query/api/updateClient.sql" />
         <option value="$PROJECT_DIR$/query/api/update_client.sql" />
-        <option value="$PROJECT_DIR$/endpoint/client.py" />
         <option value="$PROJECT_DIR$/query/api/moments.sql" />
         <option value="$PROJECT_DIR$/query/api/cities.sql" />
         <option value="$PROJECT_DIR$/query/api/price.sql" />
@@ -119,10 +149,12 @@
         <option value="$PROJECT_DIR$/query/enum.py" />
         <option value="$PROJECT_DIR$/query/private/preferences.sql" />
         <option value="$PROJECT_DIR$/endpoint/recommendation.py" />
+        <option value="$PROJECT_DIR$/endpoint/client.py" />
+        <option value="$PROJECT_DIR$/query/api/restaurants.sql" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="698" />
@@ -152,6 +184,12 @@
               <item name="RecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="API" type="462c0819:PsiDirectoryNode" />
               <item name="query" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RecommendationSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="API" type="462c0819:PsiDirectoryNode" />
+              <item name="query" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -240,9 +278,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="698" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2533757" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
@@ -250,7 +288,7 @@
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32996634" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49483716" weight="0.28877887" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49483716" visible="true" weight="0.4479452" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4950495" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -402,13 +440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/query/api/restaurants.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/sqlalchemy/pool/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -513,16 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/endpoint/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -631,11 +652,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        <state relative-caret-position="86">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/endpoint/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/query/api/restaurants.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
         </state>
       </provider>
     </entry>
