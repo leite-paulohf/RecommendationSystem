@@ -66,8 +66,11 @@ class UsagesState extends State<Usages> {
       child: TableView(
         direction: Axis.vertical,
         restaurants: restaurants,
+        preference: false,
         booking: _booking,
         favorite: _favorite,
+        like: () {},
+        unlike: () {},
       ),
     );
   }

@@ -95,4 +95,8 @@ class RestaurantViewModel extends Model {
   Future<int> addPreference(int clientId, int restaurantId, int like) async {
     return await this.interface.addPreference(clientId, restaurantId, like);
   }
+
+  Future<Tuple2<int, List<Restaurant>>> preferencesAPI(int clientId) async {
+    return await this.interface.preferences(clientId);
+  }
 }

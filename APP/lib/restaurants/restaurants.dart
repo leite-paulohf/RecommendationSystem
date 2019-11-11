@@ -24,7 +24,6 @@ class Restaurants extends StatefulWidget {
 
 class RestaurantsState extends State<Restaurants> {
   final _key = GlobalKey<ScaffoldState>();
-  final _height = 305.0;
   final viewModel = RestaurantViewModel(interface: RestaurantService());
   final favorites = FavoritesViewModel(interface: FavoritesService());
   final usages = UsagesViewModel(interface: UsagesService());
@@ -36,7 +35,8 @@ class RestaurantsState extends State<Restaurants> {
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            if (snapshot.data.isEmpty)
+            var isOnBoarding = snapshot.data?.isEmpty ?? false;
+            if (isOnBoarding)
               return OnBoarding();
             else
               return Scaffold(
@@ -72,52 +72,14 @@ class RestaurantsState extends State<Restaurants> {
       children: <Widget>[
         Padding(padding: EdgeInsets.only(top: 8)),
         _header("RESTAURANTES"),
-        _section(_restaurants()),
-        _headerLogged("RESTAURANTES RECOMENDADOS"),
-        _sectionLogged(_recommendations()),
-        _headerLogged("RECOMENDAÇÕES: SUA PRÓXIMA RESERVA"),
-        _sectionLogged(_usagesRecommendations()),
-        _headerLogged("RECOMENDAÇÕES: SEU PRÓXIMO FAVORITO"),
-        _sectionLogged(_favoritesRecommendations()),
+        _section(_restaurants(), 257, false),
+        _header("RESTAURANTES RECOMENDADOS"),
+        _sectionLogged(_recommendations(), 305),
+        _header("RECOMENDAÇÕES: SUA PRÓXIMA RESERVA"),
+        _sectionLogged(_usagesRecommendations(), 305),
+        _header("RECOMENDAÇÕES: SEU PRÓXIMO FAVORITO"),
+        _sectionLogged(_favoritesRecommendations(), 305),
       ],
-    );
-  }
-
-  Widget _headerLogged(String title) {
-    return FutureBuilder<User>(
-      future: Cache().userCache(),
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.done:
-            var user = snapshot.data;
-            if (user.id != null)
-              return _header(title);
-            else
-              return Container();
-            break;
-          default:
-            return Container();
-        }
-      },
-    );
-  }
-
-  Widget _sectionLogged(Future future) {
-    return FutureBuilder<User>(
-      future: Cache().userCache(),
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.done:
-            var user = snapshot.data;
-            if (user.id != null)
-              return _section(future);
-            else
-              return Container();
-            break;
-          default:
-            return Container();
-        }
-      },
     );
   }
 
@@ -132,7 +94,7 @@ class RestaurantsState extends State<Restaurants> {
     );
   }
 
-  Widget _section(Future future) {
+  Widget _section(Future future, double height, bool preference) {
     return FutureBuilder<List<Restaurant>>(
       future: future,
       builder: (context, snapshot) {
@@ -140,43 +102,62 @@ class RestaurantsState extends State<Restaurants> {
           case ConnectionState.done:
             var restaurants = snapshot.data ?? [];
             if (restaurants.isNotEmpty)
-              return _list(restaurants);
+              return _list(restaurants, height, preference);
             else
-              return _empty();
+              return _empty("Sem restaurantes disponíveis", height);
             break;
           default:
-            return Container(
-              height: _height,
-              child: Loader().show(),
-            );
+            return Container(height: height, child: Loader().show());
         }
       },
     );
   }
 
-  Widget _list(List<Restaurant> restaurants) {
+  Widget _sectionLogged(Future future, double height) {
+    return FutureBuilder<User>(
+      future: Cache().userCache(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            var user = snapshot.data;
+            if (user.id != null)
+              return _section(future, height, true);
+            else
+              return _empty("É necessário entrar com uma conta", height);
+            break;
+          default:
+            return Container(height: height, child: Loader().show());
+        }
+      },
+    );
+  }
+
+  Widget _list(List<Restaurant> restaurants, double height, bool preference) {
     return Container(
-      height: _height,
+      height: height,
       child: ScopedModel<RestaurantViewModel>(
         model: this.viewModel,
         child: TableView(
           direction: Axis.horizontal,
           restaurants: restaurants ?? [],
+          preference: preference,
           booking: _booking,
           favorite: _favorite,
+          like: _like,
+          unlike: _unlike,
         ),
       ),
     );
   }
 
-  Widget _empty() {
+  Widget _empty(String text, double height) {
     return Container(
-        height: _height,
+        height: height,
         child: Column(
           children: <Widget>[
             Expanded(child: Container()),
             Icon(Icons.inbox, color: Colors.black26, size: 80),
-            Text("Sem restaurantes disponíveis",
+            Text(text,
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.black26,
@@ -207,7 +188,7 @@ class RestaurantsState extends State<Restaurants> {
 
   Future<List<Restaurant>> _recommendations() async {
     var user = await Cache().userCache();
-    if (user.id == null) return [];
+    if (user.id == null) return null;
     var city = user.cityId;
     var client = user.id;
     var key = "recommendations";
@@ -268,7 +249,9 @@ class RestaurantsState extends State<Restaurants> {
 
   void _updateFavorite(Restaurant restaurant) async {
     var user = await Cache().userCache();
-    if (user.id == null) return;
+    if (user.id == null) {
+      return Alert().error(context, "É necessário entrar com uma conta!");
+    }
     var restaurants = await Cache().restaurantsCache(user.id, "favorites");
     if (restaurants.isEmpty) {
       var result = await this.favorites.favorites(user.id);
@@ -328,7 +311,7 @@ class RestaurantsState extends State<Restaurants> {
   void _createUsage(Restaurant restaurant) async {
     var user = await Cache().userCache();
     if (user.id == null) {
-      Alert().error(context, "Necessário entrar com uma conta!");
+      Alert().error(context, "É necessário entrar com uma conta!");
       return;
     }
     var result = await this.usages.usage(
@@ -346,6 +329,24 @@ class RestaurantsState extends State<Restaurants> {
           Cache().setRestaurants([], user.id, "usages_recommendations");
           Alert().message(context, "$kind com sucesso em $name.");
         });
+        break;
+      default:
+        Alert().error(context, Error.from(code).message);
+        break;
+    }
+  }
+
+  void _addPreference(Restaurant restaurant, int like) async {
+    var user = await Cache().userCache();
+    var code = await this.viewModel.addPreference(
+          user.id,
+          restaurant.id,
+          like,
+        );
+    switch (code) {
+      case 200:
+        var name = restaurant.name;
+        Alert().message(context, "$name adicionado a suas preferências.");
         break;
       default:
         Alert().error(context, Error.from(code).message);
@@ -375,5 +376,13 @@ class RestaurantsState extends State<Restaurants> {
 
   void _favorite(Restaurant restaurant) {
     _updateFavorite(restaurant);
+  }
+
+  void _like(Restaurant restaurant) {
+    _addPreference(restaurant, 1);
+  }
+
+  void _unlike(Restaurant restaurant) {
+    _addPreference(restaurant, 0);
   }
 }

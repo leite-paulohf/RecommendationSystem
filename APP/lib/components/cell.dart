@@ -243,7 +243,7 @@ class _CellState extends State<Cell> {
       padding: EdgeInsets.only(left: 8),
       child: Row(children: <Widget>[
         Icon(Icons.check_circle, color: Colors.lightGreen),
-        Text(" Recomendação aprovada!"),
+        Text(" Aprovado!"),
       ]),
     );
   }
@@ -260,22 +260,26 @@ class _CellState extends State<Cell> {
               Icons.check_circle,
               color: Colors.lightGreen,
             ),
-            onPressed: this.widget.like ?? () {}),
-        Text("Não aprovado:"),
+            onPressed: () {
+              this.widget.like(this.widget.restaurant);
+            }),
+        Text("Reprovado:"),
         IconButton(
             icon: Icon(
               Icons.cancel,
               color: Colors.redAccent,
             ),
-            onPressed: this.widget.unlike ?? () {}),
+            onPressed: () {
+              this.widget.like(this.widget.restaurant);
+            }),
       ]),
     );
   }
 
   Widget _name() {
-    double width = 2 * this.widget.size.width / 3 - 8;
+    double width = this.widget.size.width / 2 - 8;
     return Container(
-        width: width,
+        width: width+28,
         padding: EdgeInsets.all(8),
         child: Align(
           alignment: AlignmentDirectional.centerStart,
@@ -285,9 +289,9 @@ class _CellState extends State<Cell> {
 
   Widget _cuisine() {
     var cuisine = this.widget.restaurant.cuisine.name;
-    double width = this.widget.size.width / 3 - 8;
+    double width = this.widget.size.width / 2 - 8;
     return Container(
-      width: width,
+      width: width-28,
       padding: EdgeInsets.all(8),
       child: Align(
         alignment: AlignmentDirectional.centerEnd,

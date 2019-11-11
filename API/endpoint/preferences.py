@@ -21,6 +21,15 @@ class Preference(Resource):
         data = self.request(query, params)
         return jsonify(data)
 
+    def list(self):
+        query = self.query(Query.preferences.value)
+        params = {"client_id": request.args.get('client_id')}
+        data = self.request(query, params)
+        if 'error' in data:
+            return jsonify(data)
+        else:
+            return self.builder.restaurants(data)
+
     def query(self, file):
         fd = open(file, 'r')
         query = fd.read()

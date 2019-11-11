@@ -27,6 +27,8 @@ abstract class RestaurantInterface {
   Future<Tuple2<int, List<Filter>>> rating();
 
   Future<int> addPreference(int clientId, int restaurantId, int like);
+
+  Future<Tuple2<int, List<Restaurant>>> preferences(int clientId);
 }
 
 class RestaurantService implements RestaurantInterface {
@@ -128,5 +130,12 @@ class RestaurantService implements RestaurantInterface {
     };
     var response = await Service().post('restaurants/preferences', data);
     return response.statusCode;
+  }
+
+  @override
+  Future<Tuple2<int, List<Restaurant>>> preferences(int clientId) async {
+    Map<String, String> data = {'client_id': clientId.toString()};
+    var response = await Service().get('restaurants/preferences', data);
+    return Service().parseRestaurants(response);
   }
 }

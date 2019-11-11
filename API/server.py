@@ -124,8 +124,13 @@ def restaurant(restaurant_id):
 #   PREFERENCES
 
 @app.route('/restaurants/preferences', methods=['POST'])
-def preferences():
+def preference():
     return Preference().add()
+
+
+@app.route('/restaurants/preferences', methods=['GET'])
+def preferences():
+    return Preference().list()
 
 
 #   USAGES

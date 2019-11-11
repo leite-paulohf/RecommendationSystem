@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tcc_app/helper/loader.dart';
 
 class Alert {
   static final Alert _singleton = Alert._internal();
@@ -13,6 +12,7 @@ class Alert {
   void _show(AlertDialog dialog, BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return dialog;
       },

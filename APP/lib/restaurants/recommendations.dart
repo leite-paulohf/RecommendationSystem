@@ -6,7 +6,6 @@ import 'package:tcc_app/components/button.dart';
 import 'package:tcc_app/helper/loader.dart';
 import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/model/restaurant.dart';
-import 'package:tcc_app/model/user.dart';
 import 'package:tcc_app/model/error.dart';
 import 'package:tcc_app/restaurants/viewmodel.dart';
 
@@ -51,7 +50,7 @@ class _RecommendationsState extends State<Recommendations> {
       children: <Widget>[
         Padding(padding: EdgeInsets.only(top: 20)),
         _title("Estamos quase lá!"),
-        _title("Escolha as sugestões que mais agradar"),
+        _title("Aprove ao menos uma sugestão"),
         Padding(padding: EdgeInsets.only(top: 20)),
         Expanded(child: _list(restaurants)),
         _continue()
@@ -79,8 +78,11 @@ class _RecommendationsState extends State<Recommendations> {
       child: TableView(
         direction: Axis.vertical,
         restaurants: restaurants,
-        booking: _preference,
-        favorite: _preference,
+        preference: true,
+        booking: () {},
+        favorite: () {},
+        like: _like,
+        unlike: () {},
       ),
     );
   }
@@ -119,8 +121,7 @@ class _RecommendationsState extends State<Recommendations> {
     }
   }
 
-  void _addPreference(Restaurant restaurant) async {
-    var like = 1;
+  void _addPreference(Restaurant restaurant, int like) async {
     var user = await Cache().userCache();
     var code = await this.widget.viewModel.addPreference(
           user.id,
@@ -131,7 +132,7 @@ class _RecommendationsState extends State<Recommendations> {
       case 200:
         this.widget.viewModel.preferences.add(restaurant);
         var name = restaurant.name;
-        Alert().message(context, "$name adicionado a suas preferências.");
+        Alert().message(context, "Recomendação aprovada: $name");
         break;
       default:
         Alert().error(context, Error.from(code).message);
@@ -139,7 +140,7 @@ class _RecommendationsState extends State<Recommendations> {
     }
   }
 
-  void _preference(Restaurant restaurant) {
-    _addPreference(restaurant);
+  void _like(Restaurant restaurant) {
+    _addPreference(restaurant, 1);
   }
 }
