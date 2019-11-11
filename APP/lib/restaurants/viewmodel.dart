@@ -10,6 +10,8 @@ class RestaurantViewModel extends Model {
 
   RestaurantViewModel({@required this.interface});
 
+  List<Restaurant> preferences = [];
+
   List<Filter> moments = [];
   List<Filter> cuisines = [];
   List<Filter> chairs = [];
@@ -88,5 +90,9 @@ class RestaurantViewModel extends Model {
 
   Future<Tuple2<int, List<Filter>>> ratingAPI() async {
     return await this.interface.rating();
+  }
+
+  Future<int> addPreference(int clientId, int restaurantId, int like) async {
+    return await this.interface.addPreference(clientId, restaurantId, like);
   }
 }

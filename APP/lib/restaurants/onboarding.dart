@@ -46,7 +46,7 @@ class _OnBoardingState extends State<OnBoarding> {
         _header("Qual é a sua culinária favorita?"),
         _selector(
           "CULINÁRIAS",
-          _filters(this.viewModel.cuisinesAPI(), "cuisines"),
+          _cuisines(),
           this.viewModel.cuisines,
           this.viewModel.cuisine,
           this.viewModel.setCuisine,
@@ -54,7 +54,7 @@ class _OnBoardingState extends State<OnBoarding> {
         _header("Deseja conhecer restaurantes a partir de qual avaliação?"),
         _selector(
           "AVALIAÇÕES",
-          _filters(this.viewModel.ratingAPI(), "rating"),
+          _ratings(),
           this.viewModel.ratings,
           this.viewModel.rating,
           this.viewModel.setRating,
@@ -62,7 +62,7 @@ class _OnBoardingState extends State<OnBoarding> {
         _header("Qual é o valor médio que deseja gastar em um restaurante?"),
         _selector(
           "VALORES",
-          _filters(this.viewModel.pricesAPI(), "prices"),
+          _prices(),
           this.viewModel.prices,
           this.viewModel.price,
           this.viewModel.setPrice,
@@ -70,7 +70,7 @@ class _OnBoardingState extends State<OnBoarding> {
         _header("Constuma sair para comer com quantas pessoas?"),
         _selector(
           "PESSOAS NA MESA",
-          _filters(this.viewModel.chairsAPI(), "chairs"),
+          _chairs(),
           this.viewModel.chairs,
           this.viewModel.chair,
           this.viewModel.setChair,
@@ -78,7 +78,7 @@ class _OnBoardingState extends State<OnBoarding> {
         _header("Qual ocasião mais combina com seu perfil?"),
         _selector(
           "OCASIÕES",
-          _filters(this.viewModel.momentsAPI(), "moments"),
+          _moments(),
           this.viewModel.moments,
           this.viewModel.moment,
           this.viewModel.setMoment,
@@ -127,7 +127,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   _showPicker(filters, update);
                 });
           default:
-            return Button(label: "CARREGANDO...", submitted: () {});
+            return Button(label: title, submitted: () {});
         }
       },
     );
@@ -208,14 +208,78 @@ class _OnBoardingState extends State<OnBoarding> {
     }));
   }
 
-  Future<List<Filter>> _filters(Future future, String key) async {
-    var filters = await Cache().filtersCache(key);
-    if (filters.isNotEmpty) return filters;
-    Tuple2<int, List<Filter>> result = await future;
+  Future<List<Filter>> _moments() async {
+    var moments = await Cache().filtersCache("moments");
+    if (moments.isNotEmpty) return moments;
+    Tuple2<int, List<Filter>> result = await this.viewModel.momentsAPI();
     var code = result.item1;
     switch (code) {
       case 200:
-        Cache().setFilters(result.item2, key);
+        Cache().setFilters(result.item2, "moments");
+        return result.item2;
+        break;
+      default:
+        Alert().error(context, Error.from(code).message);
+        return [];
+    }
+  }
+
+  Future<List<Filter>> _cuisines() async {
+    var cuisines = await Cache().filtersCache("cuisines");
+    if (cuisines.isNotEmpty) return cuisines;
+    Tuple2<int, List<Filter>> result = await this.viewModel.cuisinesAPI();
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        Cache().setFilters(result.item2, "cuisines");
+        return result.item2;
+        break;
+      default:
+        Alert().error(context, Error.from(code).message);
+        return [];
+    }
+  }
+
+  Future<List<Filter>> _chairs() async {
+    var chairs = await Cache().filtersCache("chairs");
+    if (chairs.isNotEmpty) return chairs;
+    Tuple2<int, List<Filter>> result = await this.viewModel.chairsAPI();
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        Cache().setFilters(result.item2, "chairs");
+        return result.item2;
+        break;
+      default:
+        Alert().error(context, Error.from(code).message);
+        return [];
+    }
+  }
+
+  Future<List<Filter>> _prices() async {
+    var prices = await Cache().filtersCache("prices");
+    if (prices.isNotEmpty) return prices;
+    Tuple2<int, List<Filter>> result = await this.viewModel.pricesAPI();
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        Cache().setFilters(result.item2, "prices");
+        return result.item2;
+        break;
+      default:
+        Alert().error(context, Error.from(code).message);
+        return [];
+    }
+  }
+
+  Future<List<Filter>> _ratings() async {
+    var ratings = await Cache().filtersCache("ratings");
+    if (ratings.isNotEmpty) return ratings;
+    Tuple2<int, List<Filter>> result = await this.viewModel.ratingAPI();
+    var code = result.item1;
+    switch (code) {
+      case 200:
+        Cache().setFilters(result.item2, "ratings");
         return result.item2;
         break;
       default:

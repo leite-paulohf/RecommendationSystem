@@ -11,6 +11,7 @@ from endpoint.favorite import Favorite
 from endpoint.restaurants import Restaurants
 from endpoint.usages import Usages
 from endpoint.recommendation import Recommendation
+from endpoint.preferences import Preference
 
 app = Flask(__name__)
 
@@ -118,6 +119,13 @@ def restaurants():
 @app.route('/restaurant/<restaurant_id>', methods=['GET'])
 def restaurant(restaurant_id):
     return Restaurants().show(restaurant_id)
+
+
+#   PREFERENCES
+
+@app.route('/restaurants/preferences', methods=['POST'])
+def preferences():
+    return Preference().add()
 
 
 #   USAGES

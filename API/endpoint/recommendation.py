@@ -23,6 +23,8 @@ class Recommendation(Resource):
         if onboarding.empty:
             return jsonify({'data': []})
         restaurants = self.restaurants(request)
+        columns = ['id', 'average_cost', 'average_rating', 'chairs', 'cuisine_id', 'moment_id']
+        restaurants = restaurants[columns]
         if restaurants.empty:
             return jsonify({'data': []})
         recommended = self.k_means_round(onboarding, restaurants)
@@ -63,8 +65,12 @@ class Recommendation(Resource):
         return recommendations
 
     def k_means_round(self, personal, restaurants):
-        base = self.normalize(self.features(personal))
-        training = self.normalize(self.features(restaurants))
+        personal_features = self.features(personal)
+        restaurants_features = self.features(restaurants)
+        data_frame = personal_features.append(restaurants_features)
+        normalized = self.normalize(data_frame)
+        base = normalized.iloc[:len(personal)]
+        training = normalized.iloc[len(personal):]
         n_clusters = self.elbow(training)
         try:
             recommended = self.k_means(base, training, n_clusters)
@@ -107,22 +113,11 @@ class Recommendation(Resource):
 
     def onboarding(self, request):
         data = [{'id': 0,
-                 'accept_holidays': 0,
                  'average_cost': request.args.get('price'),
                  'average_rating': request.args.get('rating'),
-                 'benefits': 0,
-                 'category_id': 0,
                  'chairs': request.args.get('chairs'),
                  'cuisine_id': request.args.get('cuisine'),
-                 'discount': 0,
-                 'has_wifi': 0,
-                 'kind_id': 0,
-                 'latitude': 0,
-                 'longitude': 0,
-                 'moment_id': request.args.get('moment'),
-                 'neighborhood_id': 0,
-                 'restrictions': 0,
-                 'offer_id': 0}]
+                 'moment_id': request.args.get('moment')}]
         return pd.DataFrame(data)
 
     def preferences(self, request):

@@ -19,6 +19,7 @@ class Query(Enum):
     remove_favorite = 'query/api/remove_favorite.sql'
     restaurant = 'query/api/restaurant.sql'
     restaurants = 'query/api/restaurants.sql'
+    add_preference = 'query/api/add_preference.sql'
     recommendations = 'query/api/recommendations.sql'
 
 

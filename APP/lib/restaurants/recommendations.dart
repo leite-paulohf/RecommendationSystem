@@ -51,7 +51,7 @@ class _RecommendationsState extends State<Recommendations> {
       children: <Widget>[
         Padding(padding: EdgeInsets.only(top: 20)),
         _title("Estamos quase lá!"),
-        _title("Escolha 5 restaurantes sugeridos"),
+        _title("Escolha as sugestões que mais agradar"),
         Padding(padding: EdgeInsets.only(top: 20)),
         Expanded(child: _list(restaurants)),
         _continue()
@@ -79,8 +79,8 @@ class _RecommendationsState extends State<Recommendations> {
       child: TableView(
         direction: Axis.vertical,
         restaurants: restaurants,
-        booking: _favorite,
-        favorite: _favorite,
+        booking: _preference,
+        favorite: _preference,
       ),
     );
   }
@@ -91,9 +91,9 @@ class _RecommendationsState extends State<Recommendations> {
       child: Button(
         label: "SALVAR PREFERÊNCIAS",
         submitted: () {
-          setState(() {
-            Cache().setUser(User());
-          });
+          var preferences = this.widget.viewModel.preferences;
+          if (preferences.isEmpty)
+            Alert().error(context, "Escolha ao menos um restaurante.");
         },
       ),
     );
@@ -118,5 +118,27 @@ class _RecommendationsState extends State<Recommendations> {
     }
   }
 
-  void _favorite(Restaurant restaurant) {}
+  void _addPreference(Restaurant restaurant) async {
+    var like = 1;
+    var user = await Cache().userCache();
+    var code = await this.widget.viewModel.addPreference(
+          user.id,
+          restaurant.id,
+          like,
+        );
+    switch (code) {
+      case 200:
+        this.widget.viewModel.preferences.add(restaurant);
+        var name = restaurant.name;
+        Alert().message(context, "$name adicionado a suas preferências.");
+        break;
+      default:
+        Alert().error(context, Error.from(code).message);
+        break;
+    }
+  }
+
+  void _preference(Restaurant restaurant) {
+    _addPreference(restaurant);
+  }
 }

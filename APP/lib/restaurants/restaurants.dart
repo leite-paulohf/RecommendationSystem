@@ -14,7 +14,6 @@ import 'package:tcc_app/service/restaurant.dart';
 import 'package:tcc_app/model/error.dart';
 import 'package:tcc_app/service/usages.dart';
 import 'package:tcc_app/usages/viewmodel.dart';
-import 'package:tuple/tuple.dart';
 
 class Restaurants extends StatefulWidget {
   Restaurants({Key key}) : super(key: key);
@@ -32,14 +31,12 @@ class RestaurantsState extends State<Restaurants> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Tuple2<User, List<Restaurant>>>(
-      future: _needsOnBoarding(),
+    return FutureBuilder<List<Restaurant>>(
+      future: _recommendations(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            var user = snapshot.data.item1;
-            var favorites = snapshot.data.item2;
-            if (user.id != null && favorites.isEmpty)
+            if (snapshot.data.isEmpty)
               return OnBoarding();
             else
               return Scaffold(
@@ -220,6 +217,7 @@ class RestaurantsState extends State<Restaurants> {
     var code = result.item1;
     switch (code) {
       case 200:
+        Cache().setRestaurants([], client, "onboarding");
         Cache().setRestaurants(result.item2, client, key);
         return result.item2;
       default:
@@ -265,24 +263,6 @@ class RestaurantsState extends State<Restaurants> {
       default:
         Alert().error(context, Error.from(code).message);
         return [];
-    }
-  }
-
-  Future<Tuple2<User, List<Restaurant>>> _needsOnBoarding() async {
-    var user = await Cache().userCache();
-    if (user.id == null) return Tuple2<User, List<Restaurant>>(user, []);
-    var restaurants = await Cache().restaurantsCache(user.id, "favorites");
-    if (restaurants.isNotEmpty)
-      return Tuple2<User, List<Restaurant>>(user, restaurants);
-    var result = await this.favorites.favorites(user.id);
-    var code = result.item1;
-    switch (code) {
-      case 200:
-        Cache().setRestaurants(result.item2, user.id, "favorites");
-        return Tuple2<User, List<Restaurant>>(user, result.item2);
-      default:
-        Alert().error(context, Error.from(code).message);
-        return Tuple2<User, List<Restaurant>>(user, []);
     }
   }
 
