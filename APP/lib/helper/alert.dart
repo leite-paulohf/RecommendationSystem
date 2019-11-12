@@ -22,12 +22,18 @@ class Alert {
   void message(BuildContext context, String text) {
     var dialog = AlertDialog(
         title: Row(
-          children: <Widget>[Icon(Icons.info, size: 20), Text(" Aplicação")],
+          children: <Widget>[
+            Icon(Icons.info, size: 20, color: Colors.green),
+            Text(" Sucesso!", style: TextStyle(color: Colors.green))
+          ],
         ),
         content: Text(text),
         actions: <Widget>[
           FlatButton(
-            child: Text("OK"),
+            child: Text(
+              "OK",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             textColor: Colors.teal,
             onPressed: () {
               Navigator.of(context).pop();
@@ -42,14 +48,17 @@ class Alert {
     var dialog = AlertDialog(
         title: Row(
           children: <Widget>[
-            Icon(Icons.report_problem, size: 20),
-            Text(" Atenção!")
+            Icon(Icons.report_problem, size: 20, color: Colors.deepOrange),
+            Text(" Atenção!", style: TextStyle(color: Colors.deepOrange))
           ],
         ),
         content: Text(text),
         actions: <Widget>[
           FlatButton(
-            child: Text("OK"),
+            child: Text(
+              "OK",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             textColor: Colors.teal,
             onPressed: () {
               Navigator.of(context).pop();
@@ -65,26 +74,31 @@ class Alert {
     var dialog = AlertDialog(
         title: Row(
           children: <Widget>[
-            Icon(Icons.restaurant, size: 20),
-            Text(
-              " $title",
-              overflow: TextOverflow.fade,
-              maxLines: 1,
-              softWrap: false,
-            )
+            Icon(Icons.restaurant, size: 20, color: Colors.teal),
+            Text(" $title",
+                style: TextStyle(color: Colors.teal),
+                overflow: TextOverflow.fade,
+                maxLines: 1,
+                softWrap: false)
           ],
         ),
         content: Text(text),
         actions: <Widget>[
           FlatButton(
-            child: Text("CANCELAR"),
+            child: Text(
+              "CANCELAR",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             textColor: Colors.teal,
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           FlatButton(
-            child: Text("CONCLUIR"),
+            child: Text(
+              "CONCLUIR",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             textColor: Colors.teal,
             onPressed: function,
           )

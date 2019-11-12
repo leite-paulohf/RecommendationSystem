@@ -252,24 +252,26 @@ class _CellState extends State<Cell> {
       height: 48,
       width: this.widget.size.width - 16,
       child: Row(children: <Widget>[
-        IconButton(
-            icon: Icon(
-              Icons.assignment_turned_in,
-              color: Colors.green,
-            ),
-            onPressed: () {
-              this.widget.like(this.widget.restaurant);
-            }),
-        Text("gostei"),
-        IconButton(
-            icon: Icon(
-              Icons.assignment_late,
-              color: Colors.deepOrange,
-            ),
-            onPressed: () {
-              this.widget.unlike(this.widget.restaurant);
-            }),
-        Text("remover"),
+        FlatButton.icon(
+          onPressed: () {
+            this.widget.like(this.widget.restaurant);
+          },
+          icon: Icon(
+            Icons.assignment_turned_in,
+            color: Colors.green,
+          ),
+          label: Text("Gostei"),
+        ),
+        FlatButton.icon(
+          onPressed: () {
+            this.widget.unlike(this.widget.restaurant);
+          },
+          icon: Icon(
+            Icons.assignment_late,
+            color: Colors.deepOrange,
+          ),
+          label: Text("Remover"),
+        ),
       ]),
     );
   }

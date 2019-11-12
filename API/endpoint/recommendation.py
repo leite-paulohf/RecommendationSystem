@@ -39,6 +39,7 @@ class Recommendation(Resource):
         if restaurants.empty:
             return jsonify({'data': []})
         recommended = self.k_means_round(preferences, restaurants)
+        recommended.append(preferences['id'])
         recommendations = self.recommendations(tuple(recommended))
         return recommendations
 
@@ -75,7 +76,7 @@ class Recommendation(Resource):
         try:
             recommended = self.k_means(base, training, n_clusters)
             restaurants = restaurants.loc[recommended].reset_index(drop=True)
-            if len(restaurants) <= 25:
+            if len(restaurants) <= 50:
                 return restaurants['id']
             if n_clusters <= 1:
                 return []

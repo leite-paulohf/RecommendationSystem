@@ -71,13 +71,13 @@ class RestaurantsState extends State<Restaurants> {
       children: <Widget>[
         Padding(padding: EdgeInsets.only(top: 8)),
         _header("RESTAURANTES"),
-        _section(_restaurants(), 257, false),
+        _section(_restaurants(), 258, false),
         _header("RESTAURANTES RECOMENDADOS"),
-        _sectionLogged(_recommendations(), 305),
+        _sectionLogged(_recommendations(), 306),
         _header("RECOMENDAÇÕES: SUA PRÓXIMA RESERVA"),
-        _sectionLogged(_usagesRecommendations(), 305),
+        _sectionLogged(_usagesRecommendations(), 306),
         _header("RECOMENDAÇÕES: SEU PRÓXIMO FAVORITO"),
-        _sectionLogged(_favoritesRecommendations(), 305),
+        _sectionLogged(_favoritesRecommendations(), 306),
       ],
     );
   }
