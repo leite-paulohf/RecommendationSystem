@@ -11,18 +11,12 @@ class RestaurantViewModel extends Model {
   RestaurantViewModel({@required this.interface});
 
   List<Restaurant> preferences = [];
-
   List<Filter> moments = [];
   List<Filter> cuisines = [];
   List<Filter> chairs = [];
   List<Filter> prices = [];
   List<Filter> ratings = [];
-
-  Filter moment;
-  Filter cuisine;
-  Filter chair;
-  Filter price;
-  Filter rating;
+  Filter moment, cuisine, chair, price, rating;
 
   void setMoment(Filter moment) {
     this.moment = moment;

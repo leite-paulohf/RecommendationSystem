@@ -30,13 +30,12 @@ class RestaurantsState extends State<Restaurants> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Restaurant>>(
-      future: _recommendations(),
+    return FutureBuilder<bool>(
+      future: _isOnboarding(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            var isOnBoarding = snapshot.data?.isEmpty ?? false;
-            if (isOnBoarding)
+            if (snapshot.data)
               return OnBoarding();
             else
               return Scaffold(
@@ -167,6 +166,13 @@ class RestaurantsState extends State<Restaurants> {
         ));
   }
 
+  Future<bool> _isOnboarding() async {
+    var user = await Cache().userCache();
+    if (user.id == null) return false;
+    var isOnboarding = await Cache().flag(user.id, "isOnboarding");
+    return isOnboarding;
+  }
+
   Future<List<Restaurant>> _restaurants() async {
     var user = await Cache().userCache();
     var city = user.cityId ?? 10;
@@ -190,16 +196,14 @@ class RestaurantsState extends State<Restaurants> {
     var user = await Cache().userCache();
     if (user.id == null) return null;
     var city = user.cityId;
-    var client = user.id;
     var key = "recommendations";
-    var restaurants = await Cache().restaurantsCache(client, key);
+    var restaurants = await Cache().restaurantsCache(user.id, key);
     if (restaurants.isNotEmpty) return restaurants;
-    var result = await this.viewModel.recommendationsAPI(city, client);
+    var result = await this.viewModel.recommendationsAPI(city, user.id);
     var code = result.item1;
     switch (code) {
       case 200:
-        Cache().setRestaurants([], client, "onboarding");
-        Cache().setRestaurants(result.item2, client, key);
+        Cache().setRestaurants(result.item2, user.id, key);
         return result.item2;
       default:
         Alert().error(context, Error.from(code).message);
@@ -346,11 +350,11 @@ class RestaurantsState extends State<Restaurants> {
     switch (code) {
       case 200:
         setState(() {
+          Cache().setRestaurants([], user.id, "preferences");
           Cache().setRestaurants([], user.id, "recommendations");
           var name = restaurant.name;
           if (like == 1)
-            Alert()
-                .message(context, "$name será usado para novas recomendações.");
+            Alert().message(context, "$name será usado em suas recomendações.");
           else
             Alert().message(context, "$name não será mais recomendado.");
         });

@@ -116,35 +116,35 @@ class _CellState extends State<Cell> {
     switch (this.widget.restaurant.rating.round()) {
       case 1:
         return Row(children: <Widget>[
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
           Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
         ]);
       case 2:
         return Row(children: <Widget>[
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
           Icon(Icons.star, color: Colors.orangeAccent),
           Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
         ]);
       case 3:
         return Row(children: <Widget>[
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
           Icon(Icons.star_border, color: Colors.orangeAccent),
           Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
         ]);
       case 4:
         return Row(children: <Widget>[
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
           Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
         ]);
       case 5:
         return Row(children: <Widget>[
@@ -242,8 +242,7 @@ class _CellState extends State<Cell> {
       width: this.widget.size.width - 16,
       padding: EdgeInsets.only(left: 8),
       child: Row(children: <Widget>[
-        Icon(Icons.check_circle, color: Colors.lightGreen),
-        Text(" Aprovado!"),
+        Icon(Icons.beenhere, color: Colors.teal),
       ]),
     );
   }
@@ -252,26 +251,25 @@ class _CellState extends State<Cell> {
     return Container(
       height: 48,
       width: this.widget.size.width - 16,
-      padding: EdgeInsets.only(left: 8),
       child: Row(children: <Widget>[
-        Text("Aprovado:"),
         IconButton(
             icon: Icon(
-              Icons.check_circle,
-              color: Colors.lightGreen,
+              Icons.assignment_turned_in,
+              color: Colors.green,
             ),
             onPressed: () {
               this.widget.like(this.widget.restaurant);
             }),
-        Text("Reprovado:"),
+        Text("gostei"),
         IconButton(
             icon: Icon(
-              Icons.cancel,
-              color: Colors.redAccent,
+              Icons.assignment_late,
+              color: Colors.deepOrange,
             ),
             onPressed: () {
               this.widget.unlike(this.widget.restaurant);
             }),
+        Text("remover"),
       ]),
     );
   }
@@ -279,7 +277,7 @@ class _CellState extends State<Cell> {
   Widget _name() {
     double width = this.widget.size.width / 2 - 8;
     return Container(
-        width: width+28,
+        width: width + 28,
         padding: EdgeInsets.all(8),
         child: Align(
           alignment: AlignmentDirectional.centerStart,
@@ -291,7 +289,7 @@ class _CellState extends State<Cell> {
     var cuisine = this.widget.restaurant.cuisine.name;
     double width = this.widget.size.width / 2 - 8;
     return Container(
-      width: width-28,
+      width: width - 28,
       padding: EdgeInsets.all(8),
       child: Align(
         alignment: AlignmentDirectional.centerEnd,

@@ -50,7 +50,7 @@ class _RecommendationsState extends State<Recommendations> {
       children: <Widget>[
         Padding(padding: EdgeInsets.only(top: 20)),
         _title("Estamos quase lá!"),
-        _title("Aprove ao menos uma sugestão"),
+        _title("Escolha os restaurantes que mais agrada"),
         Padding(padding: EdgeInsets.only(top: 20)),
         Expanded(child: _list(restaurants)),
         _continue()
@@ -79,10 +79,16 @@ class _RecommendationsState extends State<Recommendations> {
         direction: Axis.vertical,
         restaurants: restaurants,
         preference: true,
-        booking: () {},
-        favorite: () {},
+        booking: () {
+          Alert().error(context, "Ação não permitida neste momento!");
+        },
+        favorite: () {
+          Alert().error(context, "Ação não permitida neste momento!");
+        },
         like: _like,
-        unlike: () {},
+        unlike: () {
+          Alert().error(context, "Ação não permitida neste momento!");
+        },
       ),
     );
   }
@@ -130,9 +136,14 @@ class _RecommendationsState extends State<Recommendations> {
         );
     switch (code) {
       case 200:
-        this.widget.viewModel.preferences.add(restaurant);
-        var name = restaurant.name;
-        Alert().message(context, "Recomendação aprovada: $name");
+        setState(() {
+          Cache().setFlag(user.id, "isOnboarding");
+          Cache().setRestaurants([], user.id, "preferences");
+          var preferences = this.widget.viewModel.preferences;
+          preferences.add(restaurant);
+          var name = restaurant.name;
+          Alert().message(context, "$name será usado em suas recomendações.");
+        });
         break;
       default:
         Alert().error(context, Error.from(code).message);

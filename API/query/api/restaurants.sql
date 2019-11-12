@@ -33,4 +33,4 @@ inner join categories on categories.id == restaurants.category_id
 inner join moments on moments.id == restaurants.moment_id
 inner join offers on offers.id == restaurants.offer_id
 where restaurants.city_id == :city_id
-limit 25
+limit 300

@@ -17,7 +17,7 @@ class Service {
 
   Service._internal();
 
-  final _base = '42588962.ngrok.io';
+  final _base = 'ceca07b3.ngrok.io';
   final _lock = Lock();
 
   Future<http.Response> get(String path, Map<String, String> data) async {

@@ -101,7 +101,7 @@ class Recommendation(Resource):
         return normalized_data_frame
 
     def elbow(self, features):
-        size = list(range(1, 11))
+        size = list(range(1, len(features.columns)))
         variations = []
         for clusters in size:
             k_means = KMeans(n_clusters=clusters, init='random')
@@ -109,7 +109,7 @@ class Recommendation(Resource):
             variations.append(k_means.inertia_)
         average = np.average(variations)
         variations = list(filter(lambda variation: variation > average, variations))
-        return len(variations)
+        return len(variations)+1
 
     def onboarding(self, request):
         data = [{'id': 0,

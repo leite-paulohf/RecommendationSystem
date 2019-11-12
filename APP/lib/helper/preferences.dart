@@ -100,4 +100,25 @@ class Cache {
       await cache.setString(path, data);
     });
   }
+
+  Future<bool> flag(int client, String key) async {
+    return await _lock.synchronized(() async {
+      if (client == null) return false;
+      var clientId = client.toString();
+      var path = clientId + "/" + key;
+      var cache = await SharedPreferences.getInstance();
+      var data = cache.get(path);
+      return data != "true";
+    });
+  }
+
+  void setFlag(int client, String key) async {
+    return await _lock.synchronized(() async {
+      if (client == null) return false;
+      var clientId = client.toString();
+      var path = clientId + "/" + key;
+      var cache = await SharedPreferences.getInstance();
+      await cache.setString(path, "true");
+    });
+  }
 }

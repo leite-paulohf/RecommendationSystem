@@ -33,7 +33,6 @@ class TableView extends StatefulWidget {
 class _TableViewState extends State<TableView> {
   final restaurants = RestaurantViewModel(interface: RestaurantService());
   final favorites = FavoritesViewModel(interface: FavoritesService());
-  final cache = Cache();
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +75,12 @@ class _TableViewState extends State<TableView> {
   }
 
   Future<List<int>> _favorites() async {
-    var user = await this.cache.userCache();
+    var user = await Cache().userCache();
     if (user.id == null) return [];
-    var restaurants = await this.cache.restaurantsCache(user.id, "favorites");
+    var restaurants = await Cache().restaurantsCache(user.id, "favorites");
     if (restaurants.isEmpty) {
       var result = await this.favorites.favorites(user.id);
-      this.cache.setRestaurants(result.item2, user.id, "favorites");
+      Cache().setRestaurants(result.item2, user.id, "favorites");
       restaurants = result.item2;
     }
 
@@ -93,12 +92,12 @@ class _TableViewState extends State<TableView> {
   }
 
   Future<List<int>> _preferences() async {
-    var user = await this.cache.userCache();
+    var user = await Cache().userCache();
     if (user.id == null) return [];
-    var restaurants = await this.cache.restaurantsCache(user.id, "preferences");
+    var restaurants = await Cache().restaurantsCache(user.id, "preferences");
     if (restaurants.isEmpty) {
       var result = await this.restaurants.preferencesAPI(user.id);
-      this.cache.setRestaurants(result.item2, user.id, "preferences");
+      Cache().setRestaurants(result.item2, user.id, "preferences");
       restaurants = result.item2;
     }
 
