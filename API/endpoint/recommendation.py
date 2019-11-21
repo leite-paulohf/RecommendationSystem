@@ -76,10 +76,8 @@ class Recommendation(Resource):
         try:
             recommended = self.k_means(base, training, n_clusters)
             restaurants = restaurants.loc[recommended].reset_index(drop=True)
-            if len(restaurants) <= 50:
+            if len(restaurants) <= 50 or n_clusters <= 1:
                 return restaurants['id']
-            if n_clusters <= 1:
-                return []
             return self.k_means_round(personal, restaurants)
         except:
             return restaurants['id']
