@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:tcc_app/authentication/profile.dart';
 import 'package:tcc_app/helper/loader.dart';
+import 'package:tcc_app/helper/preferences.dart';
 import 'package:tcc_app/helper/validator.dart';
 import 'package:tcc_app/model/user.dart';
 import 'login.dart';
@@ -24,7 +25,6 @@ class _AuthenticationState extends State<Authentication> {
   final _key = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final viewModel = AuthenticationViewModel(interface: UserService());
-
   var _loading = false;
 
   set loading(bool value) {
@@ -35,10 +35,28 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _key,
-      backgroundColor: Colors.black12,
-      body: Loader().body(_loading, _body()),
+    return FutureBuilder<User>(
+      future: Cache().userCache(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            if (snapshot.data.id != null)
+              return Profile(viewModel: this.viewModel);
+            return Scaffold(
+              key: _key,
+              backgroundColor: Colors.grey.shade200,
+              appBar: AppBar(title: Text("Autenticação"), centerTitle: true),
+              body: Loader().body(_loading, _body()),
+            );
+          default:
+            return Scaffold(
+              key: _key,
+              backgroundColor: Colors.grey.shade200,
+              appBar: AppBar(),
+              body: Loader().show(),
+            );
+        }
+      },
     );
   }
 
@@ -48,37 +66,24 @@ class _AuthenticationState extends State<Authentication> {
   }
 
   Widget _body() {
-    return FutureBuilder<User>(
-      future: this.viewModel.getUser(),
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.done:
-            if (snapshot.data.id != null)
-              return Profile(viewModel: this.viewModel);
-            else
-              return GestureDetector(
-                  onTap: () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
-                  child: ScopedModel<AuthenticationViewModel>(
-                    model: this.viewModel,
-                    child: Form(
-                        key: _formKey,
-                        child: ListView(
-                          padding: EdgeInsets.all(20),
-                          children: <Widget>[
-                            _header(),
-                            _form(),
-                            Padding(padding: EdgeInsets.only(top: 20)),
-                            _button(),
-                          ],
-                        )),
-                  ));
-            break;
-          default:
-            return Loader().show();
-        }
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
       },
+      child: ScopedModel<AuthenticationViewModel>(
+        model: this.viewModel,
+        child: Form(
+            key: _formKey,
+            child: ListView(
+              padding: EdgeInsets.all(20),
+              children: <Widget>[
+                _header(),
+                _formDocument(),
+                Padding(padding: EdgeInsets.only(top: 20)),
+                _button(),
+              ],
+            )),
+      ),
     );
   }
 
@@ -89,30 +94,32 @@ class _AuthenticationState extends State<Authentication> {
     );
   }
 
-  Widget _form() {
+  Widget _formDocument() {
     return TextFormField(
         controller: MaskedTextController(
-            text: this.viewModel.document, mask: '000.000.000-00'),
+            text: this.viewModel.user.cpf.toString(), mask: '000.000.000-00'),
         keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-            labelText: "Document", border: OutlineInputBorder()),
-        onFieldSubmitted: (document) {
-          this.viewModel.document = document;
+        decoration:
+            InputDecoration(labelText: "CPF", border: OutlineInputBorder()),
+        onFieldSubmitted: (cpf) {
+          cpf = cpf.replaceAll('.', '').replaceAll('-', '');
+          this.viewModel.user.cpf = int.parse(cpf);
           if (_formKey.currentState.validate()) {
             _search();
           }
         },
-        validator: (document) {
-          this.viewModel.document = document;
-          if (!CPFValidator.isValid(document)) {
-            return 'Type a valid document!';
+        validator: (cpf) {
+          cpf = cpf.replaceAll('.', '').replaceAll('-', '');
+          this.viewModel.user.cpf = int.parse(cpf);
+          if (!CPFValidator.isValid(cpf)) {
+            return 'Digite um CPF válido!';
           }
         });
   }
 
   Widget _button() {
     return Button(
-        label: "CONTINUE",
+        label: "CONTINUAR",
         submitted: () {
           if (_formKey.currentState.validate()) {
             _search();
@@ -131,7 +138,7 @@ class _AuthenticationState extends State<Authentication> {
       case 404:
         return _pushRegister();
       default:
-        Alert.show(context, Error.from(code).message);
+        Alert().error(context, Error.from(code).message);
     }
   }
 

@@ -1,10 +1,17 @@
 from flask import Flask
 from flask_restful import Api
+from endpoint.cities import Cities
+from endpoint.moments import Moments
+from endpoint.chairs import Chairs
+from endpoint.rating import Rating
+from endpoint.prices import Prices
+from endpoint.cuisines import Cuisines
 from endpoint.client import Client
 from endpoint.favorite import Favorite
 from endpoint.restaurants import Restaurants
 from endpoint.usages import Usages
 from endpoint.recommendation import Recommendation
+from endpoint.preferences import Preference
 
 app = Flask(__name__)
 
@@ -14,6 +21,48 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def root():
     return "Server Online"
+
+
+#   CITY
+
+@app.route('/cities', methods=['GET'])
+def cities():
+    return Cities().list()
+
+
+#	MOMENTS
+
+@app.route('/moments', methods=['GET'])
+def moments():
+    return Moments().list()
+
+
+#	CHAIRS
+
+@app.route('/chairs', methods=['GET'])
+def chairs():
+    return Chairs().list()
+
+
+#	RATING
+
+@app.route('/rating', methods=['GET'])
+def rating():
+    return Rating().list()
+
+
+#	PRICES
+
+@app.route('/prices', methods=['GET'])
+def prices():
+    return Prices().list()
+
+
+#	CUISINES
+
+@app.route('/cuisines', methods=['GET'])
+def cuisines():
+    return Cuisines().list()
 
 
 #   CLIENT
@@ -26,6 +75,11 @@ def search():
 @app.route('/client/register', methods=['POST'])
 def register():
     return Client().register()
+
+
+@app.route('/client/update', methods=['PUT'])
+def update():
+    return Client().update()
 
 
 @app.route('/client/login', methods=['GET'])
@@ -67,6 +121,18 @@ def restaurant(restaurant_id):
     return Restaurants().show(restaurant_id)
 
 
+#   PREFERENCES
+
+@app.route('/restaurants/preferences', methods=['POST'])
+def preference():
+    return Preference().add()
+
+
+@app.route('/restaurants/preferences', methods=['GET'])
+def preferences():
+    return Preference().list()
+
+
 #   USAGES
 
 @app.route('/usage', methods=['POST'])
@@ -80,6 +146,16 @@ def usages():
 
 
 #   RECOMMENDATIONS
+
+@app.route('/restaurants/onboarding', methods=['GET'])
+def onboarding():
+    return Recommendation().by_onboarding()
+
+
+@app.route('/restaurants/recommendations', methods=['GET'])
+def recommendations():
+    return Recommendation().by_preferences()
+
 
 @app.route('/usages/recommendations', methods=['GET'])
 def usages_recommendations():

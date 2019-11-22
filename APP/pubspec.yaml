@@ -25,6 +25,8 @@ dependencies:
   flutter_masked_text: ^0.8.0
   flutter_spinkit: ^4.0.0
   shared_preferences: ^0.5.3+4
+  synchronized: ^2.1.0+1
+  flutter_picker: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -44,7 +46,70 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/login.jpg
+    - assets/cuisine-1.jpg
+    - assets/cuisine-2.jpg
+    - assets/cuisine-3.jpg
+    - assets/cuisine-4.jpg
+    - assets/cuisine-5.jpg
+    - assets/cuisine-6.jpg
+    - assets/cuisine-7.jpg
+    - assets/cuisine-8.jpg
+    - assets/cuisine-9.jpg
+    - assets/cuisine-10.jpg
+    - assets/cuisine-11.jpg
+    - assets/cuisine-12.jpg
+    - assets/cuisine-13.jpg
+    - assets/cuisine-14.jpg
+    - assets/cuisine-15.jpg
+    - assets/cuisine-16.jpg
+    - assets/cuisine-17.jpg
+    - assets/cuisine-18.jpg
+    - assets/cuisine-19.jpg
+    - assets/cuisine-20.jpg
+    - assets/cuisine-21.jpg
+    - assets/cuisine-22.jpg
+    - assets/cuisine-24.jpg
+    - assets/cuisine-25.jpg
+    - assets/cuisine-26.jpg
+    - assets/cuisine-27.jpg
+    - assets/cuisine-28.jpg
+    - assets/cuisine-29.jpg
+    - assets/cuisine-30.jpg
+    - assets/cuisine-31.jpg
+    - assets/cuisine-32.jpg
+    - assets/cuisine-33.jpg
+    - assets/cuisine-34.jpg
+    - assets/cuisine-35.jpg
+    - assets/cuisine-36.jpg
+    - assets/cuisine-37.jpg
+    - assets/cuisine-38.jpg
+    - assets/cuisine-39.jpg
+    - assets/cuisine-40.jpg
+    - assets/cuisine-41.jpg
+    - assets/cuisine-45.jpg
+    - assets/cuisine-46.jpg
+    - assets/cuisine-47.jpg
+    - assets/cuisine-48.jpg
+    - assets/cuisine-49.jpg
+    - assets/cuisine-50.jpg
+    - assets/cuisine-51.jpg
+    - assets/cuisine-52.jpg
+    - assets/cuisine-53.jpg
+    - assets/cuisine-54.jpg
+    - assets/cuisine-55.jpg
+    - assets/cuisine-56.jpg
+    - assets/cuisine-57.jpg
+    - assets/cuisine-58.jpg
+    - assets/cuisine-59.jpg
+    - assets/cuisine-60.jpg
+    - assets/cuisine-61.jpg
+    - assets/cuisine-62.jpg
+    - assets/cuisine-63.jpg
+    - assets/cuisine-64.jpg
+    - assets/cuisine-65.jpg
+    - assets/cuisine-66.jpg
+    - assets/cuisine-67.jpg
+    - assets/cuisine-70.jpg
   #    - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 

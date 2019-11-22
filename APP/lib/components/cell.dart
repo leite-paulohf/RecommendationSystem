@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:tcc_app/model/restaurant.dart';
 
-class Cell extends StatelessWidget {
+class Cell extends StatefulWidget {
+  final Size size;
   final Restaurant restaurant;
-  final Function booking, favourite;
+  final bool favorited, preference, liked;
+  final Function booking, favorite, like, unlike;
 
-  BuildContext _context;
+  Cell({
+    Key key,
+    @required this.size,
+    @required this.restaurant,
+    @required this.favorited,
+    @required this.preference,
+    @required this.liked,
+    @required this.booking,
+    @required this.favorite,
+    @required this.like,
+    @required this.unlike,
+  }) : super(key: key);
 
-  Cell(
-      {@required this.restaurant,
-      @required this.booking,
-      @required this.favourite});
+  @override
+  _CellState createState() => _CellState();
+}
+
+class _CellState extends State<Cell> {
+  bool _favorited;
+  Restaurant _restaurant;
 
   @override
   Widget build(BuildContext context) {
-    _context = context;
+    _favorited = this.widget.favorited;
+    _restaurant = this.widget.restaurant;
     return Padding(
-      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
-      child: _cell(),
+      padding: EdgeInsets.all(8),
+      child: GestureDetector(
+          onTap: () {
+            this.widget.booking(_restaurant);
+          },
+          child: _cell()),
     );
   }
 
@@ -25,10 +46,6 @@ class Cell extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8)),
-        image: DecorationImage(
-          image: AssetImage('assets/login.jpg'),
-          fit: BoxFit.fitWidth,
-        ),
       ),
       child: Column(
         children: <Widget>[
@@ -40,9 +57,13 @@ class Cell extends StatelessWidget {
   }
 
   Widget _banner() {
+    var id = this.widget.restaurant.cuisine.id.toString();
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black26,
+        image: DecorationImage(
+            image: AssetImage('assets/cuisine-$id.jpg'),
+            fit: BoxFit.fitWidth,
+            colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken)),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(8),
           topRight: Radius.circular(8),
@@ -50,29 +71,39 @@ class Cell extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          Row(children: <Widget>[_ratingRange(), _favourite()]),
-          _priceRange()
+          Row(children: <Widget>[
+            _ratingRange(),
+            _favouriteButton(),
+          ]),
+          Row(children: <Widget>[
+            _discount(),
+            _priceRange(),
+          ]),
         ],
       ),
     );
   }
 
-  Widget _favourite() {
-    double width = (MediaQuery.of(_context).size.width / 2) - 8;
+  Widget _favouriteButton() {
+    double width = (this.widget.size.width / 2) - 8;
+    var icon = _favorited ? Icons.favorite : Icons.favorite_border;
+    var color = _favorited ? Colors.redAccent : Colors.white;
     return Container(
       height: 75,
       width: width,
       child: Align(
         alignment: AlignmentDirectional.topEnd,
         child: IconButton(
-            icon: Icon(Icons.favorite, color: Colors.redAccent),
-            onPressed: this.favourite),
+            icon: Icon(icon, color: color),
+            onPressed: () {
+              this.widget.favorite(this.widget.restaurant);
+            }),
       ),
     );
   }
 
   Widget _ratingRange() {
-    double width = (MediaQuery.of(_context).size.width / 2) - 8;
+    double width = (this.widget.size.width / 2) - 8;
     return Container(
       height: 75,
       width: width,
@@ -82,38 +113,38 @@ class Cell extends StatelessWidget {
   }
 
   Widget _rating() {
-    switch (this.restaurant.price) {
+    switch (this.widget.restaurant.rating.round()) {
       case 1:
         return Row(children: <Widget>[
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
           Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
         ]);
       case 2:
         return Row(children: <Widget>[
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star_border, color: Colors.orangeAccent),
           Icon(Icons.star, color: Colors.orangeAccent),
           Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
+          Icon(Icons.star_border, color: Colors.orangeAccent),
         ]);
       case 3:
         return Row(children: <Widget>[
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
           Icon(Icons.star_border, color: Colors.orangeAccent),
           Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
         ]);
       case 4:
         return Row(children: <Widget>[
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
+          Icon(Icons.star, color: Colors.orangeAccent),
           Icon(Icons.star_border, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
-          Icon(Icons.star, color: Colors.orangeAccent),
         ]);
       case 5:
         return Row(children: <Widget>[
@@ -128,14 +159,40 @@ class Cell extends StatelessWidget {
     }
   }
 
-  Widget _priceRange() {
+  Widget _discount() {
+    var discount = this.widget.restaurant.offer.discount;
+    var text = discount > 0 ? "$discount%OFF" : "Sem desconto";
+    double width = (this.widget.size.width / 2) - 8;
     return Container(
       height: 75,
+      width: width,
+      padding: EdgeInsets.all(8),
+      child: Align(
+        alignment: AlignmentDirectional.bottomStart,
+        child: Text(
+          text,
+          textAlign: TextAlign.right,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _priceRange() {
+    double width = (this.widget.size.width / 2) - 8;
+    return Container(
+      height: 75,
+      width: width,
       padding: EdgeInsets.all(8),
       child: Align(
         alignment: AlignmentDirectional.bottomEnd,
         child: Text(
           _price(),
+          textAlign: TextAlign.right,
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -147,20 +204,8 @@ class Cell extends StatelessWidget {
   }
 
   String _price() {
-    switch (this.restaurant.price) {
-      case 1:
-        return r"R$25";
-      case 2:
-        return r"R$50";
-      case 3:
-        return r"R$75";
-      case 4:
-        return r"R$100";
-      case 5:
-        return r"R$150";
-      default:
-        return r"R$0";
-    }
+    var price = this.widget.restaurant.price.round();
+    return "Preço médio: " + r"R$" + price.toString();
   }
 
   Widget _detail() {
@@ -173,93 +218,138 @@ class Cell extends StatelessWidget {
           )),
       child: Column(
         children: <Widget>[
-          Row(
-            children: <Widget>[_name(), _cuisine()],
+          Row(children: <Widget>[_name(), _cuisine()]),
+          Row(children: <Widget>[_location(), _category()]),
+          _address(),
+          _preferenceView(
+            this.widget.preference ?? false,
+            this.widget.liked ?? false,
           ),
-          Row(
-            children: <Widget>[_address(), _category()],
-          )
         ],
       ),
     );
   }
 
-  Widget _name() {
-    double width = 2 * MediaQuery.of(_context).size.width / 3 - 8;
+  Widget _preferenceView(bool preference, bool liked) {
+    if (!preference) return Container();
+    if (liked) return _likedView();
+    return _preferenceButtons();
+  }
+
+  Widget _likedView() {
     return Container(
-      width: width,
-      padding: EdgeInsets.all(8),
-      child: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          this.restaurant.name,
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
+      height: 48,
+      width: this.widget.size.width - 16,
+      padding: EdgeInsets.only(left: 8),
+      child: Row(children: <Widget>[
+        Icon(Icons.beenhere, color: Colors.teal),
+      ]),
     );
+  }
+
+  Widget _preferenceButtons() {
+    return Container(
+      height: 48,
+      width: this.widget.size.width - 16,
+      child: Row(children: <Widget>[
+        FlatButton.icon(
+          onPressed: () {
+            this.widget.like(this.widget.restaurant);
+          },
+          icon: Icon(
+            Icons.assignment_turned_in,
+            color: Colors.green,
+          ),
+          label: Text("Gostei"),
+        ),
+        FlatButton.icon(
+          onPressed: () {
+            this.widget.unlike(this.widget.restaurant);
+          },
+          icon: Icon(
+            Icons.assignment_late,
+            color: Colors.deepOrange,
+          ),
+          label: Text("Remover"),
+        ),
+      ]),
+    );
+  }
+
+  Widget _name() {
+    double width = this.widget.size.width / 2 - 8;
+    return Container(
+        width: width + 28,
+        padding: EdgeInsets.all(8),
+        child: Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: _label(this.widget.restaurant.name, 20),
+        ));
   }
 
   Widget _cuisine() {
-    double width = MediaQuery.of(_context).size.width / 3 - 8;
+    var cuisine = this.widget.restaurant.cuisine.name;
+    double width = this.widget.size.width / 2 - 8;
     return Container(
-      width: width,
+      width: width - 28,
       padding: EdgeInsets.all(8),
       child: Align(
         alignment: AlignmentDirectional.centerEnd,
-        child: Text(
-          this.restaurant.name,
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
+        child: _label(cuisine, 20),
       ),
     );
   }
 
-  Widget _address() {
-    var neighbourhood = this.restaurant.neighbourhood.name;
-    var city = this.restaurant.city.name;
-    var address = neighbourhood + " - " + city;
-    double width = 2 * MediaQuery.of(_context).size.width / 3 - 8;
+  Widget _location() {
+    var neighborhood = this.widget.restaurant.neighborhood.name;
+    var city = this.widget.restaurant.city.name;
+    var location = city + " - " + neighborhood;
+    double width = 2 * this.widget.size.width / 3 - 8;
     return Container(
       width: width,
       padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
       child: Align(
         alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          address,
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
+        child: _label(location, 15),
       ),
     );
   }
 
   Widget _category() {
-    double width = MediaQuery.of(_context).size.width / 3 - 8;
+    var category = this.widget.restaurant.category.name;
+    double width = this.widget.size.width / 3 - 8;
     return Container(
       width: width,
       padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
       child: Align(
         alignment: AlignmentDirectional.centerEnd,
-        child: Text(
-          this.restaurant.category.name,
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
+        child: _label(category, 15),
       ),
     );
+  }
+
+  Widget _address() {
+    var address = this.widget.restaurant.address;
+    double width = this.widget.size.width - 16;
+    return Container(
+      width: width,
+      padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
+      child: Align(
+        alignment: AlignmentDirectional.bottomStart,
+        child: _label(address, 15),
+      ),
+    );
+  }
+
+  Widget _label(String text, double size) {
+    return Text(text,
+        overflow: TextOverflow.fade,
+        maxLines: 1,
+        softWrap: false,
+        style: TextStyle(
+          color: Colors.black87,
+          fontSize: size,
+          fontWeight: FontWeight.w400,
+        ));
   }
 }

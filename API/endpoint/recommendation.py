@@ -2,7 +2,7 @@ import collections as coll
 import numpy as np
 import pandas as pd
 import sqlalchemy as sql
-from flask import request
+from flask import request, jsonify
 from flask_restful import Resource
 from sklearn import preprocessing
 from sklearn.cluster import KMeans
@@ -18,30 +18,69 @@ class Recommendation(Resource):
         self.engine = sql.create_engine('sqlite:///database.db', echo=True)
         self.connection = self.engine.connect()
 
+    def by_onboarding(self):
+        onboarding = self.onboarding(request)
+        if onboarding.empty:
+            return jsonify({'data': []})
+        restaurants = self.restaurants(request)
+        columns = ['id', 'average_cost', 'average_rating', 'chairs', 'cuisine_id', 'moment_id']
+        restaurants = restaurants[columns]
+        if restaurants.empty:
+            return jsonify({'data': []})
+        recommended = self.k_means_round(onboarding, restaurants)
+        recommendations = self.recommendations(tuple(recommended))
+        return recommendations
+
+    def by_preferences(self):
+        preferences = self.preferences(request)
+        if preferences.empty:
+            return jsonify({'data': []})
+        restaurants = self.restaurants(request)
+        if restaurants.empty:
+            return jsonify({'data': []})
+        recommended = self.k_means_round(preferences, restaurants)
+        recommended.append(preferences['id'])
+        recommendations = self.recommendations(tuple(recommended))
+        return recommendations
+
     def by_usages(self):
         usages = self.usages(request)
+        if usages.empty:
+            return jsonify({'data': []})
         restaurants = self.restaurants(request)
+        if restaurants.empty:
+            return jsonify({'data': []})
         recommended = self.k_means_round(usages, restaurants)
         recommendations = self.recommendations(tuple(recommended))
         return recommendations
 
     def by_favorites(self):
         favorites = self.favorites(request)
+        if favorites.empty:
+            return jsonify({'data': []})
         restaurants = self.restaurants(request)
+        if restaurants.empty:
+            return jsonify({'data': []})
         recommended = self.k_means_round(favorites, restaurants)
         recommendations = self.recommendations(tuple(recommended))
         return recommendations
 
     def k_means_round(self, personal, restaurants):
-        base = self.normalize(self.features(personal))
-        training = self.normalize(self.features(restaurants))
+        personal_features = self.features(personal)
+        restaurants_features = self.features(restaurants)
+        data_frame = personal_features.append(restaurants_features)
+        normalized = self.normalize(data_frame)
+        base = normalized.iloc[:len(personal)]
+        training = normalized.iloc[len(personal):]
         n_clusters = self.elbow(training)
-        n_clusters = len(base) if n_clusters > len(base) else n_clusters
-        if len(restaurants) <= 25 or len(personal) >= len(restaurants) or n_clusters == 1:
+        try:
+            recommended = self.k_means(base, training, n_clusters)
+            restaurants = restaurants.loc[recommended].reset_index(drop=True)
+            if len(restaurants) <= 50 or n_clusters <= 1:
+                return restaurants['id']
+            return self.k_means_round(personal, restaurants)
+        except:
             return restaurants['id']
-        recommended = self.k_means(base, training, n_clusters)
-        restaurants = restaurants.loc[recommended].reset_index(drop=True)
-        return self.k_means_round(personal, restaurants)
 
     def k_means(self, base, training, n_clusters):
         k_means = KMeans(n_clusters=n_clusters, init='k-means++')
@@ -61,7 +100,7 @@ class Recommendation(Resource):
         return normalized_data_frame
 
     def elbow(self, features):
-        size = list(range(1, 11))
+        size = list(range(1, len(features.columns)))
         variations = []
         for clusters in size:
             k_means = KMeans(n_clusters=clusters, init='random')
@@ -69,7 +108,22 @@ class Recommendation(Resource):
             variations.append(k_means.inertia_)
         average = np.average(variations)
         variations = list(filter(lambda variation: variation > average, variations))
-        return len(variations)
+        return len(variations)+1
+
+    def onboarding(self, request):
+        data = [{'id': 0,
+                 'average_cost': request.args.get('price'),
+                 'average_rating': request.args.get('rating'),
+                 'chairs': request.args.get('chairs'),
+                 'cuisine_id': request.args.get('cuisine'),
+                 'moment_id': request.args.get('moment')}]
+        return pd.DataFrame(data)
+
+    def preferences(self, request):
+        query = self.query(PrivateQuery.preferences.value)
+        params = {"client_id": request.args.get('client_id'), "like": 1}
+        data = self.request(query, params)
+        return pd.DataFrame(data)
 
     def usages(self, request):
         query = self.query(PrivateQuery.usages.value)
@@ -85,7 +139,8 @@ class Recommendation(Resource):
 
     def restaurants(self, request):
         query = self.query(PrivateQuery.restaurants.value)
-        params = {"city_id": request.args.get('city_id')}
+        params = {"city_id": request.args.get('city_id'),
+                  "client_id": request.args.get('client_id')}
         data = self.request(query, params)
         return pd.DataFrame(data)
 

@@ -21,3 +21,12 @@ from
   inner join offers on offers.id == restaurants.offer_id
 where
   city_id == :city_id
+  and restaurants.id not in (
+    select
+      restaurant_id
+    from
+      preferences
+    where
+      preferences.client_id == :client_id
+      and preferences.like == 0
+  )

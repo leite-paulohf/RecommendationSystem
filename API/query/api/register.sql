@@ -1,5 +1,5 @@
 insert into clients
 values
   (
-    null, :name, :cpf, :city_id, :password
+    null, :created_at, :name, :cpf, :city_id, :password
   )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tcc_app/authentication/authentication.dart';
 import 'package:tcc_app/usages/usages.dart';
-import 'package:tcc_app/favourites/favourites.dart';
+import 'package:tcc_app/favorites/favorites.dart';
 import 'package:tcc_app/restaurants/restaurants.dart';
 
 class Home extends StatefulWidget {
@@ -17,11 +17,9 @@ class _HomeState extends State<Home> {
   final List<Widget> _body = [
     Restaurants(),
     Usages(),
-    Favourites(),
+    Favorites(),
     Authentication()
   ];
-
-  final _title = ["Restaurants", "Usages", "Favourites", "Profile"];
 
   int _index = 0;
 
@@ -29,10 +27,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        appBar: AppBar(
-          title: Text(_title[_index]),
-          centerTitle: true,
-        ),
         body: _body[_index],
         bottomNavigationBar: _bottomNavigationBar());
   }
@@ -48,19 +42,19 @@ class _HomeState extends State<Home> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.restaurant),
-          title: Text('Restaurants'),
+          title: Text('Restaurantes'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.history),
-          title: Text('Usages'),
+          title: Text('Histórico'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
-          title: Text('Favourites'),
+          title: Text('Favoritos'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          title: Text('Profile'),
+          title: Text('Perfil'),
         ),
       ],
       currentIndex: this._index,

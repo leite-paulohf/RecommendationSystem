@@ -1,4 +1,4 @@
-SELECT restaurants.id,
+select restaurants.id,
        restaurants.name,
        restaurants.address,
        restaurants.latitude,
@@ -9,27 +9,28 @@ SELECT restaurants.id,
        restaurants.has_wifi,
        restaurants.chairs,
        restaurants.city_id,
-       cities.name AS city_name,
+       cities.name as city_name,
        restaurants.neighborhood_id,
-       neighborhoods.name AS neighborhood_name,
+       neighborhoods.name as neighborhood_name,
        restaurants.kind_id,
-       kind.name AS kind_name,
+       kind.name as kind_name,
        restaurants.cuisine_id,
-       cuisines.name AS cuisine_name,
+       cuisines.name as cuisine_name,
        restaurants.category_id,
-       categories.name AS category_name,
+       categories.name as category_name,
        restaurants.moment_id,
-       moments.name AS moment_name,
+       moments.name as moment_name,
        restaurants.offer_id,
        offers.discount,
        offers.restrictions,
        offers.benefits
-FROM restaurants
-INNER JOIN cities ON cities.id == restaurants.city_id
-INNER JOIN neighborhoods ON neighborhoods.id == restaurants.neighborhood_id
-INNER JOIN kind ON kind.id == restaurants.kind_id
-INNER JOIN cuisines ON cuisines.id == restaurants.cuisine_id
-INNER JOIN categories ON categories.id == restaurants.category_id
-INNER JOIN moments ON moments.id == restaurants.moment_id
-INNER JOIN offers ON offers.id == restaurants.offer_id
-WHERE restaurants.city_id == :city_id
+from restaurants
+inner join cities on cities.id == restaurants.city_id
+inner join neighborhoods on neighborhoods.id == restaurants.neighborhood_id
+inner join kind on kind.id == restaurants.kind_id
+inner join cuisines on cuisines.id == restaurants.cuisine_id
+inner join categories on categories.id == restaurants.category_id
+inner join moments on moments.id == restaurants.moment_id
+inner join offers on offers.id == restaurants.offer_id
+where restaurants.city_id == :city_id
+limit 300
