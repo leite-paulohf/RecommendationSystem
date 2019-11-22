@@ -10,3 +10,6 @@ To evaluate the performance of the chosen method, qualitative tests were perform
 Recommendations are evaluated by customers using 2 levels of satisfaction (like and remove) and the learning of the algorithm is derived from the customer’s reaction to the recommendation. 
 Whenever a recommendation is evaluated positively, the system redo the recommendation using the new information as a basis. 
 The same goes for when a recommendation is removed, meaning that the user did not approve the suggestion,resulting in similar data being ignored or no longer displayed.
+
+![alt](https://github.com/Paulo-http/RecommendationSystem/blob/master/Screenshot_1573227907.png)
+![alt](https://github.com/Paulo-http/RecommendationSystem/blob/master/Screenshot_1573228008.png)
