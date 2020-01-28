@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e00b1f3-74f9-4bc9-b649-b96753b70be2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APP/lib/service/service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../APP/lib/service/service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/categories.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/cities.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/clients.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/cuisines.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/favorites.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/kind.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/moments.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/neighborhoods.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/offers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/preferences.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/restaurants.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/sqlite_sequence.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CSV/usages.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screenshot_1573227907.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Screenshot_1573228008.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="98" column="37" lean-forward="true" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+              <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -621,7 +636,7 @@
     <entry file="file://$PROJECT_DIR$/endpoint/recommendation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="98" column="37" lean-forward="true" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+          <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
