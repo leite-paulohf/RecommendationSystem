@@ -11,5 +11,8 @@ Recommendations are evaluated by customers using 2 levels of satisfaction (like 
 Whenever a recommendation is evaluated positively, the system redo the recommendation using the new information as a basis. 
 The same goes for when a recommendation is removed, meaning that the user did not approve the suggestion,resulting in similar data being ignored or no longer displayed.
 
-![alt](https://drive.google.com/file/d/1f9bPXx8ldaWrOWNMDOvBmvapRpdhtA4X/view?usp=sharing)
-![alt](https://drive.google.com/file/d/15hdxpT7dhD3U_x3Ok_9ahWUKiOyl02pP/view?usp=sharing)
+## Video Test
+
+https://drive.google.com/file/d/1f9bPXx8ldaWrOWNMDOvBmvapRpdhtA4X/view?usp=sharing
+
+https://drive.google.com/file/d/15hdxpT7dhD3U_x3Ok_9ahWUKiOyl02pP/view?usp=sharing
